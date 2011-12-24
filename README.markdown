@@ -7,6 +7,7 @@ The Py-Lessons.mm file has a breakdown of the lessons. Use Freemind from [freemi
 ## Structure for each lesson
 
 Each lesson will be in a separate directory containing the following:
+
 - COVERED: Contains what was covered in the previous lesson (good for a very quick review) and what will be covered in this one
 - PLAN: Contains a plan for the lesson, including what to explain, what questions to ask and eventually, what exercises to give
 - Any other files required for the lesson
