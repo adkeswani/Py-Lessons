@@ -1,0 +1,46 @@
+Python lessons
+        Object oriented programming
+                Classes and objects
+                Fields
+                Methods
+                Subclasses and superclasses
+                Polymorphism/overloading
+        Python intro
+                How to write classes and objects (use object designed above)
+                How to subclass and superclass
+                Python interpreter
+        Data types and structures
+                Explain weak typing
+                Standard types (ints, strings, floats)
+                Tuples
+                Lists
+                Dictionaries
+                Methods like len
+        Control structures
+                while loops
+                for loops
+                        range
+                        list
+        Exception handling
+        Modules
+                Creating your own (naming)
+                Random
+Pygame lessons
+        Setting up a Pygame application
+                Setting up (init, sound, background, screen size)
+        Sprites and sprite groups
+                Loading a sprite (transparency, colorkey)
+                Rects
+                Sprite groups and applications
+        Collisions
+                Types of collisions
+                Collisions between groups
+                Purposes of different types of collisions
+        Event handling and input
+                Event handling purpose
+                Mouse and keyboard input
+        Frame rate
+                Clock
+        Sounds
+                Loading a sound
+                Playing a sound
