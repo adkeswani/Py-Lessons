@@ -15,3 +15,12 @@ Each lesson will be in a separate directory containing the following:
 ## Time available
 
 Each day will go from 10AM to 4PM. Let's say we break for 45 mins at 12:30PM. That gives us 5:15, with maybe 45 minutes for shit happens or constipation (things taking longer than they should...). That leaves 4:30 hours for the lessons in total.
+
+## Todo
+
+- Email Brad:
+ - Get room booked
+ - Get front entrance door to allow access on both mornings
+ - Get lunch organised
+ - See if he'll give us a case of beer in return for the work
+- Organise BBQ or something for volunteers for after the workshop
