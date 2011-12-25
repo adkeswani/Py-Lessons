@@ -1,0 +1,37 @@
+- Setup
+        - Download the files
+        - Opening up XCode (are we using this?)
+        - Opening a terminal
+        - Navigating around the filesystem (brief detour into the Unix filesystem?)
+        - Explain what each of the directories and files we will be using are for
+
+Ask how much experience people have with OO. Based upon this can decide what speed to progress at
+
+
+- Intro to OO
+        - We'll start off by defining some concepts
+
+
+        - Basically in OO we consider everything in terms of objects and the interactions between them
+        - Let's start just by coming up with a simple object (ask someone to choose an object)
+            - Try and choose something such that the fields are also objects
+        - Then ask how they would describe that object. These are known as the data fields of that object
+        - Then ask what that object can do, or perhaps what can be done with the object. These are known as the methods of the object. And you can happily pass these arguments just like procedures in non-OO languages.
+        - Together, these descriptions form a class, they define a class of objects. And when you actually have one of these objects, we often call it an instance of that class.
+
+        
+        - Now, usually you can group these instances together. For example, for a class defining Vehicles, you could group them into 2 wheel and 4 wheel vehicles. 
+        - Ask them for a similar breakdown of whatever class we designed above. Ask for multiple alternatives for the breakdown. Tell them that we use whatever makes the most sense.
+        - Then ask for further breakdowns of the class. Draw it up on the board with non-permanent marker (!)
+        - OK, so these more specific classes are called the subclasses of the more general ones. And the general classes are called the superclasses of the more specific ones.
+        - When we create these subclasses in OO, they actually inherit all of the same data fields and methods of the superclass. You essentially get to reuse all of the code written for the superclass and then you can build upon it.
+
+        
+        - So let's quickly think of some of the benefits of doing things the OO way.
+        - Ask if anyone can come up with anything.
+        - Some of the benefits are:
+            - Encapsulation: You keep things separate from each other, so they can't touch each other's data fields. 
+            - Modularity: Each of the classes can be used interchangably lalalala
+
+           
+    
