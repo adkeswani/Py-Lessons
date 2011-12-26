@@ -9,6 +9,8 @@ Python lessons
                 - How to write classes and objects (use object designed above)
                 - How to subclass and superclass
                 - Python interpreter
+                - Ways of writing a main function
+                - The self parameter
         - Data types and structures
                 - Explain weak typing
                 - Standard types (ints, strings, floats)
