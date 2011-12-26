@@ -24,9 +24,11 @@
                 - Then ask how they would describe that object. These are known as the data fields of that object
                 - Then ask what that object can do, or perhaps what can be done with the object. These are known as the methods of the object. And you can happily pass these arguments just like procedures in non-OO languages.
                 - Together, these descriptions form a class, they define a class of objects. And when you actually have one of these objects, we call it an instance of that class.
+                - Now these instances become just like the values for other data types. So just like 5 is an integer value, an instance of a class is like a value of that class. 
+                - These instances can be used just like that integer, you can store them in a variable, then you can pass them as a parameter to a method, and you can store them in the data field of another object. For example, *come up with example based on the object we chose, show how you can store it, pass it around to method calls and then show that one of the fields in the object can have an object stored in it.*
 
         - Subclasses
-                - Now, usually you can group these instances together. For example, for a class defining Vehicles, you could group them into 2 wheel and 4 wheel vehicles. 
+                - Now, usually you can group some of these instances together. For example, for a class defining Vehicles, you could group them into 2 wheel and 4 wheel vehicles. 
                 - Ask them for a similar breakdown of whatever class we designed above. Ask for multiple alternatives for the breakdown. Tell them that we use whatever makes the most sense.
                 - Then ask for further breakdowns of the class. Draw it up on the board with non-permanent marker (!)
                 - OK, so these more specific classes are called the subclasses of the more general ones. And the general classes are called the superclasses, or parent classes, of the more specific ones.
@@ -55,18 +57,36 @@ MAY CUT THIS BIT OUT]
 
 
         - Polymorphism
-                - This inheritance is pretty useful, because suppose we wanted to write a SpeedCamera class that could take one of our TwoWheel or FourWheel vehicles from earlier and check if its speed was over a certain limit
-                - So we'd have a method in this class for doing this. How might you be able to set up the parameters for it? (Aiming for a TwoWheel/FourWheel object and a speed limit)
+                - This inheritance is pretty useful. Let's suppose we wanted to write a SpeedCamera class that could take one of our TwoWheel or FourWheel vehicles from earlier and check if its speed was over a certain limit
+                - So we'd have a method in this SpeedCamera class for doing this. What kind of parameters might you want for this method? (Aiming for a TwoWheel/FourWheel object and a speed limit)
+                - Let's call this method isOverLimit()
                 - Now, we don't really want to write 2 methods, one for 2 wheel and one for 4 wheel vehicles, because we're lazy and we know that both these subclasses would have inherited some sort of speed data field or method from the Vehicle class
                 - So instead of writing 2 methods that take in the 2 separate classes, we write one that takes in the superclass, Vehicle.
                 - Then this just checks the speed data field that is common to both 2 wheel and 4 wheel vehicles that came from the Vehicle superclass
                 - So what you see here is that wherever you pass in a Vehicle, you can pass in one of its subclasses instead
-                - Being able to use subclasses in this way is called polymorphism. This basically means that subclasses can take on many forms: our TwoWheel object is of the type TwoWheel and also of type Vehicle and can be used as either.
+                - Being able to use subclasses in this way is called polymorphism. This basically means that subclasses can take on multiple types: our TwoWheel object is of the type TwoWheel and also of type Vehicle and can be used as either.
+                - When you're coding in OO, you generally WANT to keep it as general as possible, you want to allow methods to accept superclasses rather than subclasses, because as we just saw, it leaves us more flexible.
+                - Say we created a new subclass like 3 wheel vehicle. Our SpeedCamera will still work with this because it only needs a Vehicle.
+                - So suppose we take this set of classes, can someone give me an example of a method we'd write for the superclass rather than the subclasses? And now how about one that would only make sense for *this subclass*?
 
         - Benefits (briefly)
-                - OK, so finally, let's just quickly consider some of the benefits of doing things this way
-                - Can anyone think of some good things about coding in this way?
-                - Well one good thing is that
+                - OK, so finally, let's just quickly consider why we would do things this way
+                - Can anyone think of some reasons?
+                
+                - Well, let's take a look at 
+                - I don't need to know what's in there
+
+
+
+
+                - Well, one of the good things is known as abstraction, being able to look at things without having to understand the details behind them
+                - So for example, with our 
+                - Encapsulation
+                - modularity
+                - abstraction: Being able to look at 2 wheel and 4 wheel as just a vehicle rather than the specifics
+
+
+                - Now, something I didn't tell you was that it's possible to hide certain 
 
 
 
@@ -76,7 +96,7 @@ MAY CUT THIS BIT OUT]
 
 
         - Exercises
-                - Since we haven't gotten into any code yet, there's no exercises yet, but since we've gone through a lot of terms I'm going to ask questions about them instead
+                - Since we haven't gotten into any code yet, there's no exercises yet, but we've gone through a lot of terms so I'm going to ask questions about them instead
                 - What is:
                     - A class
                     - A data field
@@ -84,6 +104,12 @@ MAY CUT THIS BIT OUT]
                     - A subclass
                     - Inheritance
                     - Polymorphism
-                - OK, so that's a really brief intro to OO programming. There's a lot more to it, such as abstract classes, interfaces, design patterns, and more, but that'll all come up when you actually take a proper course on OO.
+                - OK, so that's a really brief intro to OO programming. There's a lot more to it, such as abstract classes, interfaces, design patterns, and more, but that'll all come up when you take a proper course on OO.
                 - Questions so far?
                 - OK, so now we'll move onto how this all happens in Python
+
+
+
+
+        - Things I still want to add
+            - Private and public and why we use them
