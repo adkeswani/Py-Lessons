@@ -69,34 +69,31 @@ MAY CUT THIS BIT OUT]
                 - Say we created a new subclass like 3 wheel vehicle. Our SpeedCamera will still work with this because it only needs a Vehicle.
                 - So suppose we take this set of classes, can someone give me an example of a method we'd write for the superclass rather than the subclasses? And now how about one that would only make sense for *this subclass*?
 
+
+
+
+
+[MAY CUT THIS BIT OUT
         - Benefits (briefly)
                 - OK, so finally, let's just quickly consider why we would do things this way
                 - Can anyone think of some reasons?
-                
                 - Well, let's take a look at 
                 - I don't need to know what's in there
-
-
-
-
                 - Well, one of the good things is known as abstraction, being able to look at things without having to understand the details behind them
                 - So for example, with our 
                 - Encapsulation
                 - modularity
                 - abstraction: Being able to look at 2 wheel and 4 wheel as just a vehicle rather than the specifics
-
-
                 - Now, something I didn't tell you was that it's possible to hide certain 
-
-
-
                 [TODO]
+MAY CUT THIS BIT OUT]
+
 
 
 
 
         - Exercises
-                - Since we haven't gotten into any code yet, there's no exercises yet, but we've gone through a lot of terms so I'm going to ask questions about them instead
+                - Since we haven't gotten into any code yet, there's no exercises yet, but we've gone through a few terms so I'm going to ask questions about them instead
                 - What is:
                     - A class
                     - A data field
@@ -104,12 +101,6 @@ MAY CUT THIS BIT OUT]
                     - A subclass
                     - Inheritance
                     - Polymorphism
-                - OK, so that's a really brief intro to OO programming. There's a lot more to it, such as abstract classes, interfaces, design patterns, and more, but that'll all come up when you take a proper course on OO.
+                - OK, so that's a really brief intro to OO programming. There's a lot more to it, such as abstract classes, interfaces, design patterns, and more. Some of these will come up in the rest of this workshop, others you'll learn as you start doing other OO programming and in uni courses.
                 - Questions so far?
                 - OK, so now we'll move onto how this all happens in Python
-
-
-
-
-        - Things I still want to add
-            - Private and public and why we use them
