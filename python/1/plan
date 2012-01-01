@@ -1,0 +1,58 @@
+Constructors
+        - We'll be using the example from the previous section, so we'll create a new file called vehicle.py
+        - We're going to create the Class for these vehicles, so to do this it's just
+                class Vehicle(object):
+        - So it's just a class keyword followed by the name of the class
+        - Then in brackets you've got this object. I'll explain this more shortly when we discuss subclasses in Python, but it's sort of saying that Vehicles are going to be objects. I'll explain properly soon.
+        - Another bit of important syntax is the colon. Every block of code in Python, where blocks include these class definitons, method declarations, loops and conditions, will start with a colon
+        - And then the line after the start of a block of code must always be indented. You'll see as we write the rest of this class how this works.
+        - Alright, so we have a class. Next thing we need is something called a constructor
+        - 
+
+Notes:
+- The filename doesn;t have to be same as class name
+- You can create an arbitary field inside the object!
+    - Tell them that this is a difference it has with Java etc.
+
+Then write the __init__ method.
+Explain that constructors are what are used to create the instance of the object
+Explain what self is all about, it refers to this object
+So when we say self.speed, we're giving the instance we're creating a speed data field
+Also do self.wheels.
+Indicate the indents. It's not just neater, it's actually enforced in Python. It doesn't matter what you use as long as it's consistent
+OK, so that's the constructor done, it allows us to set up our object
+So now, let's go and test this
+I'm going to show you one way
+Using the Python interpreter (show them how to get to it)
+We could basically have typed all into interpreter
+Do the import, create the Vehicle, show how to access its fields, print out the object itself
+Show how to make a non-default constructor
+Try calling the default constructor, then show how to use the non-default constructor
+Now we have flexibility
+Now, on its own, this could actually be useful. It's just a data structure with a number of named field. We'll see later that there is perhaps a better way to do this.
+But for now, let's add a method, maybe getSpeed
+Reiterate the self and indents thing, show how return works
+Then go into the interpreter again
+Show how to assign the object to a variable
+Then show how to call the method (dot syntax), similar to accessing data structures in other languages
+OK, now I'll show you a couple more things before we move onto an exercise, which is conditionals or if statements and the print statement
+So, just as a silly example, we'll write a printMe method which will print out what vehicle it might be
+Show ifs and elifs, show no need for parentheses/brackets, show the colon and the indent again
+Show the way to do parameters and the ==, >=, >, <, <= Boolean operators
+
+Exercise:
+        - If you open up the Vehicle.py file, you'll see that what we've written up to here is in there
+        - So first thing I want you to do is add a getSpeed to the Vehicle
+        - Then I want you to do is to write a SpeedCamera that we discussed earlier (in the same file, we'll move it into a module later)
+        - In the constructor, I want you to take in 3 things: a speed limit for 2 wheel vehicles, 3 wheel vehicles and 4 or more wheels vehicles and store all of them
+        - Then I want you to write a method for it that takes in a vehicle and based on its number of wheels and its speed, prints if it's over the limit and returns True if it is over the limit or prints that it's under the limit and returns False if it's under
+        - Note that I don't want the method to take in the speed and number of wheels, it should take in the vehicle itself and then make the call from inside the method
+
+
+Exercise 2:
+        - Demonstrating when to use subclassing versus different constructors
+        - Explain when we want to use each, constructors is when you can put everything into a common class with just some minor variations, subclassing is when your methods are going to change a lot as well
+        - Use a Pygame space invaders example
+        - So use a normal space invaders for the different constructors example, just pass in a different image and maybe a different bullet firing rate
+        - THen for subclassing use a variation where the ships come at you at different patterns/speeds, and use that to show where you would want to subclass instead by overriding the behaviour method
+

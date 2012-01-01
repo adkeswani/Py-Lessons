@@ -1,0 +1,66 @@
+- How many of you have seen arrays before?
+- They're a pain to work with sometimes right? Having to shuffle stuff around, not being able to get the last item immediately, stuff like that
+- Python has a few data types that make this all easier
+    - Now, just like the integers and strings, these are objects
+    - And like integers and strings, they use symbols as constructors rather than calls, but again, there are calls available
+- We'll start with lists:
+    - These are just lists of objects really
+    - To create one, just [objects]
+    - Can have different types of objects in the same list
+    - You can index items in the list and you can also change them
+    - Then there's a number of methods you can use: http://docs.python.org/library/stdtypes.html
+- Tuples
+    - These are a bit like lists, but they can't be modified, so no append, insert, delete
+    - You create them using ()
+- Common to both lists and tuples
+    - There's things common to both
+    - The in keyword
+    - len, min, max, SORT are built-ins, index, count: http://docs.python.org/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange
+    - Slices!
+        - Use the explanation that the numbers refer to the spaces between slices
+- Sets
+    - Python also has a set data type
+    - This allows you to do things like unions, intersections and the likes
+    - Not going to cover it as it's not that exciting, but it's all in the docs
+
+- Dictionaries
+    - So what's a dictionary in real life? Ask around.
+    - Right, you look up a word and it gives you a definition
+    - Dictionaries in Python do something similar, they allow you to look up items, which are called keys, and get back values associated with them, much like the word and definitions in a normal dictionary
+    - But you can use any data type, not just strings
+    - Examples. Call them key value pairs
+    - You can add stuff to the dictionary, get its keys, get its values
+
+- While loops and for loops:
+    - Finally we get some more power
+    - While loops are much the same as if statements, just a while instead of an if and it'll loop
+        - Remember the colons and indents
+        - Press Ctrl+C if you get an infinite loop.
+        - Just do a simple example
+    - For loops are particularly awesome
+        - You might be used to this type: i = 0, i < 10, i++
+        - Python's different
+        - In Python, you use for loops to loop through objects like lists, tuples and other sequences
+        - Examples:
+            - for loop through a list of items
+            - for loop through a sorted list of items
+            - through a tuple
+            - for loop through a range (traditional)
+            - for loop through a dictionary's keys, sorted
+        - Now, you can actually make it possible to use a for loop on your own objects too
+            - Remember how we do subclasses?
+            - So you make it a subclass of iterator?
+            - And then give it a next and prev I think...
+
+- Exercises:
+    - Quick revision because I covered a fair bit.
+        - How do you create a list, a tuple, a dictionary?
+        - What does a dictionary store?
+        - Which one can you change? A list or a tuple?
+    - Write a couple of sorts?
+        - I think we'll use loops rather than min
+        - And maybe also time them! Just to show it's optimised
+        - Either user input or from random, we'll see
+    - How to use dicts?
+        - I think that pygame.sprite.groupcollide will be a good one for this
+        - Yah, just have a bunch of objects flying around the screen and use spritecollide to get them to bounce off each other, maybe we can even use the math library to get 90 degree collisions...?

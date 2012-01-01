@@ -1,0 +1,59 @@
+Dynamic, strongly typed
+    - Dynamically typed
+        - Noticed that there's no types
+        - Other languages, there's always the whole int, string stuff
+        - Here, it isn't
+        - OK, so languages where you do have to declare the type of variable are statically typed and the compiler will check that what you're doing with the types is correct when you compile the program
+        - Here, no types, and it's only when you run the program that it will tell you if you've done something wrong with the types. This is called a dynamically typed language
+
+        - Also with some languages, some of you migth have done Perl, you can do weird stuff with types, transforming it at will
+        - So, for example, you can add strings and integers, e.g. 'x' + 3 becomes 'x3'
+        - So you can get some weird interplay going on with types, you can do stuff between types that doesn't necessarily make sense
+        - This is sometimes called a weakly typed language, though it's not really a technical term, where there's loopholes in the way that you can work with types
+        - Python would be called a strongly typed language, because it will complain if you try and do things that don't make sense for the given types (demonstrate this)
+    - So Python is dynamic and strongly typed
+
+Types:
+    - http://docs.python.org/library/stdtypes.html
+
+    - Be brief with the standard types so we can spend a while on lists, slices etc.
+    - Go into the interpreter
+    - Python has a bunch of built-in data types, some you'll already know, some are a bit more interesting
+    - So you've seen integers so far
+    - Show that these types are really just objects
+        - Why is the bracket necessary?
+        - They're just different in the way they're constructed, with numbers and "" rather than calls
+        - In fact, there are actually calls we can use to create these instead
+        - And the fun thing is that these can be overloaded, so you can create integers using a string as a constructor
+    - Other numeric types are:
+        - longs: Created when you try and create a number that's too large to store in an integer. These have unlimited precision. Can also create using 1L
+        - floats: Created by having a decimal point
+        - complex numbers, fractions, decimal are also available, see the docs
+    - These support your standard operations like +, -, *, /, %, abs
+        - Explain integer division
+        - You can also convert between them int(x), long(x), float(x)
+        - They also have special functions, e.g. float.as_integer_ratio()
+    
+    - Strings
+    - We've seen these in print statements
+    - Strings cannot be changed, i.e. you can't modify the letter at an index like you would in C, but you can read from an index
+    - Some of the things you can do with strings
+        - print statement and the printf like formatting options
+            - http://docs.python.org/library/stdtypes.html#string-formatting-operations
+            - See how many people have used printf before
+            - Show how you could also do this with 
+        - Concatenation
+        - The various string methods
+            - http://docs.python.org/library/stdtypes.html#string-methods
+            - Just scan through them
+    - Printing out an object
+        - The __str__ and __repr__ methods
+
+Exercises:
+    - Take our Vehicle object and make it printable using __str__
+        - Try all of the ways of doing this
+        - i.e. using str() and concatenation, using the printf style
+    - The numbers to works program
+        - Should we do the numbers to words one? We could use it to demonstrate %, str(), concatenation and it would improve familiarity with the language...
+        - OK, done. So we can do it via modulus or via strings, both are fairly good.
+        - Ask them to choose.

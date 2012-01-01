@@ -1,0 +1,45 @@
+Explain namespace and scoping
+        - Namespace
+            - Can't have multiple things inside the same namespace with the same name
+        - Scoping
+            - Where you're allowed to access things, the scope of a name
+            - The global keyword
+            - Looks for things inside out, so it'll look at the current function first
+            - Why do we need global? Because otherwise it'll create a new name in this scope
+
+Explain modules:
+        - Split stuff into different files, neater
+        - Sure, you could have all your class defs inside one file (demonstrate), but it gets messy
+        - Instead we have the import
+        - This basically allows you to use stuff from other files
+        - What is from blah import *
+            - This avoids you having to prepend it with blah each time you use it
+            - You have this thing called a namespace which is all of the names you're allowed to use
+            - Doing from * adds the contents to your namespace, so then you can use the name directly
+        
+Explain how you can do a main function:
+        - You can just write it in outside of a class definition?
+        - What is the __name__ == __main__ for?
+        - So it seems that anything indented is run from top to bottom in order, it's just a giant script...I didn't know this
+        - Then what's the __name__ __main__ thing?
+            - So if you have unindented code, it gets run whenever that module gets loaded
+            - So with that mygame example, the test code gets run before anything else because it was unindented
+            - THe __name__ thing allows us to have code outside to use it as a standalone
+
+Exercises:
+        - Change SpeedCamera so that it's in a separate file
+        - Then add a main to Vehicle that gets it to create a Vehicle and print its wheels and speed
+        - Then add a main to SpeedCamera that creates a bunch of Vehicles and then checks each of their speeds
+        - Make sure that Vehicle's main doesn't run when you run SpeedCamera (see what happens if you remove the __name__ bit and unindent)
+
+Exercises:
+        - Have a bunch of examples with weird imports and namespace and scoping, with some methods getting replaced by others
+        - Ask questions about why they behave the way they do
+
+Exercises:
+        - Python has a bunch of modules it comes with
+        - For example, random
+        - Show them the python website that has help about the module, Google is your friend, http://docs.python.org/
+        - There's also stuff like the math module for stuff like sin, tan, other math functions, and regexp for your regular expressions work
+        - OK, so with random, we'll do bullet patterns and enemy behaviours
+        - And we'll use readline to get the seed!
