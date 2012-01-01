@@ -5,14 +5,20 @@ Python lessons
                 - Methods
                 - Subclasses and superclasses
                 - Polymorphism/overloading
+                - Private vs. public vs. protected
         - Python intro
                 - How to write classes and objects (use object designed above)
-                - How to subclass and superclass
+                - How to subclass
+                - Constructors & overloading?
                 - Python interpreter
-                - Ways of writing a main function
                 - The self parameter
+        - Modules and main
+                - Creating your own (naming)
+                - Ways of writing a main function
+                - Random
+                - Getting input from the user
         - Data types and structures
-                - Explain weak typing
+                - Explain dyanmic, strongly typed
                 - Standard types (ints, strings, floats)
                 - Tuples
                 - Lists
@@ -24,9 +30,10 @@ Python lessons
                         - range
                         - list
         - Exception handling
-        - Modules
-                - Creating your own (naming)
-                - Random
+        - Functional programming?
+        - kwargs, default values
+        - Garbage collection?
+        - Overloading
 Pygame lessons
         - Setting up a Pygame application
                 - Setting up (init, sound, background, screen size)
