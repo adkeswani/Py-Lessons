@@ -1,58 +1,182 @@
-Constructors
-        - We'll be using the example from the previous section, so we'll create a new file called vehicle.py
-        - We're going to create the Class for these vehicles, so to do this it's just
-                class Vehicle(object):
-        - So it's just a class keyword followed by the name of the class
-        - Then in brackets you've got this object. I'll explain this more shortly when we discuss subclasses in Python, but it's sort of saying that Vehicles are going to be objects. I'll explain properly soon.
-        - Another bit of important syntax is the colon. Every block of code in Python, where blocks include these class definitons, method declarations, loops and conditions, will start with a colon
-        - And then the line after the start of a block of code must always be indented. You'll see as we write the rest of this class how this works.
-        - Alright, so we have a class. Next thing we need is something called a constructor
-        - 
+*Explain syntax as you type*
 
-Notes:
-- The filename doesn;t have to be same as class name
-- You can create an arbitary field inside the object!
-    - Tell them that this is a difference it has with Java etc.
+- Class definition:
+    - Going to create a Vehicle class
+    - New file, vehicle.py, could be dinosaur.py, but more understandable this way
+    - Code we write for a class is called the class definition
+    - Syntax:
+        - class keyword, name of class of objects
+        - Capital letter at start of class not necessary, but convention. Other languages require it.
+        - Colon + indent:
+            - Class definition is example of a "block of code"
+            - Other examples are the code inside loops and conditions
+            - Opening line ends in colon and all code inside is indented
+            - Helps keep things looking neat and Python will complain without it
 
-Then write the __init__ method.
-Explain that constructors are what are used to create the instance of the object
-Explain what self is all about, it refers to this object
-So when we say self.speed, we're giving the instance we're creating a speed data field
-Also do self.wheels.
-Indicate the indents. It's not just neater, it's actually enforced in Python. It doesn't matter what you use as long as it's consistent
-OK, so that's the constructor done, it allows us to set up our object
-So now, let's go and test this
-I'm going to show you one way
-Using the Python interpreter (show them how to get to it)
-We could basically have typed all into interpreter
-Do the import, create the Vehicle, show how to access its fields, print out the object itself
-Show how to make a non-default constructor
-Try calling the default constructor, then show how to use the non-default constructor
-Now we have flexibility
-Now, on its own, this could actually be useful. It's just a data structure with a number of named field. We'll see later that there is perhaps a better way to do this.
-But for now, let's add a method, maybe getSpeed
-Reiterate the self and indents thing, show how return works
-Then go into the interpreter again
-Show how to assign the object to a variable
-Then show how to call the method (dot syntax), similar to accessing data structures in other languages
-OK, now I'll show you a couple more things before we move onto an exercise, which is conditionals or if statements and the print statement
-So, just as a silly example, we'll write a printMe method which will print out what vehicle it might be
-Show ifs and elifs, show no need for parentheses/brackets, show the colon and the indent again
-Show the way to do parameters and the ==, >=, >, <, <= Boolean operators
+- Constructor:
+    - Next part of class definition is a method called the constructor
+    - Sets default values of instance's data fields, *examples*:
+        - Number of wheels Vehicle has
+        - Current speed of Vehicle
+    - Automatically gets called when we create an instance of the class, *explain with Vehicle*
+    - Method's name is always "__init__"
+    - Syntax:
+        - Other methods will use exactly same syntax
+        - def keywork, name of method
+        - In brackets, the arguments to the method, will explain self shortly
+        - *write first line of constructor too, speed*
+        - First, colon and indent again, because a method is also a block of code. Notice that indents "build up", indents always same size
+        - self:
+            - *Ask someone to guess what self is*
+            - Refers to the instance of the class
+            - First argument to every method
+            - We use it here to set default values of data fields
+        - Data fields
+            - To create data field, self, dot, name of the field, then just assign to it
+            - To access the instance, always self then dot, then what we're accessing
+            - This way of accessing is called dot syntax
+            - So other data fields:
+                - Number of wheels - integer
+                - inDisguise - Boolean, True or False, remember the capitals
+                - modelName - String, just put "" or '' around it
+                - *Ask for others*
 
-Exercise:
-        - If you open up the Vehicle.py file, you'll see that what we've written up to here is in there
-        - So first thing I want you to do is add a getSpeed to the Vehicle
-        - Then I want you to do is to write a SpeedCamera that we discussed earlier (in the same file, we'll move it into a module later)
-        - In the constructor, I want you to take in 3 things: a speed limit for 2 wheel vehicles, 3 wheel vehicles and 4 or more wheels vehicles and store all of them
-        - Then I want you to write a method for it that takes in a vehicle and based on its number of wheels and its speed, prints if it's over the limit and returns True if it is over the limit or prints that it's under the limit and returns False if it's under
-        - Note that I don't want the method to take in the speed and number of wheels, it should take in the vehicle itself and then make the call from inside the method
+- The Python Interpreter:
+    - Test our class
+    - Ensure we're in the same directory as vehicle.py
+    - The interpreter:
+        - Runs your Python program
+        - Can also write code directly into it
+        - Technical sidetrack, *ask if anyone's interested*:
+            - Sometimes we compile, i.e. transform straight to machine code
+            - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
+            - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
+            - Same language can be implemented in different ways, e.g. there are interpreters for C, normally we think of it as compiled
+            - Similarly different implementations of Python use different approaches, most common is bytecode compilation
+    - import, for now think of it as loading the file, no .py extension
+    - Instantiating a class:
+        - First, write name of file we import, then dot, then write name of class then brackets
+        - File at start required because that is where class was defined
+        - Assign to a variable, v, this is just like normal code
+        - Automatically calls __init__
+    - Accessing the instance:
+        - Again, we use dot syntax
+        - v is a Vehicle, so we can do v dot data field, *show example*
+        - No need for file name at start, because v was defined here, not in that file
+        - Interpreter automatically prints the value
+        - Do the same with v, shows the class and memory location
+    - Later we'll see how to do all this automatically
 
+- Arguments to constructor:
+    - Current constructor is not flexible
+    - Add more arguments to the constructor for all data fields
+    - Demonstrate in interpreter
 
-Exercise 2:
-        - Demonstrating when to use subclassing versus different constructors
-        - Explain when we want to use each, constructors is when you can put everything into a common class with just some minor variations, subclassing is when your methods are going to change a lot as well
-        - Use a Pygame space invaders example
-        - So use a normal space invaders for the different constructors example, just pass in a different image and maybe a different bullet firing rate
-        - THen for subclassing use a variation where the ships come at you at different patterns/speeds, and use that to show where you would want to subclass instead by overriding the behaviour method
+- *Ask if any questions so far*
 
+- Methods, print and conditions
+    - Make it do something, add other methods, getMaxSpeed, isTransformer, printMe
+    - getMaxSpeed syntax:
+        - def followed by method name
+        - self must be the first argument
+        - colon and indent
+        - Use random formula to convert speed to maxSpeed, demonstrate operators, especially powers
+        - return keyword is used for returning values from a method
+    - isTransformer syntax:
+        - Same method syntax, def, method name, self
+        - Same colon and indent
+        - Now we just return inDisguise, if it is inDisguise, it is a transformer
+    - printMe syntax:
+        - Same again, def, method name, self
+        - *Include 3 Boolean arguments to print each type of info*
+        - if statement == if keyword, then condition, then the colon and indent, because this is a block of code
+        - Conditions can use ==, >, <, >=, <=
+        - No need for brackets around condition
+        - *Use this to print what the vehicle might be with if, elif, else, e.g. car, bike, trike*
+        - Print syntax is print keyword followed by a string (in quotes)
+        - Conditions can also use True/False, demonstrate with isTransformer
+        - Print syntax for variable is print keyword followed by variable name (no quotes)
+        - Print syntax to print string and variable with space in between is print followed by comma-separated items
+        - *Print maximum speed*
+        - Note: each new print starts on a new line
+
+- Calling methods
+    - *Start interpreter, import, create Vehicle, call each method*
+    - Note: did not pass in any self argument, no need to do this when method is called from an instance of the Class
+    - Alternative way of calling methods:
+        - file name, dot, class name, dot, method name, then pass in a "self", i.e. an instance
+        - We need file name and class name because that is where the method is defined
+        - No need to use this method of calling, but keep in mind how we use dot syntax to access things defined elsewhere
+
+- Exercise 1:
+    - vehicle.py has what we've written up to here
+    - In the same file, write a new class definition for the SpeedCamera class
+    - In its constructor, take 3 arguments: a speed limit for 2 wheel vehicles, 3 wheel vehicles and 4 or more wheels vehicles, and store all of them in data fields with understandable names
+    - Write an isOverLimit method in SpeedCamera:
+        - Takes a Vehicle as an argument
+        - Checks its number of wheels and its speed (use the dot syntax to read these)
+        - If it is over the limit for that number of wheels, prints "Over limit by: " and the amount it is over limit by, and returns True
+        - If not over limit, print "Under limit by: ", amount it is under limit by, and returns False
+    - Create some Vehicles in interpreter, create a SpeedCamera, test it out
+    - *Demonstrate and explain solution*
+
+- and, or, not
+    - *Ask who is familiar with Boolean operations*
+    - Can combine conditions with Python's Boolean operations
+    - *Change code from exercise 1 and Vehicle to demonstrate*
+
+- Subclassing
+    - Remember, subclassing == create specialised versions based on a parent class
+    - Will create subclass OptimusPrime, *ask if everyone knows Optimus Prime*
+    - To create subclass, same class keyword, but brackets and parent class afterwards
+    - Now it automatically has same methods
+    - *Demonstrate and try call to maxSpeed, show it fail*
+    - But it does not yet have data fields set up, need to call parent's constructor to get values
+
+    - SUPER CALL!
+
+    - This class will work, but usually only subclass if you want to change or add behaviours, otherwise you'd just use a different constructor
+    - *Add a defeatVillain method and villain name to constructor*
+    - Can add new methods and data fields*
+    - *Demonstrate in interpreter, demonstrate polymorphism by using SpeedCamera on OptimusPrime*
+    - *Ask if anyone can explain why this works*
+    - OptimusPrimes are of type OptimusPrime, but also of type Vehicle, so SpeedCamera can understand them
+    - *Override maxSpeed method and demonstrate*
+    - Can override existing behaviours just by writing method with same name
+    - *Change type returned by maxSpeed, demonstrate error*
+    - Other languages would prevent you overriding and returning a different type, will explain shortly
+    - *Ask if anyone knows mechanism to prevent this*
+    - Private, would prevent us overriding. Would use it because another class, SpeedCamera, depends upon maxSpeed's output
+    - Will explain in code soon
+
+- Exercise 2a:
+    - Pygame example, not going into specifics, but will give prettier results
+    - *Run game, show that all invaders are same*
+    - *Open file, show where they are created*
+    - For loop, will explain it fully shortly, it loops N times to create all the invaders, note how i becomes a counter
+    - *Open invaders file, show constructor, explain current call and how x,y work / initial position*
+    - Exercise: Create 5 rows of 10 instead of 1, give each row a different image and different firing rate
+    - *Open folder, show what images are available*
+    - Use conditions, use the i variable 
+
+- Exercise 2b:
+    - *Show update method, explain what it does, just bounce left to right, include an originalX and originalY with rect.x and rect.y*
+    - Exercise: Subclass SpaceInvader, override update, make them move differently, also use call with different image for each
+    - Example: Start with bouncing up/down instead of left/right. And then test to see subclass is correct before moving to other patterns.
+    - Other patterns:
+        - Zig-zag
+        - Square
+    - Advanced:
+        - Add a time data field to the subclass's constructor, make it floating point, not integer, by storing 0.0 in it at start
+        - Add 1 at start of every update
+        - Then use this as input to a function, e.g. for a parabola, function is x^2, so x = time, y = time ** 2
+        - Use division/multiplication to scale time appropriately so movement is not too slow/fast
+        - Once it hits maximum value, just flip boolean and start subtracting from x
+        - Can also use sin and cos using math.cos and math.sin, but these take radians, not degrees, conversion required
+        - Try and get parabola, sin curve, cos curve, circle
+
+- *Ask: Can anyone guess what 2a and 2b were for?*
+- Demonstrate constructors vs. subclassing
+- When it is a simple difference, e.g. different images, just put it in constructor
+- For complicated differences, e.g. different movement, subclass and override the method
+- It will depend on how you want to design it

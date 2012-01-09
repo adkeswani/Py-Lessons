@@ -1,11 +1,5 @@
 Python lessons
-        - Object oriented programming
-                - Classes and objects
-                - Fields
-                - Methods
-                - Subclasses and superclasses
-                - Polymorphism/overloading
-                - Private vs. public vs. protected
+        - Intro + OO concepts
         - Python intro
                 - How to write classes and objects (use object designed above)
                 - How to subclass
@@ -17,6 +11,7 @@ Python lessons
                 - Ways of writing a main function
                 - Random
                 - Getting input from the user
+                - Private/protected
         - Data types and structures
                 - Explain dyanmic, strongly typed
                 - Standard types (ints, strings, floats)
@@ -31,9 +26,7 @@ Python lessons
                         - list
         - Exception handling
         - Functional programming?
-        - kwargs, default values
-        - Garbage collection?
-        - Overloading
+        - kwargs, default values, overloading
 Pygame lessons
         - Setting up a Pygame application
                 - Setting up (init, sound, background, screen size)

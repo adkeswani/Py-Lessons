@@ -15,7 +15,7 @@
             - Set up zoom on my screen
         - Opening a terminal
         - Navigating around the filesystem 
-            - Brief detour into the Unix filesystem
+            - Brief detour into the Unix filesystem, *ask if anyone's interested*
         - Explain directories and files for each section
         - Ask about everyone's level of experience with OO
 
@@ -26,35 +26,42 @@
         - OO: Consider everything in terms of objects and the interactions between them
         - Example:
             - Ask for an object
-            - Ask what makes up the object => data fields
+            - Ask what makes features the object has, what is it made up of => data fields
             - Ask what the object can do => methods. Like procedures, can be passed arguments.
         - Descriptions of object == class, they define a class of objects. 
-        - One of these objects == instance of class, or just an object
+        - When you have one of these objects == instance of class
         - How you can use an instance *give examples*:
             - Call its methods
             - Modify its data fields
             - Store it in a variable
             - Call a method using the object as a parameter
             - It's just like a value in any data type, like integers or strings
+        - To summarise:
+            - An object is a thing
+            - A class is a description of the thing
+            - An instance is actually one of these things
 
     - Subclasses:
-        - May have multiple slight variations on a class
+        - May have multiple specialised versions of an object
         - Example:
             - Based on our earlier object
             - Ask for alternative breakdowns
-            - When programming, chose whatever makes the most sense
+            - When programming, choose whatever makes the most sense
             - Draw it up
         - Have all common stuff in one class
         - And base new classes on this *give example* == subclass
         - Common class == superclass or parent class
         
     - Inheritance and overriding:
-        - Special: Subclasses inherit data fields and methods from superclass *give example*
+        - Implied : Subclasses inherit data fields and methods from superclass *give example*
         - Can write method with same name and arguments to replace existing one == overriding
         - Changes behaviour of subclass
-        - Overall allows us to avoid copying code
+        - Can also add extra methods and data fields
         - Ask:
-            - What to override in our subclasses?
+            - What to override/add in our subclasses?
+        - Overall allows us to avoid copying code
+
+    - *Ask if any questions so far*
 
     - Polymorphism:
         - Example:
@@ -70,36 +77,36 @@
         - Will work because of polymorphism:
             - Subclasses take on multiple types *example*
             - Both the parent class and the subclass type
-        - Want to keep methods as general as possible:
-            - Superclasses rather than subclasses
-            - Flexibility, e.g. new ThreeWheel class
         - Ask:
             - Methods for our original object superclass?
             - And methods only sensible for the subclass?
+        - Want to keep methods as general as possible:
+            - Superclasses rather than subclasses
+            - For flexibility, e.g. new ThreeWheel class
 
-    - Public vs. private vs. protected:
+    - Public vs. private:
         - Our Vehicle has speed data field, integer
         - Anyone could subclass and change it, e.g. store a banana there instead
         - Breaks our isOverLimit(). How to avoid?
         - Languages give you access control
-        - Can choose what subclasses can/can't change
+        - Can choose what subclasses can/can't change:
             - Data fields
             - Overriding methods
-        - Private: Subclasses can't change it
-        - Public: 
+        - Public: Anything can read it, write to it, override it in the case of methods
+        - Private: Opposite, nothing can read, write except code inside the class itself, can't be overridden
+        - Other access controls, restrict access to other parts of the code, later in the workshop
 
-
-
-
-    - Exercises
-        - Since we haven't gotten into any code yet, there's no exercises yet, but we've gone through a few terms so I'm going to ask questions about them instead
-        - What is:
-            - A class
-            - A data field
-            - A method
-            - A subclass
-            - Inheritance
-            - Polymorphism
-        - OK, so that's a really brief intro to OO programming. There's a lot more to it, such as abstract classes, interfaces, design patterns, and more. Some of these will come up in the rest of this workshop, others you'll learn as you start doing other OO programming and in uni courses.
-        - Questions so far?
-        - OK, so now we'll move onto how this all happens in Python
+- Exercises
+    - No code, so no exercises yet.
+    - But to review, Ask: Can you explain in your own words and give an example of:
+        - A class
+        - A data field
+        - A method
+        - A subclass
+        - Inheritance
+        - Overriding
+        - Polymorphism
+    - Explained some concepts of OO programming
+    - Others in rest of workshop, when you learn other languages, in uni courses
+    - Questions so far?
+    - Onto Python
