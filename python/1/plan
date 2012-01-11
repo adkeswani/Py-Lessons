@@ -2,10 +2,11 @@
 
 - Class definition:
     - Going to create a Vehicle class
-    - New file, vehicle.py, could be dinosaur.py, but more understandable this way
+    - New file, vehicle.py, could be dinosaur.py, but more understandable this way, other languages require it
     - Code we write for a class is called the class definition
     - Syntax:
         - class keyword, name of class of objects
+        - In brackets, object, will explain more later, think of it as explicitly saying we're creating a class of objects
         - Capital letter at start of class not necessary, but convention. Other languages require it.
         - Colon + indent:
             - Class definition is example of a "block of code"
@@ -22,19 +23,22 @@
     - Method's name is always "__init__"
     - Syntax:
         - Other methods will use exactly same syntax
-        - def keywork, name of method
+        - def keyword, name of method
         - In brackets, the arguments to the method, will explain self shortly
-        - *write first line of constructor too, speed*
+        - *write super call*
+        - *write first line of constructor too, currSpeed*
         - First, colon and indent again, because a method is also a block of code. Notice that indents "build up", indents always same size
         - self:
             - *Ask someone to guess what self is*
             - Refers to the instance of the class
             - First argument to every method
             - We use it here to set default values of data fields
+        - super call, will make a lot more sense when I explain subclassing, for now, it is magic
         - Data fields
             - To create data field, self, dot, name of the field, then just assign to it
             - To access the instance, always self then dot, then what we're accessing
             - This way of accessing is called dot syntax
+            - Note: No need for semicolon at the end of lines. Also, arguments can be same name as data fields
             - So other data fields:
                 - Number of wheels - integer
                 - inDisguise - Boolean, True or False, remember the capitals
@@ -70,11 +74,22 @@
 - Arguments to constructor:
     - Current constructor is not flexible
     - Add more arguments to the constructor for all data fields
-    - Demonstrate in interpreter
+    - Demonstrate in interpreter, reiterate need for file name at start for constructor
 
 - *Ask if any questions so far*
 
-- Methods, print and conditions
+- Exercise 1a:
+    - In a new file, write a new class definition for the SpeedCamera class
+    - In its constructor, take 4 arguments: 
+        - A speed limit for vehicles with < 2 wheels
+        - For 2 wheel vehicles
+        - For 3 wheel vehicles 
+        - And 4 or more wheels vehicles
+    - Store all of them in data fields with understandable names
+    - Create a SpeedCamera in interpreter, prints its limit, change its limit
+    - *Demonstrate and explain*
+
+- Methods, print and conditions:
     - Make it do something, add other methods, getMaxSpeed, isTransformer, printMe
     - getMaxSpeed syntax:
         - def followed by method name
@@ -90,17 +105,25 @@
         - Same again, def, method name, self
         - *Include 3 Boolean arguments to print each type of info*
         - if statement == if keyword, then condition, then the colon and indent, because this is a block of code
-        - Conditions can use ==, >, <, >=, <=
+
+        - Conditions are nested by adding another indent
+        - Conditions can use True/False and can call methods, *demonstrate with isTransformer()*
         - No need for brackets around condition
-        - *Use this to print what the vehicle might be with if, elif, else, e.g. car, bike, trike*
-        - Print syntax is print keyword followed by a string (in quotes)
-        - Conditions can also use True/False, demonstrate with isTransformer
+        - Print syntax here is print keyword followed by a string (in quotes)
+        - Else is used if the if is not satisfied
+
         - Print syntax for variable is print keyword followed by variable name (no quotes)
+        - *Demonstrate with printModel*
+
         - Print syntax to print string and variable with space in between is print followed by comma-separated items
-        - *Print maximum speed*
+        - *Demonstrate with printWheels and printSpeed*
+
+        - Conditions can use ==, >, <, >=, <=
+        - *Use this to print what the vehicle might be with if, elif, else, e.g. car, bike, trike*
+        - Note: elif allows you to check another condition, will keep going until a match is found or an else. If no else, none executed
         - Note: each new print starts on a new line
 
-- Calling methods
+- Calling methods:
     - *Start interpreter, import, create Vehicle, call each method*
     - Note: did not pass in any self argument, no need to do this when method is called from an instance of the Class
     - Alternative way of calling methods:
@@ -108,10 +131,8 @@
         - We need file name and class name because that is where the method is defined
         - No need to use this method of calling, but keep in mind how we use dot syntax to access things defined elsewhere
 
-- Exercise 1:
+- Exercise 1b:
     - vehicle.py has what we've written up to here
-    - In the same file, write a new class definition for the SpeedCamera class
-    - In its constructor, take 3 arguments: a speed limit for 2 wheel vehicles, 3 wheel vehicles and 4 or more wheels vehicles, and store all of them in data fields with understandable names
     - Write an isOverLimit method in SpeedCamera:
         - Takes a Vehicle as an argument
         - Checks its number of wheels and its speed (use the dot syntax to read these)
@@ -120,21 +141,28 @@
     - Create some Vehicles in interpreter, create a SpeedCamera, test it out
     - *Demonstrate and explain solution*
 
-- and, or, not
+- and, or, not:
     - *Ask who is familiar with Boolean operations*
     - Can combine conditions with Python's Boolean operations
     - *Change code from exercise 1 and Vehicle to demonstrate*
 
-- Subclassing
+- Subclassing:
     - Remember, subclassing == create specialised versions based on a parent class
     - Will create subclass OptimusPrime, *ask if everyone knows Optimus Prime*
     - To create subclass, same class keyword, but brackets and parent class afterwards
     - Now it automatically has same methods
+    - Remember earlier, object in brackets, now Vehicle:
+        - So we were really saying we're subclassing object
+        - object is called a primitive, it's the very base class that other objects are based upon
+        - *Draw inheritance arrows on board*
+    - Let's try calling a method from Vehicle
     - *Demonstrate and try call to maxSpeed, show it fail*
     - But it does not yet have data fields set up, need to call parent's constructor to get values
-
-    - SUPER CALL!
-
+    - This is what the super method does, allows us to call methods from the parent class:
+        - It's like a method, takes 2 arguments, then allows us to call parent class's methods
+        - Here, use it to call parent's constructor
+        - And in Vehicle, we used the same line to call its parent's constructor, which was object
+        - Can use this to call any of parent's methods
     - This class will work, but usually only subclass if you want to change or add behaviours, otherwise you'd just use a different constructor
     - *Add a defeatVillain method and villain name to constructor*
     - Can add new methods and data fields*
@@ -143,9 +171,11 @@
     - OptimusPrimes are of type OptimusPrime, but also of type Vehicle, so SpeedCamera can understand them
     - *Override maxSpeed method and demonstrate*
     - Can override existing behaviours just by writing method with same name
+    - *Call parent's maxSpeed and demonstrate*
+    - As mentioned earlier, super can be used to call any of parent's methods
     - *Change type returned by maxSpeed, demonstrate error*
-    - Other languages would prevent you overriding and returning a different type, will explain shortly
-    - *Ask if anyone knows mechanism to prevent this*
+    - Other languages would prevent you overriding and returning a different type, will explain why Python is different shortly
+    - *Ask if anyone knows another mechanism to prevent this*
     - Private, would prevent us overriding. Would use it because another class, SpeedCamera, depends upon maxSpeed's output
     - Will explain in code soon
 
@@ -153,9 +183,7 @@
     - Pygame example, not going into specifics, but will give prettier results
     - *Run game, show that all invaders are same*
     - *Open file, show where they are created*
-    - For loop, will explain it fully shortly, it loops N times to create all the invaders, note how i becomes a counter
-    - *Open invaders file, show constructor, explain current call and how x,y work / initial position*
-    - Exercise: Create 5 rows of 10 instead of 1, give each row a different image and different firing rate
+    - For loop, will explain it fully shortly, it loops N times to create all the invaders, note how i becomes a variable
     - *Open folder, show what images are available*
     - Use conditions, use the i variable 
 
