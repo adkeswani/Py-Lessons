@@ -1,59 +1,149 @@
-Dynamic, strongly typed
-    - Dynamically typed
-        - Noticed that there's no types
-        - Other languages, there's always the whole int, string stuff
-        - Here, it isn't
-        - OK, so languages where you do have to declare the type of variable are statically typed and the compiler will check that what you're doing with the types is correct when you compile the program
-        - Here, no types, and it's only when you run the program that it will tell you if you've done something wrong with the types. This is called a dynamically typed language
+http://en.wikipedia.org/wiki/Metasyntactic_variable
 
-        - Also with some languages, some of you migth have done Perl, you can do weird stuff with types, transforming it at will
-        - So, for example, you can add strings and integers, e.g. 'x' + 3 becomes 'x3'
-        - So you can get some weird interplay going on with types, you can do stuff between types that doesn't necessarily make sense
-        - This is sometimes called a weakly typed language, though it's not really a technical term, where there's loopholes in the way that you can work with types
-        - Python would be called a strongly typed language, because it will complain if you try and do things that don't make sense for the given types (demonstrate this)
-    - So Python is dynamic and strongly typed
+- Dynamically typed:
+    - Will have noticed, there's no types, other languages need to declare variables with a type
+    - In those languages, e.g. C, the compiler will tell you if something's wrong with the types
+    - In Python, only know when you run it, e.g. getMaxSpeed returning bananas
+    - Languages where types only worked out a run time like this == dynamically typed, if beforehand == statically typed
+    - Going to look at Python's built-in data types, simple ones you know, then interesting ones
 
-Types:
-    - http://docs.python.org/library/stdtypes.html
+- Types are classes:
+    - Before we do that, will first explain another concept
+    - *Open interpreter, use the float is_integer() method on a float*
+    - What's going on here? Calling a method from a floating point number?
+    - Turns out that all values like integers, Booleans are objects as well
+    - *Demonstrate type(x) built-in on float*
+    - And the type of a value is actually its class
+    - *Demonstrate dir(x) on float*
+    - Remember that dir() shows us all attributes and methods, here are a float's
+    - The other types also have methods like is_integer, will see them as we go through the types
 
-    - Be brief with the standard types so we can spend a while on lists, slices etc.
-    - Go into the interpreter
-    - Python has a bunch of built-in data types, some you'll already know, some are a bit more interesting
-    - So you've seen integers so far
-    - Show that these types are really just objects
-        - Why is the bracket necessary?
-        - They're just different in the way they're constructed, with numbers and "" rather than calls
-        - In fact, there are actually calls we can use to create these instead
-        - And the fun thing is that these can be overloaded, so you can create integers using a string as a constructor
-    - Other numeric types are:
-        - longs: Created when you try and create a number that's too large to store in an integer. These have unlimited precision. Can also create using 1L
-        - floats: Created by having a decimal point
-        - complex numbers, fractions, decimal are also available, see the docs
-    - These support your standard operations like +, -, *, /, %, abs
-        - Explain integer division
-        - You can also convert between them int(x), long(x), float(x)
-        - They also have special functions, e.g. float.as_integer_ratio()
+- Basic types:
+    - *Open http://docs.python.org/library/stdtypes.html*
+    - Python website has documentation for most things, incl. built-in types
+    - Booleans:
+        - Already seen these
+        - Useful info, if anything is 0 or empty, is considered False, useful in conditions for ifs and loops
+    - Numeric types:
+        - We've seen integers and floats
+        - Here we see the operations available, abs gives you absolute value
+        - Can also convert things into these numeric types, e.g. int("5") gives 5, or float(5) gives 5.0
+        - Python also has complex numbers, can create using complex(re, im)
+        - Note 1 is important, integer division always gives an integer and rounds towards -infinity, common mistake to expect a float
+            - // does the same, but for other types, will not necessarily return integer though
+        - Also have bit operations on integers, do you know how an integer can be represented as bits? Does operations on these bits
+        - Some extra methods that numeric types have...
+    - Will leave iterator types for later
+    - Strings:
+        - Will do strings before doing an exercise
+        - Strings belong to a bunch of sequence types, is just sequence of characters, but I'll cover the rest after the exercise
+        - We've seen how to construct a string using "" or ''
+        - Can also convert to string using str(), e.g. str(5)
+        - Strings have a lot of methods, e.g. split, startswith, strip
+
+        - Also can join 2 strings together using +
+        - Can check if one string has same contents as another using ==
+        - Can also multiply a string to get it repeated
+
+        - Can access characters in a string using []:
+            - Zero is the first
+            - Cannot use this to change characters though because strings are designed this way
+                - Known as being immutable, state cannot be changed
+                - Can only create a new string with the change made
+                - Same actually goes for integers and other numeric types, you never actually change the object
+        - Can get length using len(string)
+        - Will soon see that these apply to other sequence types too
+
+        - *Back to stdtypes page*
+        - We've also used a print method with strings
+        - Has other functionality to give more control over printing
+        - Not going to go through it, because won't really need it, but want you to know it exists
+        - Example on page, can fill in parts of a string with variables, can also do zero padding
+        - We will stick with comma separated for now, automatically converts to strings for us
+
+- Methods for operators
+    - When you add 2 integers with + operator, actually calls a method, __add__(self, other)
+    - So the way you can multiply strings is because it has a method, __mult__(self, other)
+    - When calling print on an object there are 2 methods that can be called, __str__ and __repr__
+        - __str__ should return a human-readable string, __repr__ should return something that is unambiguous and defines the object completely
+        - If __str__ is not implemented, defaults to __repr__
+        - __repr__ gets called if the object is being printed when its inside a sequence and when you just enter variable name in interpreter
+        - For simplicity, implement __repr__
+    - *Show MyInt example, uses some of these methods, also use type on result*
+
+- Exercise 3a:
+    - RomanNumeral class, works on integers from 1 to 1000 inclusive
+    - Constructor will take an integer, string, or float, default to 1 or 1000 if number is above or below
+    - Using print on it will return the number in Roman numerals
+    - Add and subtract should work, set the number back to 1 if it goes below, set number to 1000 if it goes above
+
+- Sequence types - Lists and tuples:
+    - Onto new and more interesting types, starting with the sequence types
+    - Obviously store sequences of data
+    - *Open interpreter, demonstrate creating a list of assorted types incl. another list*
+    - Start with lists, to create a list, just put comma-separated items between square brackets
+    - As you can see, stores multiple types at same time
+    - To access items, can use [], like the strings, but now can also write to it
+    - Len also works the same
+    - Also other methods, *demonstrate, create 2 lists, consult stdtypes page*
+        - Append, adds object in brackets to end of list as a single item, even if it's a sequence
+        - Extend, adds items from a sequence in brackets to end of list
+        - Count, number of occurrences
+        - Index, where it occcurs (optionally between i and j)
+        - Insert, puts item in at specified index
+        - Remove, just deletes element at given index
+        - Pop, deletes the element at the index and returns it to you. No argument pops last element
+        - Reverse, obvious
+        - Sort, sorts the list in place, i.e. doesn't return a new list, alters this one, will talk more about this later
+    - So lists are quite versatile, if you're used to arrays then lists make things a lot easier
+
+    - Another sequence type is the tuple, *demonstrate, try and change it too*
+    - Similar to lists, store sequences of any types, but constructed using () and items cannot be added/replaced/removed from it, so it is immutable
+    - None of the methods to change a list apply, *demonstrate*
+    - Note: although tuples are immutable, the objects they contain are not necessarily, can still change them
+    - But can still read its elements, count occurrences, etc., *demonstrate*
+    - Can construct without brackets, *demonstrate* but sometimes necessary to ensure it's understood as a tuple (e.g. nesting a tuple inside a tuple)
+    - Tuples used where you want some sort of structure, e.g. (page number, line number), (x, y, z) which wouldn't make as much sense with a list
+    - Meanwhile, when you know you're going to be adding/removing items, e.g. all of enemies visible on screen, then use a list
+
+    - We've seen how to construct lists and tuples
+    - It's also possible to take them apart, known as unpacking
+    - *Demonstrate: x, y, z = t and [x, y, z] = l
+    - This is commonly used in return values, *demonstrate with unpacking.py*
+
+    - Can also convert things into lists and tuples
+    - Like int() and str(), there is list() and tuple()
+    - Can use to convert between lists and tuples, or can pass in other sequences like strings
+
+- in keyword, while and for loops
+    - Sequences also support the in keyword
+    - This returns a boolean, whether or not a given item is in the sequence
+    - *Demonstrate*
+
+    - Now I will also finally show you loops
+    - while loops are similar to those in other languages, while keyword then condition, *demonstrate with printpop*
+    - Very similar to if statements, no brackets needed, needs the colon and indent
+    - Note how we use the feature that an empty list is considered false
+
+    - For loops are different to other languages
+    - Other languages, usually have a counter, runs the loop N times
+    - Python uses for loop to loop, or iterate, through sequences and other iterable objects
+    - Syntax:
+        - for keyword, variable, 
     
-    - Strings
-    - We've seen these in print statements
-    - Strings cannot be changed, i.e. you can't modify the letter at an index like you would in C, but you can read from an index
-    - Some of the things you can do with strings
-        - print statement and the printf like formatting options
-            - http://docs.python.org/library/stdtypes.html#string-formatting-operations
-            - See how many people have used printf before
-            - Show how you could also do this with 
-        - Concatenation
-        - The various string methods
-            - http://docs.python.org/library/stdtypes.html#string-methods
-            - Just scan through them
-    - Printing out an object
-        - The __str__ and __repr__ methods
+- Exercise 3b:
+    - Then exercise with sorts
+        - Graphical using pygame
+        - After each step it returns the list in its next form
 
-Exercises:
-    - Take our Vehicle object and make it printable using __str__
-        - Try all of the ways of doing this
-        - i.e. using str() and concatenation, using the printf style
-    - The numbers to works program
-        - Should we do the numbers to words one? We could use it to demonstrate %, str(), concatenation and it would improve familiarity with the language...
-        - OK, done. So we can do it via modulus or via strings, both are fairly good.
-        - Ask them to choose.
+
+    - Lists and sequences also support slicing, allows you to select multiple elements in a single statement
+    - 
+
+- References and Copying a sequence
+    - 
+
+    - Then very briefly sets
+    - Then dictionaries
+    - Then maybe an encoding/decoding exercise
+    - And pygame collisions

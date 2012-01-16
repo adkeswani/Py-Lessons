@@ -43,3 +43,6 @@ class Vehicle(object):
                 print "This might be something else"
             else:
                 print "This might be a unicycle or a flying car"
+
+    def __str__(self):
+        return "Blah"

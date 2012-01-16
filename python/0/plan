@@ -9,15 +9,17 @@
         - Talk to volunteers about CSE if not helping anyone
 
 - Setup:
-        - Download files
-        - Opening up editor (what are we using?)
-            - Set up indenting
-            - Set up zoom on my screen
-        - Opening a terminal
-        - Navigating around the filesystem 
-            - Brief detour into the Unix filesystem, *ask if anyone's interested*
-        - Explain directories and files for each section
-        - Ask about everyone's level of experience with OO
+    - Download files
+    - Opening up editor (what are we using?)
+        - Set up indenting
+        - Set up zoom on my screen
+    - Careful with cables under the desks
+    - Find a dry erase marker
+    - Opening a terminal
+    - Navigating around the filesystem 
+        - Brief detour into the Unix filesystem, *ask if anyone's interested*
+    - Explain directories and files for each section
+    - Ask about everyone's level of experience with OO
 
 - Intro to OO:
     - First, OO concepts in plain English, then Python

@@ -68,13 +68,13 @@
         - v is a Vehicle, so we can do v dot data field, *show example*
         - No need for file name at start, because v was defined here, not in that file
         - Interpreter automatically prints the value
-        - Do the same with v, shows the class and memory location
+        - Do the same with v, shows the class and a hex number. This is an id that Python associates with every object, and in the most common version of Python, its location in memory
     - Later we'll see how to do all this automatically
 
 - Arguments to constructor:
     - Current constructor is not flexible
     - Add more arguments to the constructor for all data fields
-    - Demonstrate in interpreter, reiterate need for file name at start for constructor
+    - *Demonstrate in interpreter, reiterate need for file name at start for constructor, show error when missing arguments*
 
 - *Ask if any questions so far*
 
@@ -141,10 +141,25 @@
     - Create some Vehicles in interpreter, create a SpeedCamera, test it out
     - *Demonstrate and explain solution*
 
+- Exercise 1c:
+    - Pygame example, not going into specifics, but more fun
+    - *Run game, then open file*:
+        - Going to implement space invaders-like thing. Some code you won't recognise, but ignore it, will do what we can with existing skills
+        - Current Invader constructor, x and y control position (0,0) is top-left, image is loaded by filename, direction controls which way the invader moves
+        - You will need to modify the constructor and its arguments
+        - createInvaders uses a for loop, will explain the syntax later, loops 10 times to create all the invaders, see how i becomes a variable
+        - update gets called once every frame, as you can guess it moves the invaders and switches direction once it hits border
+        - You'll notice syntax for comments here, just put hash in front of the line
+        - Tasks:
+            - Create 3 rows of 10 invaders, like in Space Invaders
+            - Stop the invaders just before hitting edge of screen, rather than going through it
+            - Make each row of invaders have a different image, *show images available*
+            - Make the invaders move down and speed up when they hit either border
+
 - and, or, not:
     - *Ask who is familiar with Boolean operations*
     - Can combine conditions with Python's Boolean operations
-    - *Change code from exercise 1 and Vehicle to demonstrate*
+    - *Change code from exercise 1b and Vehicle to demonstrate*
 
 - Subclassing:
     - Remember, subclassing == create specialised versions based on a parent class
@@ -153,7 +168,7 @@
     - Now it automatically has same methods
     - Remember earlier, object in brackets, now Vehicle:
         - So we were really saying we're subclassing object
-        - object is called a primitive, it's the very base class that other objects are based upon
+        - object is called a primitive, sort of the very base class that other objects are based upon
         - *Draw inheritance arrows on board*
     - Let's try calling a method from Vehicle
     - *Demonstrate and try call to maxSpeed, show it fail*
@@ -165,7 +180,8 @@
         - Can use this to call any of parent's methods
     - This class will work, but usually only subclass if you want to change or add behaviours, otherwise you'd just use a different constructor
     - *Add a defeatVillain method and villain name to constructor*
-    - Can add new methods and data fields*
+    - Can add new methods and data fields and constructor arguments
+    - Super constructor will set up some data fields, we set up the rest
     - *Demonstrate in interpreter, demonstrate polymorphism by using SpeedCamera on OptimusPrime*
     - *Ask if anyone can explain why this works*
     - OptimusPrimes are of type OptimusPrime, but also of type Vehicle, so SpeedCamera can understand them
@@ -173,35 +189,31 @@
     - Can override existing behaviours just by writing method with same name
     - *Call parent's maxSpeed and demonstrate*
     - As mentioned earlier, super can be used to call any of parent's methods
-    - *Change type returned by maxSpeed, demonstrate error*
+    - *Change type returned by maxSpeed to "banana", demonstrate error*
     - Other languages would prevent you overriding and returning a different type, will explain why Python is different shortly
     - *Ask if anyone knows another mechanism to prevent this*
     - Private, would prevent us overriding. Would use it because another class, SpeedCamera, depends upon maxSpeed's output
     - Will explain in code soon
 
-- Exercise 2a:
-    - Pygame example, not going into specifics, but will give prettier results
-    - *Run game, show that all invaders are same*
-    - *Open file, show where they are created*
-    - For loop, will explain it fully shortly, it loops N times to create all the invaders, note how i becomes a variable
-    - *Open folder, show what images are available*
-    - Use conditions, use the i variable 
-
-- Exercise 2b:
-    - *Show update method, explain what it does, just bounce left to right, include an originalX and originalY with rect.x and rect.y*
-    - Exercise: Subclass SpaceInvader, override update, make them move differently, also use call with different image for each
-    - Example: Start with bouncing up/down instead of left/right. And then test to see subclass is correct before moving to other patterns.
-    - Other patterns:
-        - Zig-zag
-        - Square
-    - Advanced:
-        - Add a time data field to the subclass's constructor, make it floating point, not integer, by storing 0.0 in it at start
-        - Add 1 at start of every update
-        - Then use this as input to a function, e.g. for a parabola, function is x^2, so x = time, y = time ** 2
-        - Use division/multiplication to scale time appropriately so movement is not too slow/fast
-        - Once it hits maximum value, just flip boolean and start subtracting from x
-        - Can also use sin and cos using math.cos and math.sin, but these take radians, not degrees, conversion required
-        - Try and get parabola, sin curve, cos curve, circle
+- Exercise 1d:
+    - Update method controls movement
+    - Task:
+        - In same file create a subclass of Invader called VerticalInvader
+        - Let its constructor take x and y, but manually choose an image to pass to super
+        - Override update, make it move up and down rather than left-to-right, don't worry about increasing speed/moving down at borders
+        - Make 1 row of invaders into VerticalInvaders
+        - Then add other subclasses:
+            - Zig-zag
+            - Square
+            - Advanced:
+                - Add a time data field to the subclass's constructor, make it floating point, not integer, by storing 0.0 in it at start
+                - Add 1 to the time at start of every update
+                - Then use this as input to a function, e.g. for a parabola, function is x^2, so x = time, y = time ** 2
+                - Use division/multiplication to scale time appropriately so movement is not too slow/fast
+                - Once it hits maximum value, just flip direction and start subtracting from x
+                - Can also use sin and cos using math.pi, math.cos and math.sin, but these take radians, not degrees, conversion required
+                - Try and get parabola, sin curve, cos curve, circle
+    - *Demonstrate solution, DarthInvader, circle*
 
 - *Ask: Can anyone guess what 2a and 2b were for?*
 - Demonstrate constructors vs. subclassing
