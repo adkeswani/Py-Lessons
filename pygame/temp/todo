@@ -1,0 +1,5 @@
+- Do this when we get to sounds
+- if pygame.mixer
+- sound quality
+
+Try and do the collisions, balls splitting apart, rejoining

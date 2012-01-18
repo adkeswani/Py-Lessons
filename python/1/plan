@@ -1,3 +1,5 @@
+Time: 100 mins
+
 *Explain syntax as you type*
 
 - Class definition:
@@ -51,7 +53,7 @@
     - The interpreter:
         - Runs your Python program
         - Can also write code directly into it
-        - Technical sidetrack, *ask if anyone's interested*:
+        - Technical sidetrack, *ask if anyone's interested, see how time is going*
             - Sometimes we compile, i.e. transform straight to machine code
             - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
             - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
@@ -170,19 +172,23 @@
         - So we were really saying we're subclassing object
         - object is called a primitive, sort of the very base class that other objects are based upon
         - *Draw inheritance arrows on board*
-    - Let's try calling a method from Vehicle
-    - *Demonstrate and try call to maxSpeed, show it fail*
-    - But it does not yet have data fields set up, need to call parent's constructor to get values
+    - Not going to add any code, just going to put pass. Pass does nothing, it's used to stop Python complaining when you have no code inside a block
+    - Let's try creating one
+    - *Demonstrate creating without arguments, fails*
+    - Has inherited the __init__ constructor, must provide same arguments
+    - *Demonstrate with correct arguments for an OptimusPrime, call getMaxSpeed, works*
+    - This class works, but usually only subclass if you want to change or add behaviours, otherwise you'd just use a different constructor
+    - *Add a defeatVillain method and villain name to a new __init__, set only their data fields*
+    - We can add new methods and data fields and constructor arguments to the subclass
+    - *Demonstrate creating and call getMaxSpeed, fails*
+    - If you create your own init, i.e. override the parent's init, the parent's is no longer called, we must do it manually, same goes for any overridden method
     - This is what the super method does, allows us to call methods from the parent class:
         - It's like a method, takes 2 arguments, then allows us to call parent class's methods
         - Here, use it to call parent's constructor
         - And in Vehicle, we used the same line to call its parent's constructor, which was object
         - Can use this to call any of parent's methods
-    - This class will work, but usually only subclass if you want to change or add behaviours, otherwise you'd just use a different constructor
-    - *Add a defeatVillain method and villain name to constructor*
-    - Can add new methods and data fields and constructor arguments
     - Super constructor will set up some data fields, we set up the rest
-    - *Demonstrate in interpreter, demonstrate polymorphism by using SpeedCamera on OptimusPrime*
+    - *Demonstrate in interpreter, then demonstrate polymorphism by using SpeedCamera on OptimusPrime*
     - *Ask if anyone can explain why this works*
     - OptimusPrimes are of type OptimusPrime, but also of type Vehicle, so SpeedCamera can understand them
     - *Override maxSpeed method and demonstrate*
@@ -202,20 +208,12 @@
         - Let its constructor take x and y, but manually choose an image to pass to super
         - Override update, make it move up and down rather than left-to-right, don't worry about increasing speed/moving down at borders
         - Make 1 row of invaders into VerticalInvaders
-        - Then add other subclasses:
+        - Then add other subclasses, other movements, e.g.:
             - Zig-zag
             - Square
-            - Advanced:
-                - Add a time data field to the subclass's constructor, make it floating point, not integer, by storing 0.0 in it at start
-                - Add 1 to the time at start of every update
-                - Then use this as input to a function, e.g. for a parabola, function is x^2, so x = time, y = time ** 2
-                - Use division/multiplication to scale time appropriately so movement is not too slow/fast
-                - Once it hits maximum value, just flip direction and start subtracting from x
-                - Can also use sin and cos using math.pi, math.cos and math.sin, but these take radians, not degrees, conversion required
-                - Try and get parabola, sin curve, cos curve, circle
-    - *Demonstrate solution, DarthInvader, circle*
+    - *Demonstrate solution, DarthInvader, diamond?*
 
-- *Ask: Can anyone guess what 2a and 2b were for?*
+- *Ask: Can anyone guess what 1c and 1d were for?*
 - Demonstrate constructors vs. subclassing
 - When it is a simple difference, e.g. different images, just put it in constructor
 - For complicated differences, e.g. different movement, subclass and override the method

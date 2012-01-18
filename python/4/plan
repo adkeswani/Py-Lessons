@@ -1,66 +1,80 @@
-- How many of you have seen arrays before?
-- They're a pain to work with sometimes right? Having to shuffle stuff around, not being able to get the last item immediately, stuff like that
-- Python has a few data types that make this all easier
-    - Now, just like the integers and strings, these are objects
-    - And like integers and strings, they use symbols as constructors rather than calls, but again, there are calls available
-- We'll start with lists:
-    - These are just lists of objects really
-    - To create one, just [objects]
-    - Can have different types of objects in the same list
-    - You can index items in the list and you can also change them
-    - Then there's a number of methods you can use: http://docs.python.org/library/stdtypes.html
-- Tuples
-    - These are a bit like lists, but they can't be modified, so no append, insert, delete
-    - You create them using ()
-- Common to both lists and tuples
-    - There's things common to both
-    - The in keyword
-    - len, min, max, SORT are built-ins, index, count: http://docs.python.org/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange
-    - Slices!
-        - Use the explanation that the numbers refer to the spaces between slices
-- Sets
-    - Python also has a set data type
-    - This allows you to do things like unions, intersections and the likes
-    - Not going to cover it as it's not that exciting, but it's all in the docs
+- Try/except blocks:
+    - Going to show you exception handling, which some might already be familiar with
+    - When an error occurs, *demonstrate converting banana to an int*, notice this Error here
+    - This is known as throwing an exception, usually blahblah
+    - Instead of crashing, can detect this exception and do something to handle it, known as catching the exception
+    - *Demonstrate using RomanNumeralCalculator*
+    - Syntax:
+        - try keyword, usual colon and indent
+        - Then lines where exception could occur
+        - Outdent, except, optionally a specific error you're trying to catch, then usual colon and indent
+        - And then code to handle it
+    - Talk about different levels of handling things
+    - Talk about how there's a lot of types of errors
+    - Errors are actually objects too
+    - Say how you can throw errors
 
-- Dictionaries
-    - So what's a dictionary in real life? Ask around.
-    - Right, you look up a word and it gives you a definition
-    - Dictionaries in Python do something similar, they allow you to look up items, which are called keys, and get back values associated with them, much like the word and definitions in a normal dictionary
-    - But you can use any data type, not just strings
-    - Examples. Call them key value pairs
-    - You can add stuff to the dictionary, get its keys, get its values
+- Methods for operators
+    - When you add 2 integers with + operator actually calls a method, __add__(self, other) where the addition is done, similar for other operators and types
+    - When calling print on an object the __str__(self) method is called, should return a human-readable string representation of it
+    - EQUALITY?!
+    - *Show MyInt example, uses some of these methods, also use type on result*
+    - There are other similar methods Python calls by default, e.g. if you try and sort a list of objects, the class's __cmp__ method is called to compare them
+    - Also, iterators, so we can for loop an object
 
-- While loops and for loops:
-    - Finally we get some more power
-    - While loops are much the same as if statements, just a while instead of an if and it'll loop
-        - Remember the colons and indents
-        - Press Ctrl+C if you get an infinite loop.
-        - Just do a simple example
-    - For loops are particularly awesome
-        - You might be used to this type: i = 0, i < 10, i++
-        - Python's different
-        - In Python, you use for loops to loop through objects like lists, tuples and other sequences
-        - Examples:
-            - for loop through a list of items
-            - for loop through a sorted list of items
-            - through a tuple
-            - for loop through a range (traditional)
-            - for loop through a dictionary's keys, sorted
-        - Now, you can actually make it possible to use a for loop on your own objects too
-            - Remember how we do subclasses?
-            - So you make it a subclass of iterator?
-            - And then give it a next and prev I think...
+- Exercise 4a:
+    - RomanNumeral class, works on integers from 1 to 1000 inclusive, *ensure everyone knows them*
+    - Constructor will take an integer, string, or float, if number is below 1 or above 1000, throw a ValueError
+    - Using print on it will return the number in Roman numerals
+    - Add and subtract operators should work, if it goes below 1 or above 1000, throw a ValueError again
+    - *Ask for some good test cases*
 
-- Exercises:
-    - Quick revision because I covered a fair bit.
-        - How do you create a list, a tuple, a dictionary?
-        - What does a dictionary store?
-        - Which one can you change? A list or a tuple?
-    - Write a couple of sorts?
-        - I think we'll use loops rather than min
-        - And maybe also time them! Just to show it's optimised
-        - Either user input or from random, we'll see
-    - How to use dicts?
-        - I think that pygame.sprite.groupcollide will be a good one for this
-        - Yah, just have a bunch of objects flying around the screen and use spritecollide to get them to bounce off each other, maybe we can even use the math library to get 90 degree collisions...?
+- Keyword arguments + NONE
+    - Possible to provide default values for arguments, just put = value afterwards
+    - Means that in the call, won't need to provide a value
+    - But any arguments with default values must be after those without in argument list
+    - e.g. list.sort() can be called with 3 arguments, a custom sorting function, a key, to pick a data field to sort on, and a reverse boolean to reverse the order
+    - But by default, sorts in ascending order, using the __cmp__ method of the type, on the object rather than one of its fields
+    - Can use None as default value to check if nothing has been provided. EXAMPLE??
+
+    - Also possible to take a variable number of arguments using 
+
+
+
+
+- Private variables
+
+- Exercise, maybe go back to the Vehicle?
+
+- File objects
+
+- Docstrings
+
+- Functional programming
+
+- Dynamically typed:
+    - Will have noticed, there's no types, other languages need to declare variables with a type
+    - In those languages, e.g. C, the compiler will tell you if something's wrong with the types
+    - In Python, only know when you run it, e.g. getMaxSpeed returning bananas
+    - Languages where types only worked out a run time like this == dynamically typed, if beforehand == statically typed
+
+
+- References and Copying a sequence
+    - One thing I didn't mention earlier was how to copy a list or tuple
+    - *Demonstrate using references.py, ask what they expect to happen, ask how many know about pointers, draw the below on board*
+    - l does not actually contain the list, it only points to the list in memory, think of it as storing its memory location, this is known as a reference
+    - Assigning l to m only assigns this memory location, so both are pointing at same memory location and same instance of list, so changing m changes l
+    - Same happens with all other objects, e.g. if we created a Vehicle, then assigned it to another variable, it would again be pointing at the original Vehicle
+    - Same also happens when we pass an object as an argument, passes the memory location, so changes made inside method will affect original object
+
+    - 
+
+
+
+- Lists and sequences also support slicing, allows you to select multiple elements in a single statement
+    - Then very briefly sets
+
+
+
+
+

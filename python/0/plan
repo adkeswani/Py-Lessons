@@ -1,14 +1,13 @@
+Time: 30 mins
+
 - Introduction:
     - Introductions, volunteers and myself
     - Aim: Introduce you to OO programming and the Python programming language
     - Each section: Explanation of topic, will ask you questions, coding exercises at the end
     - Ask questions: Others might be wondering the same thing and it could help everyone
-    - If you finish the exercises early: 
-        - Play with code, 
-        - I'll ask for demonstrations of anything interesting
-        - Talk to volunteers about CSE if not helping anyone
 
 - Setup:
+    - Log in
     - Download files
     - Opening up editor (what are we using?)
         - Set up indenting
@@ -17,7 +16,6 @@
     - Find a dry erase marker
     - Opening a terminal
     - Navigating around the filesystem 
-        - Brief detour into the Unix filesystem, *ask if anyone's interested*
     - Explain directories and files for each section
     - Ask about everyone's level of experience with OO
 

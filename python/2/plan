@@ -1,4 +1,6 @@
- - Main
+Time: 70 mins 
+
+- Main
     - Don't want to use interpreter for everything, esp. if we wanted to distribute
     - Pygame example showed that it's possible to do without it
     - Python reads files from top to bottom
@@ -104,6 +106,7 @@
     - *Draw diagram*
     - Also add gravity to projectile, will leave that for you to work out
 
+    - *Add the following if time permits*
     - Also want to add some random horizontal wind to projectile every turn:
         - Generate a random floating point number between 0 and 0.1
         - Every time update gets called, subtract xVel times this number from xVel

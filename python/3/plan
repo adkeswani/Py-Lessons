@@ -1,17 +1,9 @@
-http://en.wikipedia.org/wiki/Metasyntactic_variable
-
-- Dynamically typed:
-    - Will have noticed, there's no types, other languages need to declare variables with a type
-    - In those languages, e.g. C, the compiler will tell you if something's wrong with the types
-    - In Python, only know when you run it, e.g. getMaxSpeed returning bananas
-    - Languages where types only worked out a run time like this == dynamically typed, if beforehand == statically typed
-    - Going to look at Python's built-in data types, simple ones you know, then interesting ones
-
 - Types are classes:
-    - Before we do that, will first explain another concept
+    - Going to look at Python's built-in data types, incl. more detail about ones you know and some new ones
+    - Before we do that, will first explain an important concept
     - *Open interpreter, use the float is_integer() method on a float*
     - What's going on here? Calling a method from a floating point number?
-    - Turns out that all values like integers, Booleans are objects as well
+    - Turns out that all values including integers, Booleans are objects as well
     - *Demonstrate type(x) built-in on float*
     - And the type of a value is actually its class
     - *Demonstrate dir(x) on float*
@@ -27,65 +19,22 @@ http://en.wikipedia.org/wiki/Metasyntactic_variable
     - Numeric types:
         - We've seen integers and floats
         - Here we see the operations available, abs gives you absolute value
-        - Can also convert things into these numeric types, e.g. int("5") gives 5, or float(5) gives 5.0
+        - Can also convert things into these numeric types, e.g. int("5"), int(5.0) give 5, same for float
         - Python also has complex numbers, can create using complex(re, im)
         - Note 1 is important, integer division always gives an integer and rounds towards -infinity, common mistake to expect a float
             - // does the same, but for other types, will not necessarily return integer though
         - Also have bit operations on integers, do you know how an integer can be represented as bits? Does operations on these bits
-        - Some extra methods that numeric types have...
-    - Will leave iterator types for later
-    - Strings:
-        - Will do strings before doing an exercise
-        - Strings belong to a bunch of sequence types, is just sequence of characters, but I'll cover the rest after the exercise
-        - We've seen how to construct a string using "" or ''
-        - Can also convert to string using str(), e.g. str(5)
-        - Strings have a lot of methods, e.g. split, startswith, strip
+        - Then there are some extra methods that numeric types have, can read through later
 
-        - Also can join 2 strings together using +
-        - Can check if one string has same contents as another using ==
-        - Can also multiply a string to get it repeated
-
-        - Can access characters in a string using []:
-            - Zero is the first
-            - Cannot use this to change characters though because strings are designed this way
-                - Known as being immutable, state cannot be changed
-                - Can only create a new string with the change made
-                - Same actually goes for integers and other numeric types, you never actually change the object
-        - Can get length using len(string)
-        - Will soon see that these apply to other sequence types too
-
-        - *Back to stdtypes page*
-        - We've also used a print method with strings
-        - Has other functionality to give more control over printing
-        - Not going to go through it, because won't really need it, but want you to know it exists
-        - Example on page, can fill in parts of a string with variables, can also do zero padding
-        - We will stick with comma separated for now, automatically converts to strings for us
-
-- Methods for operators
-    - When you add 2 integers with + operator, actually calls a method, __add__(self, other)
-    - So the way you can multiply strings is because it has a method, __mult__(self, other)
-    - When calling print on an object there are 2 methods that can be called, __str__ and __repr__
-        - __str__ should return a human-readable string, __repr__ should return something that is unambiguous and defines the object completely
-        - If __str__ is not implemented, defaults to __repr__
-        - __repr__ gets called if the object is being printed when its inside a sequence and when you just enter variable name in interpreter
-        - For simplicity, implement __repr__
-    - *Show MyInt example, uses some of these methods, also use type on result*
-
-- Exercise 3a:
-    - RomanNumeral class, works on integers from 1 to 1000 inclusive
-    - Constructor will take an integer, string, or float, default to 1 or 1000 if number is above or below
-    - Using print on it will return the number in Roman numerals
-    - Add and subtract should work, set the number back to 1 if it goes below, set number to 1000 if it goes above
-
-- Sequence types - Lists and tuples:
-    - Onto new and more interesting types, starting with the sequence types
+- Sequence types - lists:
+    - Will skip over some types and move onto sequence types
     - Obviously store sequences of data
     - *Open interpreter, demonstrate creating a list of assorted types incl. another list*
     - Start with lists, to create a list, just put comma-separated items between square brackets
     - As you can see, stores multiple types at same time
-    - To access items, can use [], like the strings, but now can also write to it
-    - Len also works the same
-    - Also other methods, *demonstrate, create 2 lists, consult stdtypes page*
+    - To access items, can use list[index], where 0 is first element
+    - To get length of list use len(list)
+    - Again, as objects, lists have other methods, *demonstrate, create 2 lists, consult stdtypes page*
         - Append, adds object in brackets to end of list as a single item, even if it's a sequence
         - Extend, adds items from a sequence in brackets to end of list
         - Count, number of occurrences
@@ -97,12 +46,54 @@ http://en.wikipedia.org/wiki/Metasyntactic_variable
         - Sort, sorts the list in place, i.e. doesn't return a new list, alters this one, will talk more about this later
     - So lists are quite versatile, if you're used to arrays then lists make things a lot easier
 
+- in keyword, for loops and while loops
+    - Now that we have lists, we can use some more keywords and control structures 
+
+    - Sequences support the in keyword
+    - This returns a boolean, whether or not a given item is in the sequence
+    - *Demonstrate with no spoon example*
+    - Also, normally we'd use "not a in b", but Python gives use "a not in b" to sound more English-like
+
+    - Finally we get loops, starting with for loop
+    - Different to how it's used in other languages, usually have a counter, runs the loop N times
+    - Python uses for loop to loop, or iterate, through sequences and other iterable objects
+    - Syntax, *demonstrate with squarer.py*:
+        - for keyword, variable, in keyword, sequence, then usual colon and indent
+        - Goes through sequence from beginning to end and the variable contains the current object
+        - No need for any variable++ or next keyword at the end
+        - Works on sequences, so strings, lists, tuples, this means they are "iterable", later will talk about making other objects iterable
+
+    - Can also get the traditional for loop using range, briefly saw in invaders exercise
+    - range can return lists of consecutive numbers, *demonstrate just a range call*
+    - Can use this in for loops by putting range(N) as the sequence, N == number of times to loop
+    - *Demonstrate using stringmult.py*
+    - Will loop from 0 to N - 1, N times, and variable contains the current loop number
+    - Range also lets you do more complicated sequences:
+        - *Demonstrate range(start, end)*
+        - *Demonstrate range(start, end, step)*
+    
+    - while loops are similar to those in other languages, while keyword then condition, *demonstrate with printpop*
+    - Very similar to if statements, no brackets needed, needs the colon and indent
+    - Note how we use the feature that an empty list is considered false
+   
+- Exercise 3a:
+    - Then exercise with sorts
+        - Graphical using pygame
+        - After each step it returns the list in its next form
+        - OK, will do
+        - Use a stub that just returns a range
+        - Will subclass to get different sorts
+        - Give people each a different one
+        - Make the constructor take in a list, but get them to create it using shuffle
+        - May want to test on its own, on a smaller list first
+
+- More sequence types - tuples and strings
     - Another sequence type is the tuple, *demonstrate, try and change it too*
-    - Similar to lists, store sequences of any types, but constructed using () and items cannot be added/replaced/removed from it, so it is immutable
-    - None of the methods to change a list apply, *demonstrate*
-    - Note: although tuples are immutable, the objects they contain are not necessarily, can still change them
-    - But can still read its elements, count occurrences, etc., *demonstrate*
+    - Similar to lists, store sequences of any types, but constructed using () and items cannot be added/replaced/removed from it
+    - None of the methods to change a list apply, *demonstrate*, but can still read its elements, count occurrences, etc., *demonstrate*
+    - Note: although you can't remove/add/replace items in tuples, the internal parts of these items can still be changed, *demonstrate on a list*
     - Can construct without brackets, *demonstrate* but sometimes necessary to ensure it's understood as a tuple (e.g. nesting a tuple inside a tuple)
+
     - Tuples used where you want some sort of structure, e.g. (page number, line number), (x, y, z) which wouldn't make as much sense with a list
     - Meanwhile, when you know you're going to be adding/removing items, e.g. all of enemies visible on screen, then use a list
 
@@ -111,39 +102,46 @@ http://en.wikipedia.org/wiki/Metasyntactic_variable
     - *Demonstrate: x, y, z = t and [x, y, z] = l
     - This is commonly used in return values, *demonstrate with unpacking.py*
 
-    - Can also convert things into lists and tuples
-    - Like int() and str(), there is list() and tuple()
+    - Can use some operators on sequences
+    - *Demonstrate + and * *
+    - + returns a new list where 1st extended by 2nd, * returns a new list where original is repeated N times
+    - TODO: EQUALITY??
+
+    - Can also convert things into lists and tuples, so like int(), there is list() and tuple()
     - Can use to convert between lists and tuples, or can pass in other sequences like strings
 
-- in keyword, while and for loops
-    - Sequences also support the in keyword
-    - This returns a boolean, whether or not a given item is in the sequence
-    - *Demonstrate*
+    - Strings are also a sequence type, a sequence of characters
+    - They use the "" or '' constructor instead
+    - Like tuples, they cannot be changed, *demonstrate*, and have the same methods, *demonstrate count, +, *, index*
+    - Escape characters?
+    - str()
+    - Strings have a lot of special methods, *show http://docs.python.org/library/stdtypes.html*
 
-    - Now I will also finally show you loops
-    - while loops are similar to those in other languages, while keyword then condition, *demonstrate with printpop*
-    - Very similar to if statements, no brackets needed, needs the colon and indent
-    - Note how we use the feature that an empty list is considered false
+- Dictionaries
+    - *Ask what a dictionary is*. Gives words and their meanings, it is a "mapping" from words to their meanings
+    - *Draw diagram showing a mapping*
+    - Dictionaries in Python are similar, but allow you to map any type of object to any other type of object
+    - Syntax, *demonstrate in interpreter*
+        - Curly brackets, then a comma-separated list of pairs, where a pair has an object, then a colon, then another object
+    - Left object is key, right object is value, together called a key-value pair
+    - Like words in a real dictionary, you look up the key to get the value, so in a real dictionary keys are words, values are their meanings
+    - But here the key and value can be of any type, we could use a Vehicle if we wanted to
+    - *Open http://docs.python.org/library/stdtypes.html*, shows methods for dictionaries, e.g. *demonstrate in interpreter*:
+        - Other ways to construct a dictionary
+        - Can get the number of key-value pairs with len
+        - To access an item, looks like a list, [], but use key rather than index, this is used to retrieve and also add items to a dictionary
+        - in and not in still work to see if a key exists
+        - pop(key) is like pop on a list, removes key-value pair with the specified key and returns the value
+        - items() returns a list of key-value pairs, each as a tuple, keys() returns list of keys, values() returns list of values
+            - Show items() note, order of items is not same as they were inserted
+            - Common thing is to, for loop, sorted keys, lalala
 
-    - For loops are different to other languages
-    - Other languages, usually have a counter, runs the loop N times
-    - Python uses for loop to loop, or iterate, through sequences and other iterable objects
-    - Syntax:
-        - for keyword, variable, 
-    
 - Exercise 3b:
-    - Then exercise with sorts
-        - Graphical using pygame
-        - After each step it returns the list in its next form
-
-
-    - Lists and sequences also support slicing, allows you to select multiple elements in a single statement
-    - 
-
-- References and Copying a sequence
-    - 
-
-    - Then very briefly sets
-    - Then dictionaries
-    - Then maybe an encoding/decoding exercise
-    - And pygame collisions
+    - Going to use dictionaries to implement a simple substitution cipher
+    - In this cipher, the 26 lower case letters will be mapped to the same 26 letters shuffled
+    - To encode, replace letter with the one it is mapped to, to decode, the reverse
+    - Punctuation and whitespace will be left the same encoded or decoded
+    - You will write the SubCipher class, its constructor will take 2 lists, the original letters and the letters they map to
+    - Will have an encode and decode method that take a string and return the encoded/decoded string
+    - This is in the subcipher.py file. Also, change the call to the constructor so the 2nd list is randomly shuffled
+    - I recommend using 2 dictionaries and for loops, will also need to account for punctuation

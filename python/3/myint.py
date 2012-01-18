@@ -2,7 +2,7 @@ class MyInt(object):
     def __init__(self, anInt):
         self.int = anInt
 
-    def __repr__(self):
+    def __str__(self):
         return str(self.int)
 
     def __add__(self, other):

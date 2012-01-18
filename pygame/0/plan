@@ -1,0 +1,59 @@
+- Introduction:
+    - Introductions, volunteers and myself
+    - Aim: To teach you about Pygame, a set of modules built for writing games
+    - These include modules for sounds, sprites, frame rate, handling input, setting up the display == everything you need for a 2D game
+    - Can also be combined with other libraries like OpenGL for 3D, but we'll be covering just the 2D side today.
+    - Each section: Will go through the topic, ask a few questions, then coding exercises at the end
+    - Ask questions: Others might be wondering the same thing and it could help everyone
+
+- Setup:
+    - Log in
+    - Download files
+    - Opening up editor (what are we using?)
+        - Set up indenting
+        - Set up zoom on my screen
+    - Careful with cables under the desks
+    - Find a dry erase marker
+    - Opening a terminal
+    - Navigating around the filesystem 
+        - Brief detour into the Unix filesystem, *ask if anyone's interested*
+    - Explain directories and files for each section
+
+- Initializing Pygame
+    - *Open initPygame.py*
+    - First thing is to import pygame module
+    - We also do an import from pygame.locals. This contains constants used by pygame.
+    - For example, each key on the keyboard has an integer associated with it, locals has a constant for each key so you can refer to it by the key's name
+
+    - Then we initialize Pygame's modules using pygame.init()
+
+    - Next, we need to set up a window or the entire screen to display the game
+    - Do this using pygame's display submodule
+    - *Open http://www.pygame.org/docs/ref/display.html*
+    - Will quickly show you the docs for this, available from pygame.org site
+    - pygame.display.set_mode sets up your display, must be called before you can draw anything
+    - takes a resolution, which is a tuple containing width and height, using 0 for either will default to the current screen's width and height
+    - Resolution defines how many pixels you have to draw on, so 50 * 50 will mean you have 50 by 50 pixels in which you ccan position things
+    - Also takes flags to choose what kind of window you want:
+        - Fullscreen makes game fullscreen, it doesn't always stretch the drawing area to fit, it does its best. So 800 * 600 on a 1024 * 768 current resolution will stretch, but 50 * 50 won't
+        - NoFrame and Resizable give you draggable windows, where noFrame obviously isn't resizable. From what I've seen, Pygame won't stretch the game if you change the window size
+        - HwSurface would create a hardware accelerated display, but we won't use it. Why? Won't work on all systems so you lose compatibility, it only works fullscreen, and if driver is not suited to it might actually end up being slower than the software rendering that is otherwise used. On Windows, it's supposed to be OK and faster, but we will ignore it for today.
+        - OpenGL is if you're going to use OpenGL, which we aren't, and DoubleBuf is for hwsurface and opengl, which we aren't using either
+    - Depth controls colour depth, number of bits used to represent colours. Usually can ignore it, Pygame automatically chooses the fastest for the current system
+    - Return value is a Surface, which I will describe shortly
+
+    - Lastly we have a while loop to keep game running
+    - *Run it, blank screen*
+
+- *Ask, any questions so far*
+
+- Drawing background and RGB
+
+
+
+    - Double-buffering
+    - Clock and frame rate
+
+
+- Exercise 0a:
+    - Animated rainbows!
