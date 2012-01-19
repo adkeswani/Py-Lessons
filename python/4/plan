@@ -6,6 +6,25 @@
     - Same happens with all other objects, e.g. if we created a Vehicle, then assigned it to another variable, it would again be pointing at the original Vehicle
     - Same also happens when we pass an object as an argument, passes the memory location, so changes made inside method will affect original object, we must be careful
     - Python does have ways of doing a deep copy, where it's not just memory location, look it up
+    - For the standard types, there are 
+
+- Keyword arguments + None
+    - Possible to provide default values for arguments, just put = value afterwards
+    - Means that in the call, won't need to provide a value
+    - But any arguments with default values must be after those without in argument list
+    - e.g. list.sort() 
+        - Can be called with 3 arguments, a custom sorting function, a key, to pick a data field to sort on, and a reverse boolean to reverse the order
+        - But by default, sorts in ascending order, uses the comparison method defined for the type, on the object rather than one of its fields
+
+    - *Show optimus.py*, another example of default arguments
+    - Here, we want to ignore if weapon is not provided
+    - Could use value here, e.g. False, and use a condition to check
+    - Nicer way is similar to C's NULL, called None
+    - None does nothing, is considered False in a condition, it makes more sense than False, which could have some other meaning
+    - Useful where you want a nothing value, perhaps so you know to fill it with something
+
+    - Back to arguments, it's also possible to take a variable number of arguments using kwargs, args
+    - TODO
 
 - Try/except blocks:
     - Going to show you exception handling, which some might already be familiar with
@@ -38,23 +57,15 @@
     - Add and subtract operators should work, if it goes below 1 or above 1000, throw a ValueError again
     - *Ask for some good test cases*
 
-- Keyword arguments + NONE
-    - Possible to provide default values for arguments, just put = value afterwards
-    - Means that in the call, won't need to provide a value
-    - But any arguments with default values must be after those without in argument list
-    - e.g. list.sort() can be called with 3 arguments, a custom sorting function, a key, to pick a data field to sort on, and a reverse boolean to reverse the order
-    - But by default, sorts in ascending order, using the __cmp__ method of the type, on the object rather than one of its fields
-    - Can use None as default value to check if nothing has been provided. EXAMPLE??
-
-    - Also possible to take a variable number of arguments using 
-
 - File objects
     
+
+- Private variables
+
 
 - Exercise: Use the encoder from before and use it on files
 
 
-- Private variables
 
 - Exercise, maybe go back to the Vehicle?
 
@@ -69,19 +80,13 @@
     - In Python, only know when you run it, e.g. getMaxSpeed returning bananas
     - Languages where types only worked out a run time like this == dynamically typed, if beforehand == statically typed
 
-
-
-
 - Lists and sequences also support slicing, allows you to select multiple elements in a single statement
     - Then very briefly sets
 
-
-
-
 - Technical sidetrack, *ask if anyone's interested, see how time is going*
-            - Sometimes we compile, i.e. transform straight to machine code
-            - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
-            - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
-            - Same language can be implemented in different ways, e.g. there are interpreters for C, normally we think of it as compiled
-            - Similarly different implementations of Python use different approaches, most common is bytecode compilation
+    - Sometimes we compile, i.e. transform straight to machine code
+    - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
+    - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
+    - Same language can be implemented in different ways, e.g. there are interpreters for C, normally we think of it as compiled
+    - Similarly different implementations of Python use different approaches, most common is bytecode compilation
 
