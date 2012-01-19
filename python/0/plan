@@ -1,13 +1,14 @@
-Time: 30 mins
+Time: 50 mins
 
-- Introduction:
+- Introduction: - 3 min
     - Introductions, volunteers and myself
     - Aim: Introduce you to OO programming and the Python programming language
     - Each section: Explanation of topic, will ask you questions, coding exercises at the end
     - Ask questions: Others might be wondering the same thing and it could help everyone
+    - Will be moving FAST, lots to cover, try and bash out the exercises fast to see if you know what you're doing, come back and fix syntax later
 
-- Setup:
-    - Log in
+- Setup: - 7 min
+    - Log in, ensure you use the correct numbered account
     - Download files
     - Opening up editor (what are we using?)
         - Set up indenting
@@ -19,10 +20,10 @@ Time: 30 mins
     - Explain directories and files for each section
     - Ask about everyone's level of experience with OO
 
-- Intro to OO:
+- Intro to OO: 
     - First, OO concepts in plain English, then Python
 
-    - Classes:
+    - Classes: - 10 min
         - OO: Consider everything in terms of objects and the interactions between them
         - Example:
             - Ask for an object
@@ -41,7 +42,7 @@ Time: 30 mins
             - A class is a description of the thing
             - An instance is actually one of these things
 
-    - Subclasses:
+    - Subclasses: - 5 min
         - May have multiple specialised versions of an object
         - Example:
             - Based on our earlier object
@@ -52,7 +53,7 @@ Time: 30 mins
         - And base new classes on this *give example* == subclass
         - Common class == superclass or parent class
         
-    - Inheritance and overriding:
+    - Inheritance and overriding: - 3 min
         - Implied : Subclasses inherit data fields and methods from superclass *give example*
         - Can write method with same name and arguments to replace existing one == overriding
         - Changes behaviour of subclass
@@ -63,7 +64,7 @@ Time: 30 mins
 
     - *Ask if any questions so far*
 
-    - Polymorphism:
+    - Polymorphism: - 10 min
         - Example:
             - Suppose we have a Vehicle class:
                 - Ask: Data fields, methods
@@ -71,11 +72,11 @@ Time: 30 mins
             - Then a SpeedCamera class with an isOverLimit() method
             - Method takes a vehicle and tells you if its over some limit
             - Needs to support TwoWheel and FourWheel
-            - Ask: An existing way you know how to do this?
+            - *Ask: An existing way you know how to do this?*
             - Instead, write method that takes a Vehicle
             - Method will use the getSpeed method() from Vehicle
         - Will work because of polymorphism:
-            - Subclasses take on multiple types *example*
+            - Subclasses take on multiple types *example for Vehicle case*
             - Both the parent class and the subclass type
         - Ask:
             - Methods for our original object superclass?
@@ -84,7 +85,7 @@ Time: 30 mins
             - Superclasses rather than subclasses
             - For flexibility, e.g. new ThreeWheel class
 
-    - Public vs. private:
+    - Access control: - 3 min
         - Our Vehicle has speed data field, integer
         - Anyone could subclass and change it, e.g. store a banana there instead
         - Breaks our isOverLimit(). How to avoid?
@@ -94,9 +95,9 @@ Time: 30 mins
             - Overriding methods
         - Public: Anything can read it, write to it, override it in the case of methods
         - Private: Opposite, nothing can read, write except code inside the class itself, can't be overridden
-        - Other access controls, restrict access to other parts of the code, later in the workshop
+        - Other levels of access to restrict access to certain parts of the code, will talk about how its done in Python later in the workshop
 
-- Exercises
+- Exercises - 10 min
     - No code, so no exercises yet.
     - But to review, Ask: Can you explain in your own words and give an example of:
         - A class

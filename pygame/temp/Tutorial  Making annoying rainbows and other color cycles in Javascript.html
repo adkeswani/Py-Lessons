@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0044)http://krazydad.com/tutorials/makecolors.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tutorial: Making annoying rainbows and other color cycles in Javascript</title>
+<meta name="description" content="Javascript Tutorial by KrazyDad">
+<meta name="keywords" content="color,colour,rgb,pastels,convert,color cycles,rainbows,games,colors,javascript,tutorials,sine waves,trig,fun,annoyings">
+<link rel="stylesheet" type="text/css" href="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/wbase_sm2.css">
+<style>
+pre { font-size:12px; background-color: #EEE; }
+</style>
+<script src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/quant.js" async="" type="text/javascript"></script><script type="text/javascript" async="" src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/ga.js"></script><script type="text/javascript" async="" src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/load.js"></script><script type="text/javascript"><!-- flattr -->
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */</script>
+<script language="JavaScript">
+<!--
+
+function RGB2Color(r,g,b)
+{
+  return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+}
+
+function byte2Hex(n)
+{
+  var nybHexString = "0123456789ABCDEF";
+  return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+}
+
+
+function roundDecimal(v,n)
+{
+  var isNeg = v < 0;
+  v = Math.abs(v);
+
+  return (isNeg? '-' : '') + String(Math.floor(v)) + '.' + String((1 + Math.abs(v) - Math.floor(Math.abs(v)))*Math.pow(10,n)).substr(1,n);
+}
+
+function colorText(str,phase)
+{
+  if (phase == undefined)
+    phase = 0;
+  center = 128;
+  width = 127;
+  frequency = Math.PI*2/str.length;
+  for (var i = 0; i < str.length; ++i)
+  {
+     red   = Math.sin(frequency*i+2+phase) * width + center;
+     green = Math.sin(frequency*i+0+phase) * width + center;
+     blue  = Math.sin(frequency*i+4+phase) * width + center;
+     document.write( '<font color="' + RGB2Color(red,green,blue) + '">' + str.substr(i,1) + '</font>');
+  }
+}
+
+function makeColorGradient(frequency1, frequency2, frequency3, phase1,phase2,phase3,center,width,len)
+{
+  if (len == undefined)
+    len = 50;
+  if (center == undefined)
+    center = 128;
+  if (width == undefined)
+    width = 127;
+  for (var i = 0; i < len; ++i)
+  {
+     var red = Math.sin(frequency1*i + phase1) * width + center;
+     var grn = Math.sin(frequency2*i + phase2) * width + center;
+     var blu = Math.sin(frequency3*i + phase3) * width + center;
+     document.write( '<font color="' + RGB2Color(red,grn,blu) + '">&#9608;</font>');
+  }
+}
+
+
+// -->
+</script>
+
+</head>
+<body bgcolor="white" text="black">
+
+<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-605293-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<div class="outer" align="center">
+<div class="inner">
+<div class="adbar">
+<script type="text/javascript"><!--
+google_ad_client = "pub-1449267043676994";
+//728x90 Puzzle Banners
+google_ad_slot = "6905239361";
+google_ad_width = 728;
+google_ad_height = 90;
+//--></script>
+<script type="text/javascript" src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" frameborder="0" height="90" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="728" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins></div> <!-- adbar -->
+<div class="logo">
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tbody><tr>
+<!-- <td width=100><a href="http://www.pinkforoctober.org/" title="We've turned PINK for Breast Cancer Awareness Month!  Click for details."><img src="/img/dot.gif" width=100 height=60 border=0></a></td> -->
+<td width="300"><a href="http://www.nbcam.org/" title="Creator of software toys of wondrous delight."><img src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/dot.gif" width="300" height="60" border="0"></a></td>
+<td width="100%" align="right" valign="top">
+  <table cellpadding="0" cellspacing="0" border="0">
+  <tbody><tr><td><img src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/dot.gif" width="1" height="8" alt=""></td></tr>
+  <tr><td align="right">
+  <font size="3">
+  <br>
+  <a class="outer" href="http://krazydad.com/blog/" title="Current Events in the land of KrazyDad">Blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a class="outer" href="http://krazydad.com/pubs/" title="Books, papers and more...">Publications</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <!-- <a class="outer" href="http://www.coverpop.com/" title="Interactive Mosaics">Coverpop</a>&nbsp;&nbsp; -->
+  <a class="outer" href="http://krazydad.com/" title="Free Printable Puzzles">Puzzles</a><br>
+  <a class="outer" href="http://krazydad.com/fungames.php" title="Games and Software Toys">Fun &amp; Games</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <!-- <a class="outer" href="/colrpickr/" title="Experimental Color Toy">Colr Pickr</a>&nbsp;&nbsp;
+  <a class="outer" href="/bestiary/" title="Flash Bestiary">Flash Bestiary</a>&nbsp;&nbsp; -->
+  <a class="outer" href="http://krazydad.com/about.php" title="Learn all about me, you curious person.">About</a><br>
+  </font>
+  </td></tr></tbody></table>
+</td>
+<td width="30"><img src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/dot.gif" width="30" height="60" alt=""></td>
+</tr></tbody></table>
+<br>
+<table class="bdy" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td width="10">&nbsp;</td>
+<td valign="top" width="620" align="left">
+<!-- news item -->
+<br>
+
+
+<br>
+<h1>
+<script language="JavaScript">
+<!--
+colorText("Making annoying rainbows in javascript",0);
+// -->
+</script><font color="#F3801F">M</font><font color="#E99413">a</font><font color="#DCA90A">k</font><font color="#CCBC03">i</font><font color="#BACE01">n</font><font color="#A7DD01">g</font><font color="#92EA05"> </font><font color="#7DF40D">a</font><font color="#69FB17">n</font><font color="#54FE25">n</font><font color="#41FE35">o</font><font color="#30FB47">y</font><font color="#21F45A">i</font><font color="#14EA6F">n</font><font color="#0ADD84">g</font><font color="#04CE98"> </font><font color="#01BCAD">r</font><font color="#01A9BF">a</font><font color="#0594D1">i</font><font color="#0C80E0">n</font><font color="#166BEC">b</font><font color="#2356F5">o</font><font color="#3343FC">w</font><font color="#4531FE">s</font><font color="#5822FE"> </font><font color="#6D15FA">i</font><font color="#820BF2">n</font><font color="#9604E8"> </font><font color="#AB01DA">j</font><font color="#BE01CA">a</font><font color="#CF04B8">v</font><font color="#DE0BA5">a</font><font color="#EB1590">s</font><font color="#F5227B">c</font><font color="#FB3167">r</font><font color="#FE4352">i</font><font color="#FE5640">p</font><font color="#FA6B2E">t</font>
+</h1>
+<h3>A tutorial by jim bumgardner (<a href="https://twitter.com/#!/jbum">@jbum</a> on twitter)</h3>
+<p>
+<iframe src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/saved_resource.html" class="FlattrButton" width="55" height="62" frameborder="0" scrolling="no" border="0" marginheight="0" marginwidth="0" allowtransparency="true"></iframe>
+<noscript>&lt;a href="http://flattr.com/thing/465411/Making-annoying-rainbows-in-javascript-A-tutorial-on-color-cycles-" target="_blank"&gt;
+&lt;img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /&gt;&lt;/a&gt;</noscript>
+</p><p>
+<i>Note 12/2011: Charlie Loyd has written <a href="http://basecase.org/env/on-rainbows">a nice analysis</a> of the techniques presented in this article, and makes
+a good case for sine-generated rainbows as an aesthetic improvement over the more common HSB-space rainbows (which have brightness/saturation spokes).</i>
+</p><p>
+<i>Note 1/2011: Since I wrote this tutorial, CSS3 has introduced the hsla() color specifications, which makes the kinds of tricks explained in
+this article much easier on browsers that support CSS3.  Since my intention was teach some simple color theory and applied mathematics, I suggest 
+you pretend this feature doesn't exist as you read this article.  Then, afterwards, use it willy nilly!</i>
+</p><p>
+This is a tutorial on how to produce sequences of discrete colors, for use in fonts, graphics or tables, such as
+in the color strips shown here, or the title of this article.
+</p><p>
+</p><center>
+<script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,2,4,128,127,32);
+// -->
+</script><font color="#80F31F">█</font><font color="#A5DE0B">█</font><font color="#C7C101">█</font><font color="#E39E03">█</font><font color="#F6780F">█</font><font color="#FE5326">█</font><font color="#FB3244">█</font><font color="#ED1868">█</font><font color="#D5078E">█</font><font color="#B601B3">█</font><font color="#9106D3">█</font><font color="#6B16EC">█</font><font color="#472FFA">█</font><font color="#2850FE">█</font><font color="#1175F7">█</font><font color="#039BE5">█</font><font color="#01BECA">█</font><font color="#0ADCA8">█</font><font color="#1DF283">█</font><font color="#3AFD5D">█</font><font color="#5CFD3A">█</font><font color="#82F21E">█</font><font color="#A7DD0A">█</font><font color="#C9BF01">█</font><font color="#E49C03">█</font><font color="#F77610">█</font><font color="#FE5127">█</font><font color="#FB3046">█</font><font color="#EC166A">█</font><font color="#D40690">█</font><font color="#B401B5">█</font><font color="#8F06D5">█</font>
+</center>
+<p>
+Obviously you can make a webpage look incredibly annoying if you
+overuse this technique (and by <i>overuse</i>, I mean <i>use at all</i>), but you may have fun learning to do it, and you will improve your javascript skills, and your
+understanding of how colors work.
+
+</p><p>
+</p><center>
+
+<script language="JavaScript">
+<!--
+makeColorGradient(2,4,6,0,2,4,128,127,32);
+// -->
+
+</script><font color="#80F31F">█</font><font color="#F35C3A">█</font><font color="#1F3A5B">█</font><font color="#5CFD7E">█</font><font color="#FD20A2">█</font><font color="#3A7EC3">█</font><font color="#3BE0DE">█</font><font color="#FD02F2">█</font><font color="#5BC3FD">█</font><font color="#20A5FE">█</font><font color="#F30BF4">█</font><font color="#7EF2E2">█</font><font color="#0C5EC7">█</font><font color="#E039A7">█</font><font color="#A2FE84">█</font><font color="#022260">█</font><font color="#C67C3F">█</font><font color="#C3E223">█</font><font color="#02020E">█</font><font color="#A5C103">█</font><font color="#DEA701">█</font><font color="#0B0A09">█</font><font color="#82F11B">█</font><font color="#F26035">█</font><font color="#1E3755">█</font><font color="#5EFE78">█</font><font color="#FD239B">█</font><font color="#397ABD">█</font><font color="#3DE3D9">█</font><font color="#FE03EF">█</font><font color="#59BFFC">█</font><font color="#22A9FE">█</font>
+</center>
+<p>
+I am going to use javacsript for my code examples, but you can use the same
+basic techniques in any language, and indeed I originally developed these tricks in C, but I now use the same old
+tricks in C++, Perl, Processing, Java, Flash Actionscript and other languages.
+</p><p>
+
+</p><center>
+<script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,0,0,128,127,32);
+// -->
+</script><font color="#808080">█</font><font color="#A5A5A5">█</font><font color="#C7C7C7">█</font><font color="#E3E3E3">█</font><font color="#F6F6F6">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#EDEDED">█</font><font color="#D5D5D5">█</font><font color="#B6B6B6">█</font><font color="#919191">█</font><font color="#6B6B6B">█</font><font color="#474747">█</font><font color="#282828">█</font><font color="#111111">█</font><font color="#030303">█</font><font color="#010101">█</font><font color="#0A0A0A">█</font><font color="#1D1D1D">█</font><font color="#3A3A3A">█</font><font color="#5C5C5C">█</font><font color="#828282">█</font><font color="#A7A7A7">█</font><font color="#C9C9C9">█</font><font color="#E4E4E4">█</font><font color="#F7F7F7">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#ECECEC">█</font><font color="#D4D4D4">█</font><font color="#B4B4B4">█</font><font color="#8F8F8F">█</font>
+</center>
+<p>
+To get the most out of this tutorial, you will need to know a little Javascript, and a little HTML.  However, you won't
+need to know a whole lot.  I mean c'mon.  I even explain how <i>hexadecimal</i> works in this document, and why
+'#FF0000' comes out red, and so on...
+</p><p>
+</p><center>
+<script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,1,2,192,63,32);
+// -->
+</script><font color="#C0F5F9">█</font><font color="#D2FCEE">█</font><font color="#E3FEE0">█</font><font color="#F1FBCF">█</font><font color="#FAF2BC">█</font><font color="#FEE5A9">█</font><font color="#FDD599">█</font><font color="#F6C28C">█</font><font color="#EAAF84">█</font><font color="#DA9E81">█</font><font color="#C89083">█</font><font color="#B6868B">█</font><font color="#A48198">█</font><font color="#9482A8">█</font><font color="#8988BA">█</font><font color="#8293CD">█</font><font color="#81A2DF">█</font><font color="#85B4ED">█</font><font color="#8FC7F8">█</font><font color="#9DD9FE">█</font><font color="#AEE9FE">█</font><font color="#C1F5F8">█</font><font color="#D3FCEE">█</font><font color="#E4FEDF">█</font><font color="#F2FBCE">█</font><font color="#FBF2BB">█</font><font color="#FEE4A8">█</font><font color="#FDD498">█</font><font color="#F5C18B">█</font><font color="#E9AE83">█</font><font color="#D99D81">█</font><font color="#C78F83">█</font>
+</center>
+<p>
+Well, let's get to it, shall we?
+</p><p>
+
+</p><center>
+<table width="80%"><tbody><tr>
+<td>
+<a class="donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=dad%40krazydad%2ecom&item_name=KrazyDad%20Sudoku%20Puzzles&item_number=RAINBOWS_0&no_shipping=1&cn=Your%20comments%20are%20welcome&tax=0&currency_code=USD&bn=PP%2dDonationsBF&charset=UTF%2d8">
+If you like this tutorial, consider donating a dollar or two, via PayPal, to help support this website.  Thank you!
+</a>
+</td>
+<td>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="dad@krazydad.com">
+<input type="hidden" name="item_name" value="KrazyDad - Jim Bumgardner - Annoying Rainbows">
+<input type="hidden" name="item_number" value="RAINBOW_0">
+<input type="hidden" name="no_shipping" value="1">
+<input type="hidden" name="cn" value="Your comments are welcome">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="tax" value="0">
+<input type="hidden" name="bn" value="PP-DonationsBF">
+<input type="image" src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/btn_donateCC_LG.gif" border="0" name="submit" alt="Donate with PayPal"></form>
+
+
+</td></tr></tbody></table>
+</center>
+
+
+<h2>Converting R,G,B values to HTML hex notation</h2>
+
+On computer monitors, you get different colors by combining red, green and blue.  The red, green and blue levels are called 'color components'.
+<p>
+To generate rainbow-like sequences of colors, I am going to be manipulating the individual RGB components of each subsequent color.
+So the first thing I need is a utility function to convert individual red, green and blue values to an HTML hex color specification, which
+looks something like this:
+</p><p>
+#AABBCC
+</p><p>
+This represents an RGB color with 8-bits per component.  In an 8-bit color system, the values of the color components, R, G, and B can
+go from 0-255.  But the HTML color specification uses hexadecimal notation for each of the components, so that they each occupy two digits.
+</p><p>
+In hexadecimal, each color component (red, green, and blue) occupies two digits, like so:
+#<font color="red">RR</font><font color="green">GG</font><font color="blue">BB</font>.  So our color has the following hex values:
+
+</p><pre><table border="1" cellspacing="0" cellpadding="8">
+<tbody><tr><td>Component</td><td>Value (in hex)</td></tr>
+<tr><td>Red</td><td>AA</td></tr>
+<tr><td>Green</td><td>BB</td></tr>
+<tr><td>Blue</td><td>CC</td></tr>
+</tbody></table>
+</pre>
+Hexadecimal numbers are base 16 numbers.  You can use the following table to convert two digit hex numbers to their
+decimal equivalents.
+<p>
+<table border="1" cellpadding="8" cellspacing="0"><tbody><tr>
+<td>Hexadecimal</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>
+<tr><td>Decimal</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+</tbody></table>
+</p><p>
+If you don't have a calculator handy that does hexadecimal -&gt; decimal conversion, it's not too hard to do it yourself.
+Just take the first digit, convert it to decimal (using the above table, which is easily memorized, especially if you're not busy friday), multiply it by 16, and
+then add the decimal equivalent of the second digit.  For example, the number AB corresponds to 10*16 + 11, or 171.
+</p><p>
+Using this formula, you will see that the color #AABBCC corresponds to the following values:
+</p><pre><table border="1" cellspacing="0" cellpadding="8">
+<tbody><tr><td>Component</td><td>Value (in hex)</td><td>Value (in decimal)</td></tr>
+<tr><td>Red</td><td>AA</td><td>170</td></tr>
+<tr><td>Green</td><td>BB</td><td>187</td></tr>
+<tr><td>Blue</td><td>CC</td><td>204</td></tr>
+</tbody></table>
+</pre>
+<p>
+What I need for this tutorial is a function that does the reverse - converts 170,187,204 back to #AABBCC.
+I would use it like this:
+</p><p>
+</p><pre>output = RGB2Color(170,187,204);
+</pre>
+<p>
+And know that the string '#AABBCC' is in the output value, ready to be output as HTML, using the document.write() command.
+</p><p>
+Here is the function.
+</p><pre>  function RGB2Color(r,g,b)
+  {
+    return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+  }
+</pre>
+My conversion function relies on yet another utility function, byteToHex(), which converts each of the color components from a numeric value (such as 170) to a hexadecimal string
+(such as 'AA'):
+<pre>  function byte2Hex(n)
+  {
+    var nybHexString = "0123456789ABCDEF";
+    return String(nybHexString.substr((n &gt;&gt; 4) &amp; 0x0F,1)) + nybHexString.substr(n &amp; 0x0F,1);
+  }
+</pre>
+This function relies on the binary arithmetic operators &gt;&gt; and &amp;, which treat the numbers as binary, which is closely
+related to hexdecimal.  Every 4 bits (or binary digits) in a binary number corresponds to a single hex digit, 0-F.
+So this function takes the leftmost 4 bits of the number (given by n &gt;&gt; 4, which shifts the number right by 4 bits) and converts it to hex, and then takes
+the rightmost 4 bits of the number (given by n &amp; 0x0F, which masks off the rightmost 4 bits) and converts it to hex.
+<p>
+I should point out that decimal -&gt; hex conversion (and number formatting in general) is much easier in languages that provide a 'printf' function - something sorely missing from Javascript.
+</p><p>
+In Perl, you can do this same conversion in one line, like so:
+</p><pre>  output = sprintf '#%02x%02x%02x', $r, $g, $b;
+</pre>
+<p>
+If you can live without an old-style CSS color specification, you can also produce colors more simply without byte2Hex, like so:
+</p><pre>  function RGB2Color(r,g,b)
+  {
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+</pre>
+
+<p>
+</p><h2>Sine wave cycles</h2>
+<p>
+The basic tool I am going to use to make color cycles is the sine wave.  There is a function in Javascript, Math.sin() which
+will produce a smoothly undulating value that goes from 0 to 1 to 0 to -1 and back to 0.  Here as some samples:
+</p><p>
+<script language="JavaScript">
+<!--
+
+function makeSineTable(rows, f)
+{
+  var v = 0;
+
+  document.write("<table><tr><td width=100>function</td><td width=60 align='right'>result</td><td width=40></td><td width=300>graph of result (with zero in the middle)</td></tr>");
+  var graphWidth = 300;
+  var lEdge, rEdge;
+  for (var y = 0; y < rows; ++y, v += f)
+  {
+    var str = 'Math.sin(' + roundDecimal(v,2) + ');';
+    var r = Math.sin(v);
+    if (r < 0) {
+      lEdge = graphWidth/2 + r*(graphWidth/2);
+      rEdge = graphWidth/2;
+    }
+    else {
+      lEdge = graphWidth/2;
+      rEdge = graphWidth/2 + r*graphWidth/2;
+    }
+  var subTable = '<table cellpadding=0 cellspacing=0 width=300><tr>' +
+                 '<td width=' + lEdge + '></td>' +
+                 '<td width=' + (rEdge-lEdge) + ' bgcolor=\'black\'>&nbsp;</td>' +
+                 '<td width=' + (300-rEdge) + '></td>' +
+                 '</tr></table>';
+
+
+  document.write('<tr>');
+  document.write('<td>' + str + '</td>');
+  document.write('<td align=right>' + roundDecimal(r,2) + '</td>');
+  document.write('<td></td>');
+  document.write('<td>' + subTable + '</td>');
+  document.write('</tr>');
+  }
+  document.write('</table>');
+}
+
+
+makeSineTable(40,.2);
+// -->
+</script><table><tbody><tr><td width="100">function</td><td width="60" align="right">result</td><td width="40"></td><td width="300">graph of result (with zero in the middle)</td></tr><tr><td>Math.sin(0.00);</td><td align="right">0.00</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="0" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(0.20);</td><td align="right">0.19</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="29.800399619259167" bgcolor="black">&nbsp;</td><td width="120.19960038074083"></td></tr></tbody></table></td></tr><tr><td>Math.sin(0.40);</td><td align="right">0.38</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="58.41275134629757" bgcolor="black">&nbsp;</td><td width="91.58724865370243"></td></tr></tbody></table></td></tr><tr><td>Math.sin(0.60);</td><td align="right">0.56</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="84.6963710092553" bgcolor="black">&nbsp;</td><td width="65.3036289907447"></td></tr></tbody></table></td></tr><tr><td>Math.sin(0.80);</td><td align="right">0.71</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="107.60341363492842" bgcolor="black">&nbsp;</td><td width="42.396586365071585"></td></tr></tbody></table></td></tr><tr><td>Math.sin(1.00);</td><td align="right">0.84</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="126.22064772118449" bgcolor="black">&nbsp;</td><td width="23.77935227881551"></td></tr></tbody></table></td></tr><tr><td>Math.sin(1.20);</td><td align="right">0.93</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="139.80586289508392" bgcolor="black">&nbsp;</td><td width="10.19413710491608"></td></tr></tbody></table></td></tr><tr><td>Math.sin(1.40);</td><td align="right">0.98</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="147.81745949826905" bgcolor="black">&nbsp;</td><td width="2.182540501730955"></td></tr></tbody></table></td></tr><tr><td>Math.sin(1.59);</td><td align="right">0.99</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="149.93604045622578" bgcolor="black">&nbsp;</td><td width="0.06395954377421731"></td></tr></tbody></table></td></tr><tr><td>Math.sin(1.79);</td><td align="right">0.97</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="146.0771446317293" bgcolor="black">&nbsp;</td><td width="3.922855368270689"></td></tr></tbody></table></td></tr><tr><td>Math.sin(1.00);</td><td align="right">0.90</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="136.39461402385228" bgcolor="black">&nbsp;</td><td width="13.605385976147716"></td></tr></tbody></table></td></tr><tr><td>Math.sin(2.19);</td><td align="right">0.80</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="121.27446057293855" bgcolor="black">&nbsp;</td><td width="28.72553942706145"></td></tr></tbody></table></td></tr><tr><td>Math.sin(2.40);</td><td align="right">0.67</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="101.31947708267265" bgcolor="black">&nbsp;</td><td width="48.68052291732735"></td></tr></tbody></table></td></tr><tr><td>Math.sin(2.60);</td><td align="right">0.51</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="77.32520577321964" bgcolor="black">&nbsp;</td><td width="72.67479422678036"></td></tr></tbody></table></td></tr><tr><td>Math.sin(2.80);</td><td align="right">0.33</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="50.24822252338569" bgcolor="black">&nbsp;</td><td width="99.75177747661431"></td></tr></tbody></table></td></tr><tr><td>Math.sin(3.00);</td><td align="right">0.14</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="21.16800120898" bgcolor="black">&nbsp;</td><td width="128.83199879102"></td></tr></tbody></table></td></tr><tr><td>Math.sin(3.20);</td><td align="right">-0.05</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="141.24387848586292"></td><td width="8.756121514137078" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(3.40);</td><td align="right">-0.25</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="111.66883469597519"></td><td width="38.33116530402481" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(3.60);</td><td align="right">-0.44</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="83.62193350577202"></td><td width="66.37806649422798" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(3.80);</td><td align="right">-0.61</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="58.22131635859199"></td><td width="91.77868364140801" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(4.00);</td><td align="right">-0.75</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="36.47962570381067"></td><td width="113.52037429618933" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(4.20);</td><td align="right">-0.87</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="19.263634137961702"></td><td width="130.7363658620383" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(4.40);</td><td align="right">-0.95</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="7.259688916572543"></td><td width="142.74031108342746" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(4.60);</td><td align="right">-0.99</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="0.9463494549802931"></td><td width="149.0536505450197" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(4.80);</td><td align="right">-0.99</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="0.5753086746239262"></td><td width="149.42469132537607" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(5.00);</td><td align="right">-0.95</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="6.161358800529285"></td><td width="143.83864119947071" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(5.20);</td><td align="right">-0.88</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="17.481801641977142"></td><td width="132.51819835802286" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(5.40);</td><td align="right">-0.77</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="34.08532686660209"></td><td width="115.91467313339791" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(5.60);</td><td align="right">-0.63</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="55.31000431915207"></td><td width="94.68999568084793" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(5.80);</td><td align="right">-0.46</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="80.30967308793674"></td><td width="69.69032691206326" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(6.00);</td><td align="right">-0.27</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="108.0876752701615"></td><td width="41.9123247298385" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(6.20);</td><td align="right">-0.08</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="137.53658957737593"></td><td width="12.463410422624065" bgcolor="black">&nbsp;</td><td width="150"></td></tr></tbody></table></td></tr><tr><td>Math.sin(6.40);</td><td align="right">0.11</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="17.48238072757445" bgcolor="black">&nbsp;</td><td width="132.51761927242555"></td></tr></tbody></table></td></tr><tr><td>Math.sin(6.60);</td><td align="right">0.31</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="46.73120452700718" bgcolor="black">&nbsp;</td><td width="103.26879547299282"></td></tr></tbody></table></td></tr><tr><td>Math.sin(6.80);</td><td align="right">0.49</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="74.11700267079169" bgcolor="black">&nbsp;</td><td width="75.88299732920831"></td></tr></tbody></table></td></tr><tr><td>Math.sin(7.00);</td><td align="right">0.65</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="98.54798980781877" bgcolor="black">&nbsp;</td><td width="51.452010192181234"></td></tr></tbody></table></td></tr><tr><td>Math.sin(7.20);</td><td align="right">0.79</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="119.05017957737329" bgcolor="black">&nbsp;</td><td width="30.949820422626715"></td></tr></tbody></table></td></tr><tr><td>Math.sin(7.40);</td><td align="right">0.89</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="134.80621437174426" bgcolor="black">&nbsp;</td><td width="15.193785628255739"></td></tr></tbody></table></td></tr><tr><td>Math.sin(7.60);</td><td align="right">0.96</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="145.18795080472307" bgcolor="black">&nbsp;</td><td width="4.812049195276927"></td></tr></tbody></table></td></tr><tr><td>Math.sin(7.80);</td><td align="right">0.99</td><td></td><td><table cellpadding="0" cellspacing="0" width="300"><tbody><tr><td width="150"></td><td width="149.78150180619082" bgcolor="black">&nbsp;</td><td width="0.21849819380918234"></td></tr></tbody></table></td></tr></tbody></table>
+</p><p>
+Sine waves are <b>really useful in real life</b>, contrary to what you might have learned in trig class, and they are especially useful for all kinds of things relating to graphics and music.
+</p><p>
+To get this pattern, I have input into the Math.sin() function a value which is steadily increasing.  You can
+produce a series of sine wave values using a loop, like so:
+</p><pre>var frequency = .3;
+for (var i = 0; i &lt; 32; ++i)
+{
+   Document.write( Math.sin(frequency * i)  );
+}
+</pre>
+
+
+You may have noticed that the sine wave pattern starts to repeat right about when frequency*i is equal to 6.2.  The precise value where it repeats is actually
+2π (2 times PI) or 6.28318, which happens to correspond to the circumfrence of a circle with a radius of 1.  As you may already know,
+sine waves are closely related to circles.  The halfway point in the sine wave is π exactly, or 3.14159...
+<p>
+At this time I would like to apologize for how crappy the π (PI) character looks in the san-serif font used in 80% of the computers out there.  If I were
+using <font face="Serif">lovely Times Roman, the π character would be far more recognizeable.  </font>Sadly, I'm not, because for just about everything else
+I find the San Serif font more readable.  But I digress...
+</p><p>
+There is a relationship between these π units which are used with the Math.sin() function (called <i>radians</i>) and the more familiar <i>degrees</i> which go from 0-360
+(degrees are an old Babylonian unit -- the Babylonians really liked numbers like 60 and 360 because all kinds of numbers go evenly into them.  Also, the Babylonians hadn't
+invented pie yet...)
+</p><p>
+<table border="1" cellpadding="8" cellspacing="0">
+<tbody><tr><td>Degrees</td><td>Radians</td></tr>
+<tr><td>0</td><td>0</td></tr>
+<tr><td>90</td><td>π/2</td></tr>
+<tr><td>180</td><td>π</td></tr>
+<tr><td>270</td><td>3*π/2</td></tr>
+<tr><td>360</td><td>2*π</td></tr>
+</tbody></table>
+
+</p><p>
+You can produce a value for π in Javascript by saying:
+</p><pre>    document.write(Math.PI);
+</pre>
+Like so:
+<p>
+<script language="JavaScript">
+<!--
+document.write(Math.PI);
+// -->
+</script>3.141592653589793
+</p><p>
+I <i>personally</i> have π memorized up to 8 digits.  Kind of a waste of gray matter, really.
+</p><p>
+Speaking of gray matter...
+</p><p>
+</p><h2>Using sine waves to make shades of gray</h2>
+I can use the return value of Math.sin() to make fluctuating color values.  However, I need to do
+a little conversion.  As shown above, the return value of Math.sin() goes from -1 to 1.  The color components I use to
+make RGB colors go from 0 to 255.  So I need to translate a number from the range (-1 --&gt; 1) into (0 --&gt; 255).
+<p>
+This isn't too hard because we know that we want the sine value to start at some center value, and then
+go up and down by some amount.  Since the sine wave goes up to 1, and down to -1, it is already <i>normalized</i>
+(meaning that it's maximum value is 1, a very useful number).  We can just multiply it by some other number, and it will go up to that number, and down to the negative version of that number.
+</p><p>
+For our color values, it will work well if we use 255/2 for our center value, and have the sine value go up and down with an amplitude of 255/2 (which
+will take us to 255 and down to 0.
+</p><p>
+</p><pre>color_component = Math.sin(frequency*i)*255/2 + 255/2;
+</pre>
+I usually express this, using integers, as:
+<pre>color_component = Math.sin(frequency*i)*128 + 127;
+</pre>
+...which isn't exactly the same, but close enough.
+<p>
+
+More generally, when we want to use a sine wave to oscillate something, we will use the formula
+</p><pre>value = Math.sin(frequency*increment)*amplitude + center;
+</pre>
+<p>
+<i>frequency</i> is a constant that controls how fast the wave oscillates<br>
+<i>increment</i> is a variable that counts up, typically provided by a loop<br>
+<i>amplitude</i> controls how high (and low) the wave goes<br>
+<i>center</i> controls the center position of the wave.
+</p><p>
+Now I can modify my original sine wave loop, and produce a series of test colors.
+
+</p><pre>var frequency = .3;
+var amplitude = 127;
+var center = 128;
+
+for (var i = 0; i &lt; 32; ++i)
+{
+   v = Math.sin(frequency*i) * amplitude + center;
+
+   // Note that &amp;#9608; is a unicode character that makes a solid block
+   document.write( '&lt;font color="' + RGB2Color(v,v,v) + '"&gt;&amp;#9608;&lt;/font&gt;');
+}
+</pre>
+
+Inside the document.write I am producing a color by calling RGB2Color(v,v,v).  Since I pass
+the same value in 3 times, for red, green, and blue, I will get a gray color.  In gray colors, red,
+green, and blue have the same value.  To view the color, I print out a block character, using the
+unicode value &amp;#9608;.
+<p>
+And here's what the code produces -- a kind of color sine wave:
+</p><p>
+<script language="JavaScript">
+<!--
+var frequency = .3;
+var amplitude = 127;
+var center = 128;
+for (var i = 0; i < 32; ++i)
+{
+   v = Math.sin(frequency*i) * amplitude + center;
+
+   // Note that &#9608; is a unicode character that makes a solid block
+   document.write( '<font color="' + RGB2Color(v,v,v) + '">&#9608;</font>');
+}
+// -->
+</script><font color="#808080">█</font><font color="#A5A5A5">█</font><font color="#C7C7C7">█</font><font color="#E3E3E3">█</font><font color="#F6F6F6">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#EDEDED">█</font><font color="#D5D5D5">█</font><font color="#B6B6B6">█</font><font color="#919191">█</font><font color="#6B6B6B">█</font><font color="#474747">█</font><font color="#282828">█</font><font color="#111111">█</font><font color="#030303">█</font><font color="#010101">█</font><font color="#0A0A0A">█</font><font color="#1D1D1D">█</font><font color="#3A3A3A">█</font><font color="#5C5C5C">█</font><font color="#828282">█</font><font color="#A7A7A7">█</font><font color="#C9C9C9">█</font><font color="#E4E4E4">█</font><font color="#F7F7F7">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#ECECEC">█</font><font color="#D4D4D4">█</font><font color="#B4B4B4">█</font><font color="#8F8F8F">█</font>
+</p><p>
+For fun, I can try using a series of different values for frequency.  This is what I'll get if I add an
+additional outer loop that changes the value of frequency.
+</p><p>
+<script language="JavaScript">
+<!--
+for (frequency = .01; frequency < 1; frequency += .05)
+{
+  for (var i = 0; i < 32; ++i)
+  {
+     lev = Math.sin(frequency*i) * 127 + 128;
+     document.write( '<font color="' + RGB2Color(lev,lev,lev) + '">&#9608;</font>');
+  }
+  document.write(' frequency = ' + roundDecimal(frequency,3) + '<br>');
+}
+// -->
+</script><font color="#808080">█</font><font color="#818181">█</font><font color="#828282">█</font><font color="#838383">█</font><font color="#858585">█</font><font color="#868686">█</font><font color="#878787">█</font><font color="#888888">█</font><font color="#8A8A8A">█</font><font color="#8B8B8B">█</font><font color="#8C8C8C">█</font><font color="#8D8D8D">█</font><font color="#8F8F8F">█</font><font color="#909090">█</font><font color="#919191">█</font><font color="#929292">█</font><font color="#949494">█</font><font color="#959595">█</font><font color="#969696">█</font><font color="#979797">█</font><font color="#999999">█</font><font color="#9A9A9A">█</font><font color="#9B9B9B">█</font><font color="#9C9C9C">█</font><font color="#9E9E9E">█</font><font color="#9F9F9F">█</font><font color="#A0A0A0">█</font><font color="#A1A1A1">█</font><font color="#A3A3A3">█</font><font color="#A4A4A4">█</font><font color="#A5A5A5">█</font><font color="#A6A6A6">█</font> frequency = 0.010<br><font color="#808080">█</font><font color="#878787">█</font><font color="#8F8F8F">█</font><font color="#969696">█</font><font color="#9E9E9E">█</font><font color="#A5A5A5">█</font><font color="#ACACAC">█</font><font color="#B3B3B3">█</font><font color="#BABABA">█</font><font color="#C1C1C1">█</font><font color="#C7C7C7">█</font><font color="#CDCDCD">█</font><font color="#D3D3D3">█</font><font color="#D9D9D9">█</font><font color="#DEDEDE">█</font><font color="#E3E3E3">█</font><font color="#E8E8E8">█</font><font color="#ECECEC">█</font><font color="#F0F0F0">█</font><font color="#F3F3F3">█</font><font color="#F6F6F6">█</font><font color="#F8F8F8">█</font><font color="#FBFBFB">█</font><font color="#FCFCFC">█</font><font color="#FDFDFD">█</font><font color="#FEFEFE">█</font><font color="#FEFEFE">█</font><font color="#FEFEFE">█</font><font color="#FEFEFE">█</font><font color="#FDFDFD">█</font><font color="#FBFBFB">█</font><font color="#F9F9F9">█</font> frequency = 0.060<br><font color="#808080">█</font><font color="#8D8D8D">█</font><font color="#9B9B9B">█</font><font color="#A9A9A9">█</font><font color="#B6B6B6">█</font><font color="#C2C2C2">█</font><font color="#CDCDCD">█</font><font color="#D8D8D8">█</font><font color="#E1E1E1">█</font><font color="#EAEAEA">█</font><font color="#F1F1F1">█</font><font color="#F6F6F6">█</font><font color="#FBFBFB">█</font><font color="#FDFDFD">█</font><font color="#FEFEFE">█</font><font color="#FEFEFE">█</font><font color="#FCFCFC">█</font><font color="#F9F9F9">█</font><font color="#F4F4F4">█</font><font color="#EEEEEE">█</font><font color="#E6E6E6">█</font><font color="#DDDDDD">█</font><font color="#D3D3D3">█</font><font color="#C8C8C8">█</font><font color="#BDBDBD">█</font><font color="#B0B0B0">█</font><font color="#A3A3A3">█</font><font color="#959595">█</font><font color="#878787">█</font><font color="#797979">█</font><font color="#6B6B6B">█</font><font color="#5E5E5E">█</font> frequency = 0.110<br><font color="#808080">█</font><font color="#949494">█</font><font color="#A7A7A7">█</font><font color="#BABABA">█</font><font color="#CBCBCB">█</font><font color="#DBDBDB">█</font><font color="#E8E8E8">█</font><font color="#F2F2F2">█</font><font color="#F9F9F9">█</font><font color="#FDFDFD">█</font><font color="#FEFEFE">█</font><font color="#FCFCFC">█</font><font color="#F7F7F7">█</font><font color="#EEEEEE">█</font><font color="#E3E3E3">█</font><font color="#D5D5D5">█</font><font color="#C5C5C5">█</font><font color="#B3B3B3">█</font><font color="#A0A0A0">█</font><font color="#8C8C8C">█</font><font color="#787878">█</font><font color="#646464">█</font><font color="#515151">█</font><font color="#3E3E3E">█</font><font color="#2E2E2E">█</font><font color="#1F1F1F">█</font><font color="#131313">█</font><font color="#0A0A0A">█</font><font color="#040404">█</font><font color="#010101">█</font><font color="#010101">█</font><font color="#040404">█</font> frequency = 0.160<br><font color="#808080">█</font><font color="#9A9A9A">█</font><font color="#B3B3B3">█</font><font color="#CACACA">█</font><font color="#DEDEDE">█</font><font color="#EEEEEE">█</font><font color="#F8F8F8">█</font><font color="#FEFEFE">█</font><font color="#FEFEFE">█</font><font color="#F8F8F8">█</font><font color="#EDEDED">█</font><font color="#DDDDDD">█</font><font color="#C9C9C9">█</font><font color="#B2B2B2">█</font><font color="#999999">█</font><font color="#7E7E7E">█</font><font color="#646464">█</font><font color="#4B4B4B">█</font><font color="#343434">█</font><font color="#202020">█</font><font color="#111111">█</font><font color="#060606">█</font><font color="#010101">█</font><font color="#010101">█</font><font color="#070707">█</font><font color="#121212">█</font><font color="#222222">█</font><font color="#363636">█</font><font color="#4E4E4E">█</font><font color="#676767">█</font><font color="#828282">█</font><font color="#9C9C9C">█</font> frequency = 0.210<br><font color="#808080">█</font><font color="#A0A0A0">█</font><font color="#BFBFBF">█</font><font color="#D9D9D9">█</font><font color="#EDEDED">█</font><font color="#FAFAFA">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#EEEEEE">█</font><font color="#DBDBDB">█</font><font color="#C1C1C1">█</font><font color="#A3A3A3">█</font><font color="#828282">█</font><font color="#626262">█</font><font color="#434343">█</font><font color="#282828">█</font><font color="#131313">█</font><font color="#060606">█</font><font color="#010101">█</font><font color="#040404">█</font><font color="#0F0F0F">█</font><font color="#222222">█</font><font color="#3C3C3C">█</font><font color="#5A5A5A">█</font><font color="#7A7A7A">█</font><font color="#9B9B9B">█</font><font color="#BABABA">█</font><font color="#D5D5D5">█</font><font color="#EAEAEA">█</font><font color="#F8F8F8">█</font><font color="#FEFEFE">█</font><font color="#FCFCFC">█</font> frequency = 0.260<br><font color="#808080">█</font><font color="#A6A6A6">█</font><font color="#C9C9C9">█</font><font color="#E5E5E5">█</font><font color="#F8F8F8">█</font><font color="#FEFEFE">█</font><font color="#F9F9F9">█</font><font color="#E8E8E8">█</font><font color="#CECECE">█</font><font color="#ABABAB">█</font><font color="#858585">█</font><font color="#5E5E5E">█</font><font color="#3A3A3A">█</font><font color="#1D1D1D">█</font><font color="#090909">█</font><font color="#010101">█</font><font color="#040404">█</font><font color="#141414">█</font><font color="#2D2D2D">█</font><font color="#4F4F4F">█</font><font color="#757575">█</font><font color="#9C9C9C">█</font><font color="#C0C0C0">█</font><font color="#DFDFDF">█</font><font color="#F4F4F4">█</font><font color="#FEFEFE">█</font><font color="#FCFCFC">█</font><font color="#EEEEEE">█</font><font color="#D6D6D6">█</font><font color="#B5B5B5">█</font><font color="#8F8F8F">█</font><font color="#686868">█</font> frequency = 0.310<br><font color="#808080">█</font><font color="#ACACAC">█</font><font color="#D3D3D3">█</font><font color="#F0F0F0">█</font><font color="#FDFDFD">█</font><font color="#FBFBFB">█</font><font color="#E9E9E9">█</font><font color="#C9C9C9">█</font><font color="#A0A0A0">█</font><font color="#737373">█</font><font color="#474747">█</font><font color="#232323">█</font><font color="#0A0A0A">█</font><font color="#010101">█</font><font color="#070707">█</font><font color="#1D1D1D">█</font><font color="#404040">█</font><font color="#6B6B6B">█</font><font color="#989898">█</font><font color="#C3C3C3">█</font><font color="#E4E4E4">█</font><font color="#F9F9F9">█</font><font color="#FEFEFE">█</font><font color="#F3F3F3">█</font><font color="#D9D9D9">█</font><font color="#B4B4B4">█</font><font color="#888888">█</font><font color="#5B5B5B">█</font><font color="#323232">█</font><font color="#141414">█</font><font color="#030303">█</font><font color="#020202">█</font> frequency = 0.359<br><font color="#808080">█</font><font color="#B2B2B2">█</font><font color="#DCDCDC">█</font><font color="#F7F7F7">█</font><font color="#FEFEFE">█</font><font color="#F0F0F0">█</font><font color="#D0D0D0">█</font><font color="#A2A2A2">█</font><font color="#6E6E6E">█</font><font color="#3D3D3D">█</font><font color="#181818">█</font><font color="#030303">█</font><font color="#030303">█</font><font color="#181818">█</font><font color="#3E3E3E">█</font><font color="#6F6F6F">█</font><font color="#A2A2A2">█</font><font color="#D0D0D0">█</font><font color="#F0F0F0">█</font><font color="#FEFEFE">█</font><font color="#F7F7F7">█</font><font color="#DCDCDC">█</font><font color="#B2B2B2">█</font><font color="#7F7F7F">█</font><font color="#4C4C4C">█</font><font color="#222222">█</font><font color="#080808">█</font><font color="#010101">█</font><font color="#0F0F0F">█</font><font color="#303030">█</font><font color="#5E5E5E">█</font><font color="#929292">█</font> frequency = 0.410<br><font color="#808080">█</font><font color="#B8B8B8">█</font><font color="#E5E5E5">█</font><font color="#FCFCFC">█</font><font color="#FAFAFA">█</font><font color="#DEDEDE">█</font><font color="#AFAFAF">█</font><font color="#767676">█</font><font color="#3E3E3E">█</font><font color="#151515">█</font><font color="#010101">█</font><font color="#080808">█</font><font color="#282828">█</font><font color="#5A5A5A">█</font><font color="#939393">█</font><font color="#C9C9C9">█</font><font color="#EFEFEF">█</font><font color="#FEFEFE">█</font><font color="#F3F3F3">█</font><font color="#D0D0D0">█</font><font color="#9C9C9C">█</font><font color="#626262">█</font><font color="#2E2E2E">█</font><font color="#0B0B0B">█</font><font color="#010101">█</font><font color="#101010">█</font><font color="#373737">█</font><font color="#6D6D6D">█</font><font color="#A7A7A7">█</font><font color="#D8D8D8">█</font><font color="#F7F7F7">█</font><font color="#FEFEFE">█</font> frequency = 0.460<br><font color="#808080">█</font><font color="#BDBDBD">█</font><font color="#ECECEC">█</font><font color="#FEFEFE">█</font><font color="#F1F1F1">█</font><font color="#C6C6C6">█</font><font color="#8A8A8A">█</font><font color="#4B4B4B">█</font><font color="#191919">█</font><font color="#010101">█</font><font color="#0A0A0A">█</font><font color="#303030">█</font><font color="#6B6B6B">█</font><font color="#ABABAB">█</font><font color="#DFDFDF">█</font><font color="#FCFCFC">█</font><font color="#F9F9F9">█</font><font color="#D7D7D7">█</font><font color="#9E9E9E">█</font><font color="#5E5E5E">█</font><font color="#272727">█</font><font color="#060606">█</font><font color="#040404">█</font><font color="#212121">█</font><font color="#575757">█</font><font color="#979797">█</font><font color="#D1D1D1">█</font><font color="#F6F6F6">█</font><font color="#FDFDFD">█</font><font color="#E4E4E4">█</font><font color="#B2B2B2">█</font><font color="#737373">█</font> frequency = 0.510<br><font color="#808080">█</font><font color="#C3C3C3">█</font><font color="#F2F2F2">█</font><font color="#FEFEFE">█</font><font color="#E3E3E3">█</font><font color="#AAAAAA">█</font><font color="#646464">█</font><font color="#262626">█</font><font color="#040404">█</font><font color="#070707">█</font><font color="#2F2F2F">█</font><font color="#707070">█</font><font color="#B5B5B5">█</font><font color="#EAEAEA">█</font><font color="#FEFEFE">█</font><font color="#ECECEC">█</font><font color="#B8B8B8">█</font><font color="#737373">█</font><font color="#323232">█</font><font color="#080808">█</font><font color="#030303">█</font><font color="#242424">█</font><font color="#616161">█</font><font color="#A7A7A7">█</font><font color="#E1E1E1">█</font><font color="#FDFDFD">█</font><font color="#F3F3F3">█</font><font color="#C6C6C6">█</font><font color="#838383">█</font><font color="#3F3F3F">█</font><font color="#0F0F0F">█</font><font color="#010101">█</font> frequency = 0.560<br><font color="#808080">█</font><font color="#C8C8C8">█</font><font color="#F7F7F7">█</font><font color="#FAFAFA">█</font><font color="#D1D1D1">█</font><font color="#8B8B8B">█</font><font color="#414141">█</font><font color="#0D0D0D">█</font><font color="#020202">█</font><font color="#252525">█</font><font color="#686868">█</font><font color="#B4B4B4">█</font><font color="#EDEDED">█</font><font color="#FEFEFE">█</font><font color="#E2E2E2">█</font><font color="#A2A2A2">█</font><font color="#565656">█</font><font color="#191919">█</font><font color="#010101">█</font><font color="#161616">█</font><font color="#525252">█</font><font color="#9E9E9E">█</font><font color="#DFDFDF">█</font><font color="#FEFEFE">█</font><font color="#EFEFEF">█</font><font color="#B8B8B8">█</font><font color="#6C6C6C">█</font><font color="#282828">█</font><font color="#030303">█</font><font color="#0B0B0B">█</font><font color="#3D3D3D">█</font><font color="#878787">█</font> frequency = 0.610<br><font color="#808080">█</font><font color="#CDCDCD">█</font><font color="#FBFBFB">█</font><font color="#F4F4F4">█</font><font color="#BDBDBD">█</font><font color="#6B6B6B">█</font><font color="#232323">█</font><font color="#010101">█</font><font color="#141414">█</font><font color="#555555">█</font><font color="#A7A7A7">█</font><font color="#E9E9E9">█</font><font color="#FEFEFE">█</font><font color="#DEDEDE">█</font><font color="#979797">█</font><font color="#454545">█</font><font color="#0C0C0C">█</font><font color="#040404">█</font><font color="#2F2F2F">█</font><font color="#7C7C7C">█</font><font color="#CBCBCB">█</font><font color="#FAFAFA">█</font><font color="#F5F5F5">█</font><font color="#BFBFBF">█</font><font color="#6F6F6F">█</font><font color="#252525">█</font><font color="#010101">█</font><font color="#131313">█</font><font color="#525252">█</font><font color="#A4A4A4">█</font><font color="#E7E7E7">█</font><font color="#FEFEFE">█</font> frequency = 0.660<br><font color="#808080">█</font><font color="#D2D2D2">█</font><font color="#FDFDFD">█</font><font color="#EBEBEB">█</font><font color="#A5A5A5">█</font><font color="#4D4D4D">█</font><font color="#0D0D0D">█</font><font color="#050505">█</font><font color="#373737">█</font><font color="#8D8D8D">█</font><font color="#DCDCDC">█</font><font color="#FEFEFE">█</font><font color="#E3E3E3">█</font><font color="#989898">█</font><font color="#414141">█</font><font color="#080808">█</font><font color="#090909">█</font><font color="#434343">█</font><font color="#9A9A9A">█</font><font color="#E5E5E5">█</font><font color="#FEFEFE">█</font><font color="#DADADA">█</font><font color="#8B8B8B">█</font><font color="#353535">█</font><font color="#040404">█</font><font color="#0E0E0E">█</font><font color="#4F4F4F">█</font><font color="#A8A8A8">█</font><font color="#ECECEC">█</font><font color="#FDFDFD">█</font><font color="#D0D0D0">█</font><font color="#7D7D7D">█</font> frequency = 0.710<br><font color="#808080">█</font><font color="#D7D7D7">█</font><font color="#FEFEFE">█</font><font color="#E0E0E0">█</font><font color="#8C8C8C">█</font><font color="#323232">█</font><font color="#020202">█</font><font color="#171717">█</font><font color="#666666">█</font><font color="#C3C3C3">█</font><font color="#FAFAFA">█</font><font color="#EFEFEF">█</font><font color="#A6A6A6">█</font><font color="#484848">█</font><font color="#080808">█</font><font color="#0B0B0B">█</font><font color="#4D4D4D">█</font><font color="#ABABAB">█</font><font color="#F1F1F1">█</font><font color="#F9F9F9">█</font><font color="#BDBDBD">█</font><font color="#606060">█</font><font color="#141414">█</font><font color="#030303">█</font><font color="#373737">█</font><font color="#939393">█</font><font color="#E4E4E4">█</font><font color="#FEFEFE">█</font><font color="#D2D2D2">█</font><font color="#797979">█</font><font color="#242424">█</font><font color="#010101">█</font> frequency = 0.760<br><font color="#808080">█</font><font color="#DBDBDB">█</font><font color="#FEFEFE">█</font><font color="#D2D2D2">█</font><font color="#737373">█</font><font color="#1B1B1B">█</font><font color="#020202">█</font><font color="#363636">█</font><font color="#989898">█</font><font color="#EBEBEB">█</font><font color="#FBFBFB">█</font><font color="#BEBEBE">█</font><font color="#5B5B5B">█</font><font color="#0E0E0E">█</font><font color="#080808">█</font><font color="#4C4C4C">█</font><font color="#B0B0B0">█</font><font color="#F6F6F6">█</font><font color="#F2F2F2">█</font><font color="#A7A7A7">█</font><font color="#444444">█</font><font color="#050505">█</font><font color="#131313">█</font><font color="#646464">█</font><font color="#C6C6C6">█</font><font color="#FDFDFD">█</font><font color="#E5E5E5">█</font><font color="#8F8F8F">█</font><font color="#2F2F2F">█</font><font color="#010101">█</font><font color="#222222">█</font><font color="#7D7D7D">█</font> frequency = 0.810<br><font color="#808080">█</font><font color="#E0E0E0">█</font><font color="#FDFDFD">█</font><font color="#C3C3C3">█</font><font color="#5A5A5A">█</font><font color="#0B0B0B">█</font><font color="#0D0D0D">█</font><font color="#5E5E5E">█</font><font color="#C7C7C7">█</font><font color="#FEFEFE">█</font><font color="#DDDDDD">█</font><font color="#7B7B7B">█</font><font color="#1C1C1C">█</font><font color="#030303">█</font><font color="#404040">█</font><font color="#A9A9A9">█</font><font color="#F6F6F6">█</font><font color="#F0F0F0">█</font><font color="#9C9C9C">█</font><font color="#343434">█</font><font color="#010101">█</font><font color="#252525">█</font><font color="#888888">█</font><font color="#E5E5E5">█</font><font color="#FBFBFB">█</font><font color="#BBBBBB">█</font><font color="#525252">█</font><font color="#080808">█</font><font color="#111111">█</font><font color="#676767">█</font><font color="#CECECE">█</font><font color="#FEFEFE">█</font> frequency = 0.860<br><font color="#808080">█</font><font color="#E4E4E4">█</font><font color="#FBFBFB">█</font><font color="#B2B2B2">█</font><font color="#434343">█</font><font color="#020202">█</font><font color="#222222">█</font><font color="#8B8B8B">█</font><font color="#EAEAEA">█</font><font color="#F7F7F7">█</font><font color="#A8A8A8">█</font><font color="#393939">█</font><font color="#010101">█</font><font color="#2A2A2A">█</font><font color="#959595">█</font><font color="#F0F0F0">█</font><font color="#F3F3F3">█</font><font color="#9D9D9D">█</font><font color="#303030">█</font><font color="#010101">█</font><font color="#333333">█</font><font color="#A0A0A0">█</font><font color="#F4F4F4">█</font><font color="#EEEEEE">█</font><font color="#939393">█</font><font color="#282828">█</font><font color="#010101">█</font><font color="#3C3C3C">█</font><font color="#ABABAB">█</font><font color="#F8F8F8">█</font><font color="#E9E9E9">█</font><font color="#888888">█</font> frequency = 0.910<br><font color="#808080">█</font><font color="#E8E8E8">█</font><font color="#F7F7F7">█</font><font color="#A0A0A0">█</font><font color="#2E2E2E">█</font><font color="#010101">█</font><font color="#404040">█</font><font color="#B5B5B5">█</font><font color="#FDFDFD">█</font><font color="#D9D9D9">█</font><font color="#696969">█</font><font color="#0C0C0C">█</font><font color="#121212">█</font><font color="#757575">█</font><font color="#E1E1E1">█</font><font color="#FAFAFA">█</font><font color="#ABABAB">█</font><font color="#373737">█</font><font color="#010101">█</font><font color="#373737">█</font><font color="#ABABAB">█</font><font color="#FAFAFA">█</font><font color="#E1E1E1">█</font><font color="#747474">█</font><font color="#111111">█</font><font color="#0C0C0C">█</font><font color="#6A6A6A">█</font><font color="#D9D9D9">█</font><font color="#FDFDFD">█</font><font color="#B5B5B5">█</font><font color="#404040">█</font><font color="#010101">█</font> frequency = 0.960<br>
+
+
+
+</p><h2>Using out-of-phase sine waves to make rainbows</h2>
+Now, as I mentioned, the reason the above gradient looks gray is beacuse I am using the same value
+for red, green, and blue.  One way we can try to get colors is to add a constant to the value of v
+that we are using for the green and blue parameters.  So instead of saying:
+<pre>RGB2Color(v,v,v)
+</pre>
+I might say:
+<pre>RGB2Color(v,v+30,v+60)
+</pre>
+This produces the following color sequence:
+<p>
+<script language="JavaScript">
+<!--
+var frequency = .3;
+for (var i = 0; i < 32; ++i)
+{
+   lev = Math.sin(frequency*i) * 127 + 128;
+
+   document.write( '<font color="' + RGB2Color(lev,lev+30,lev+60) + '">&#9608;</font>');
+}
+// -->
+</script><font color="#809EBC">█</font><font color="#A5C3E1">█</font><font color="#C7E503">█</font><font color="#E3011F">█</font><font color="#F61432">█</font><font color="#FE1C3A">█</font><font color="#FB1937">█</font><font color="#ED0B29">█</font><font color="#D5F311">█</font><font color="#B6D4F2">█</font><font color="#91AFCD">█</font><font color="#6B89A7">█</font><font color="#476583">█</font><font color="#284664">█</font><font color="#112F4D">█</font><font color="#03213F">█</font><font color="#011F3D">█</font><font color="#0A2846">█</font><font color="#1D3B59">█</font><font color="#3A5876">█</font><font color="#5C7A98">█</font><font color="#82A0BE">█</font><font color="#A7C5E3">█</font><font color="#C9E705">█</font><font color="#E40220">█</font><font color="#F71533">█</font><font color="#FE1C3A">█</font><font color="#FB1937">█</font><font color="#EC0A28">█</font><font color="#D4F210">█</font><font color="#B4D2F0">█</font><font color="#8FADCB">█</font>
+</p><p>
+This is interesting, but it is not quite what I want.  A better technique is to generate 3 out-of-phase
+sine waves, by doing something like this:
+</p><pre>var frequency = .3;
+for (var i = 0; i &lt; 32; ++i)
+{
+   red   = Math.sin(frequency*i + 0) * 127 + 128;
+   green = Math.sin(frequency*i + 2) * 127 + 128;
+   blue  = Math.sin(frequency*i + 4) * 127 + 128;
+
+   document.write( '&lt;font color="' + RGB2Color(red,green,blue) + '"&gt;&amp;#9608;&lt;/font&gt;');
+}
+</pre>
+<p>
+Which produces this:
+</p><p>
+<script language="JavaScript">
+<!--
+var frequency = .3;
+for (var i = 0; i < 32; ++i)
+{
+   red   = Math.sin(frequency*i + 0) * 127 + 128;
+   green = Math.sin(frequency*i + 2) * 127 + 128;
+   blue  = Math.sin(frequency*i + 4) * 127 + 128;
+   // Note that &#9608; is a unicode character that makes a solid block
+   document.write( '<font color="' + RGB2Color(red,green,blue) + '">&#9608;</font>');
+}
+// -->
+</script><font color="#80F31F">█</font><font color="#A5DE0B">█</font><font color="#C7C101">█</font><font color="#E39E03">█</font><font color="#F6780F">█</font><font color="#FE5326">█</font><font color="#FB3244">█</font><font color="#ED1868">█</font><font color="#D5078E">█</font><font color="#B601B3">█</font><font color="#9106D3">█</font><font color="#6B16EC">█</font><font color="#472FFA">█</font><font color="#2850FE">█</font><font color="#1175F7">█</font><font color="#039BE5">█</font><font color="#01BECA">█</font><font color="#0ADCA8">█</font><font color="#1DF283">█</font><font color="#3AFD5D">█</font><font color="#5CFD3A">█</font><font color="#82F21E">█</font><font color="#A7DD0A">█</font><font color="#C9BF01">█</font><font color="#E49C03">█</font><font color="#F77610">█</font><font color="#FE5127">█</font><font color="#FB3046">█</font><font color="#EC166A">█</font><font color="#D40690">█</font><font color="#B401B5">█</font><font color="#8F06D5">█</font>
+</p><p>
+As you can see I am using the values 2 and 4 to change the alignment (or phase) of the green and blue sine waves.  I chose
+2 and 4 because they nearly divide the range of the sine wave (2π or 6.2) into three equal parts, which puts each sine
+wave approximately 1/3rd of a cycle, or 120°,  out of phase, like so:
+</p><pre>red    <script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,0,0);
+// -->
+</script><font color="#808080">█</font><font color="#A5A5A5">█</font><font color="#C7C7C7">█</font><font color="#E3E3E3">█</font><font color="#F6F6F6">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#EDEDED">█</font><font color="#D5D5D5">█</font><font color="#B6B6B6">█</font><font color="#919191">█</font><font color="#6B6B6B">█</font><font color="#474747">█</font><font color="#282828">█</font><font color="#111111">█</font><font color="#030303">█</font><font color="#010101">█</font><font color="#0A0A0A">█</font><font color="#1D1D1D">█</font><font color="#3A3A3A">█</font><font color="#5C5C5C">█</font><font color="#828282">█</font><font color="#A7A7A7">█</font><font color="#C9C9C9">█</font><font color="#E4E4E4">█</font><font color="#F7F7F7">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#ECECEC">█</font><font color="#D4D4D4">█</font><font color="#B4B4B4">█</font><font color="#8F8F8F">█</font><font color="#696969">█</font><font color="#454545">█</font><font color="#272727">█</font><font color="#101010">█</font><font color="#030303">█</font><font color="#010101">█</font><font color="#0B0B0B">█</font><font color="#1F1F1F">█</font><font color="#3B3B3B">█</font><font color="#5E5E5E">█</font><font color="#848484">█</font><font color="#A9A9A9">█</font><font color="#CBCBCB">█</font><font color="#E6E6E6">█</font><font color="#F7F7F7">█</font><font color="#FEFEFE">█</font><font color="#FAFAFA">█</font><font color="#EBEBEB">█</font> (phase = 0)
+green  <script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,2,2,2);
+// -->
+</script><font color="#F3F3F3">█</font><font color="#DEDEDE">█</font><font color="#C1C1C1">█</font><font color="#9E9E9E">█</font><font color="#787878">█</font><font color="#535353">█</font><font color="#323232">█</font><font color="#181818">█</font><font color="#070707">█</font><font color="#010101">█</font><font color="#060606">█</font><font color="#161616">█</font><font color="#2F2F2F">█</font><font color="#505050">█</font><font color="#757575">█</font><font color="#9B9B9B">█</font><font color="#BEBEBE">█</font><font color="#DCDCDC">█</font><font color="#F2F2F2">█</font><font color="#FDFDFD">█</font><font color="#FDFDFD">█</font><font color="#F2F2F2">█</font><font color="#DDDDDD">█</font><font color="#BFBFBF">█</font><font color="#9C9C9C">█</font><font color="#767676">█</font><font color="#515151">█</font><font color="#303030">█</font><font color="#161616">█</font><font color="#060606">█</font><font color="#010101">█</font><font color="#060606">█</font><font color="#171717">█</font><font color="#313131">█</font><font color="#525252">█</font><font color="#777777">█</font><font color="#9D9D9D">█</font><font color="#C0C0C0">█</font><font color="#DEDEDE">█</font><font color="#F3F3F3">█</font><font color="#FDFDFD">█</font><font color="#FDFDFD">█</font><font color="#F1F1F1">█</font><font color="#DBDBDB">█</font><font color="#BDBDBD">█</font><font color="#9A9A9A">█</font><font color="#747474">█</font><font color="#4F4F4F">█</font><font color="#2E2E2E">█</font><font color="#151515">█</font> (phase = 2)
+blue   <script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,4,4,4);
+// --></script><font color="#1F1F1F">█</font><font color="#0B0B0B">█</font><font color="#010101">█</font><font color="#030303">█</font><font color="#0F0F0F">█</font><font color="#262626">█</font><font color="#444444">█</font><font color="#686868">█</font><font color="#8E8E8E">█</font><font color="#B3B3B3">█</font><font color="#D3D3D3">█</font><font color="#ECECEC">█</font><font color="#FAFAFA">█</font><font color="#FEFEFE">█</font><font color="#F7F7F7">█</font><font color="#E5E5E5">█</font><font color="#CACACA">█</font><font color="#A8A8A8">█</font><font color="#838383">█</font><font color="#5D5D5D">█</font><font color="#3A3A3A">█</font><font color="#1E1E1E">█</font><font color="#0A0A0A">█</font><font color="#010101">█</font><font color="#030303">█</font><font color="#101010">█</font><font color="#272727">█</font><font color="#464646">█</font><font color="#6A6A6A">█</font><font color="#909090">█</font><font color="#B5B5B5">█</font><font color="#D5D5D5">█</font><font color="#EDEDED">█</font><font color="#FBFBFB">█</font><font color="#FEFEFE">█</font><font color="#F6F6F6">█</font><font color="#E4E4E4">█</font><font color="#C8C8C8">█</font><font color="#A6A6A6">█</font><font color="#818181">█</font><font color="#5B5B5B">█</font><font color="#393939">█</font><font color="#1D1D1D">█</font><font color="#0A0A0A">█</font><font color="#010101">█</font><font color="#040404">█</font><font color="#111111">█</font><font color="#292929">█</font><font color="#484848">█</font><font color="#6D6D6D">█</font> (phase = 4)
+RGB    <script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,2,4);
+// -->
+</script><font color="#80F31F">█</font><font color="#A5DE0B">█</font><font color="#C7C101">█</font><font color="#E39E03">█</font><font color="#F6780F">█</font><font color="#FE5326">█</font><font color="#FB3244">█</font><font color="#ED1868">█</font><font color="#D5078E">█</font><font color="#B601B3">█</font><font color="#9106D3">█</font><font color="#6B16EC">█</font><font color="#472FFA">█</font><font color="#2850FE">█</font><font color="#1175F7">█</font><font color="#039BE5">█</font><font color="#01BECA">█</font><font color="#0ADCA8">█</font><font color="#1DF283">█</font><font color="#3AFD5D">█</font><font color="#5CFD3A">█</font><font color="#82F21E">█</font><font color="#A7DD0A">█</font><font color="#C9BF01">█</font><font color="#E49C03">█</font><font color="#F77610">█</font><font color="#FE5127">█</font><font color="#FB3046">█</font><font color="#EC166A">█</font><font color="#D40690">█</font><font color="#B401B5">█</font><font color="#8F06D5">█</font><font color="#6917ED">█</font><font color="#4531FB">█</font><font color="#2752FE">█</font><font color="#1077F6">█</font><font color="#039DE4">█</font><font color="#01C0C8">█</font><font color="#0BDEA6">█</font><font color="#1FF381">█</font><font color="#3BFD5B">█</font><font color="#5EFD39">█</font><font color="#84F11D">█</font><font color="#A9DB0A">█</font><font color="#CBBD01">█</font><font color="#E69A04">█</font><font color="#F77411">█</font><font color="#FE4F29">█</font><font color="#FA2E48">█</font><font color="#EB156D">█</font>
+</pre>
+<p>
+If I wanted <i>exactly</i> 120° I can use 2*Math.PI/3 in place of 2, and 4*Math.PI/3 in place of 4, which produces
+this nearly identical (but perfect) color cycle:
+</p><p>
+<script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,2*Math.PI/3,4*Math.PI/3);
+// -->
+</script><font color="#80ED12">█</font><font color="#A5D604">█</font><font color="#C7B601">█</font><font color="#E39209">█</font><font color="#F66C1C">█</font><font color="#FE4838">█</font><font color="#FB295B">█</font><font color="#ED1180">█</font><font color="#D504A6">█</font><font color="#B601C8">█</font><font color="#910AE3">█</font><font color="#6B1DF6">█</font><font color="#4739FE">█</font><font color="#285BFB">█</font><font color="#1181ED">█</font><font color="#03A6D5">█</font><font color="#01C8B5">█</font><font color="#0AE491">█</font><font color="#1DF66B">█</font><font color="#3AFE47">█</font><font color="#5CFB28">█</font><font color="#82EC10">█</font><font color="#A7D403">█</font><font color="#C9B401">█</font><font color="#E4900A">█</font><font color="#F76A1E">█</font><font color="#FE463A">█</font><font color="#FB275D">█</font><font color="#EC1082">█</font><font color="#D403A8">█</font><font color="#B401CA">█</font><font color="#8F0AE5">█</font><font color="#691EF7">█</font><font color="#453BFE">█</font><font color="#275DFB">█</font><font color="#1083EC">█</font><font color="#03A8D3">█</font><font color="#01CAB3">█</font><font color="#0BE58F">█</font><font color="#1FF769">█</font><font color="#3BFE45">█</font><font color="#5EFA26">█</font><font color="#84EB0F">█</font><font color="#A9D303">█</font><font color="#CBB301">█</font><font color="#E68E0B">█</font><font color="#F7681F">█</font><font color="#FE443C">█</font><font color="#FA265F">█</font><font color="#EB0F84">█</font>
+</p><p>
+However, the results are so close, that I think 2 and 4 are fine substitutes.  You know, the ancient Egyptians thought that π was equal to three.
+And in this tutorial, we're gonna <i>code like an Egyptian</i>.
+</p><p>
+</p><h2>More about the hue cycle</h2>
+<p>
+This basic phenomenon - that three 120° out-of-phase sine waves produces a rainbow effect is something I've known
+about for a long time - since the mid 1980s actually.  I originally discovered it just by playing around with using sine waves to make color (a frequent activity which took the place of <i>having a life</i>).  Once I learned this trick, I started using it whenever I wanted an assortment of bright colors.  For example, the dots
+in my <a href="http://whitneymusicbox.org/">Whitney Music Box</a> are colored using this system.
+</p><p>
+Later, when I learned more about color theory, I found out that what I'm doing is basically causing the hue of the color
+to travel around the circle of a color wheel.  If you plot the path that I'm making on the hue-saturation
+circle commonly seen in color pickers, you'll find it doesn't produce a perfect circle, but more of a trefoil pattern, like so:
+</p><p>
+<img src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/exampleHuePath.png">
+</p><p>
+Note: I used the <a href="http://www.processing.org/">Processing language</a> to produce this illustration.  Making it in Javascript would be a bit of a
+chore.  If you like graphics programming in Javascript, you'll love it in Processing.js, and you will enjoy my Processing blog (and upcoming book): <a href="http://joyofprocessing.com/">The Joy of Processing</a>.
+</p><p>
+Even though it doesn't make a perfect hue circle, the sine-wave trefoil makes a pretty color gradient, and it's pretty easy to
+get a rainbow effect in just a few lines of code.  I actually prefer it to the "correct" HSB / HSL hue cycle, because it has more consistent brightness.  It minimizes the spokes at yellow, cyan and magenta, which you can see in the picture.
+</p><p>
+Now,  I'll talk about how to modify the function to produce a greater assortment of colors, and different shades, such as pastels.
+</p><p>
+</p><h2>Generalizing it</h2>
+In the next few sections, I'm going to use a general purpose function for drawing these color gradients.
+It allows me to specify separate parameters for frequency and phase for each color component. Here's the code:
+<pre>  function makeColorGradient(frequency1, frequency2, frequency3,
+                             phase1, phase2, phase3,
+                             center, width, len)
+  {
+    if (len == undefined)      len = 50;
+    if (center == undefined)   center = 128;
+    if (width == undefined)    width = 127;
+
+    for (var i = 0; i &lt; len; ++i)
+    {
+       var red = Math.sin(frequency1*i + phase1) * width + center;
+       var grn = Math.sin(frequency2*i + phase2) * width + center;
+       var blu = Math.sin(frequency3*i + phase3) * width + center;
+       document.write( '&lt;font color="' + RGB2Color(red,grn,blu) + '"&gt;&amp;#9608;&lt;/font&gt;');
+    }
+  }
+</pre>
+And here's the code for drawing the basic rainbow gradient.
+<pre>    makeColorGradient(.3,.3,.3,0,2,4);
+</pre>
+Which looks like this:
+<p>
+<script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,2,4,128,127);
+// -->
+</script><font color="#80F31F">█</font><font color="#A5DE0B">█</font><font color="#C7C101">█</font><font color="#E39E03">█</font><font color="#F6780F">█</font><font color="#FE5326">█</font><font color="#FB3244">█</font><font color="#ED1868">█</font><font color="#D5078E">█</font><font color="#B601B3">█</font><font color="#9106D3">█</font><font color="#6B16EC">█</font><font color="#472FFA">█</font><font color="#2850FE">█</font><font color="#1175F7">█</font><font color="#039BE5">█</font><font color="#01BECA">█</font><font color="#0ADCA8">█</font><font color="#1DF283">█</font><font color="#3AFD5D">█</font><font color="#5CFD3A">█</font><font color="#82F21E">█</font><font color="#A7DD0A">█</font><font color="#C9BF01">█</font><font color="#E49C03">█</font><font color="#F77610">█</font><font color="#FE5127">█</font><font color="#FB3046">█</font><font color="#EC166A">█</font><font color="#D40690">█</font><font color="#B401B5">█</font><font color="#8F06D5">█</font><font color="#6917ED">█</font><font color="#4531FB">█</font><font color="#2752FE">█</font><font color="#1077F6">█</font><font color="#039DE4">█</font><font color="#01C0C8">█</font><font color="#0BDEA6">█</font><font color="#1FF381">█</font><font color="#3BFD5B">█</font><font color="#5EFD39">█</font><font color="#84F11D">█</font><font color="#A9DB0A">█</font><font color="#CBBD01">█</font><font color="#E69A04">█</font><font color="#F77411">█</font><font color="#FE4F29">█</font><font color="#FA2E48">█</font><font color="#EB156D">█</font>
+
+</p><p>
+
+
+
+</p><h2>Making pastels</h2>
+<p>
+The basic trick to getting pastels is to change the gamut of the color components to use lighter colored values for
+the color components.  So, when we convert the sine values, instead of convering to the full range (0 --&gt; 255), we convert
+to something like (205 - 255).  We change the last two parameters (center and width) as follows.  Before:
+</p><pre>   // center = 128, width = 127
+   makeColorGradient(.3,.3,.3,0,2,4, 128,127);
+</pre>
+after:
+<pre>   // center = 230, width = 25
+   makeColorGradient(.3,.3,.3,0,2,4, 230,25);
+</pre>
+In the changed code, the 230 is the center of the sine wave, and the 25 is the maximum deviation from this
+center value.  So the sine wave starts at 230, goes up to (230+25) and goes down to (230-25).  In other
+words, it has a range of (205-255).
+<p>
+And this makes a pastel strip:
+</p><p>
+
+<script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,2,4,230,25);
+// -->
+</script><font color="#E6FCD3">█</font><font color="#EDF8CF">█</font><font color="#F4F2CD">█</font><font color="#F9EBCD">█</font><font color="#FDE4CF">█</font><font color="#FEDDD4">█</font><font color="#FED6DA">█</font><font color="#FBD1E1">█</font><font color="#F6CEE8">█</font><font color="#F0CDF0">█</font><font color="#E9CEF6">█</font><font color="#E2D1FB">█</font><font color="#DAD6FE">█</font><font color="#D4DCFE">█</font><font color="#D0E3FD">█</font><font color="#CDEBF9">█</font><font color="#CDF2F4">█</font><font color="#CEF8ED">█</font><font color="#D2FCE6">█</font><font color="#D8FEDF">█</font><font color="#DFFED8">█</font><font color="#E6FCD2">█</font><font color="#EDF8CE">█</font><font color="#F4F2CD">█</font><font color="#F9EBCD">█</font><font color="#FDE4D0">█</font><font color="#FEDCD4">█</font><font color="#FED6DA">█</font><font color="#FBD1E1">█</font><font color="#F6CEE9">█</font><font color="#F0CDF0">█</font><font color="#E9CEF6">█</font><font color="#E1D1FB">█</font><font color="#DAD6FE">█</font><font color="#D4DDFE">█</font><font color="#D0E4FD">█</font><font color="#CDEBF9">█</font><font color="#CDF2F4">█</font><font color="#CFF8ED">█</font><font color="#D2FCE6">█</font><font color="#D8FEDE">█</font><font color="#DFFED8">█</font><font color="#E6FCD2">█</font><font color="#EEF8CE">█</font><font color="#F4F2CD">█</font><font color="#FAEBCD">█</font><font color="#FDE3D0">█</font><font color="#FEDCD4">█</font><font color="#FED6DB">█</font><font color="#FBD1E2">█</font>
+</p><p>
+I can get darker pastels by using a wider range (center=200, width=55), like so:
+</p><p>
+<script language="JavaScript">
+<!--
+makeColorGradient(.3,.3,.3,0,2,4,200,55);
+// -->
+</script><font color="#C8FA9E">█</font><font color="#D8F195">█</font><font color="#E7E491">█</font><font color="#F3D591">█</font><font color="#FBC497">█</font><font color="#FEB4A1">█</font><font color="#FDA6AE">█</font><font color="#F79ABD">█</font><font color="#ED93CE">█</font><font color="#DF91DE">█</font><font color="#CF93EC">█</font><font color="#BF9AF6">█</font><font color="#AFA5FD">█</font><font color="#A2B3FE">█</font><font color="#98C3FB">█</font><font color="#92D3F3">█</font><font color="#91E3E8">█</font><font color="#95F0D9">█</font><font color="#9DF9C9">█</font><font color="#A9FEB9">█</font><font color="#B8FEAA">█</font><font color="#C8F99D">█</font><font color="#D9F095">█</font><font color="#E7E391">█</font><font color="#F3D492">█</font><font color="#FBC397">█</font><font color="#FEB3A1">█</font><font color="#FDA5AF">█</font><font color="#F79ABE">█</font><font color="#EC93CF">█</font><font color="#DE91DF">█</font><font color="#CE93EC">█</font><font color="#BE9AF7">█</font><font color="#AEA6FD">█</font><font color="#A1B4FE">█</font><font color="#97C4FB">█</font><font color="#92D4F3">█</font><font color="#91E3E7">█</font><font color="#95F0D8">█</font><font color="#9EF9C8">█</font><font color="#AAFEB8">█</font><font color="#B9FEA9">█</font><font color="#C9F99D">█</font><font color="#DAEF94">█</font><font color="#E8E291">█</font><font color="#F4D392">█</font><font color="#FBC298">█</font><font color="#FEB2A2">█</font><font color="#FDA4B0">█</font><font color="#F699BF">█</font>
+</p><p>
+
+</p><h2>Get more stripes by increasing the frequency</h2>
+<p>
+When you change the value of frequency, you can get the colors to change more quickly, or more slowly.  Up to now,
+I've mostly been using an frequency value of .3, but here are some other values:
+</p><p>
+<script language="JavaScript">
+<!--
+center = 128;
+width = 127;
+for (frequency = .1; frequency < 1; frequency += .1)
+{
+    makeColorGradient(frequency,frequency,frequency,0,2,4,center,width,32);
+    document.write(' frequency = ' + roundDecimal(frequency,3) + ' center = ' + center + ' width = ' + width + '<br>');
+    center += 12;
+    width -= 12;
+}
+// -->
+</script><font color="#80F31F">█</font><font color="#8CED18">█</font><font color="#99E611">█</font><font color="#A5DE0B">█</font><font color="#B1D507">█</font><font color="#BCCC03">█</font><font color="#C7C101">█</font><font color="#D1B601">█</font><font color="#DBAA01">█</font><font color="#E39E03">█</font><font color="#EA9106">█</font><font color="#F1850A">█</font><font color="#F6780F">█</font><font color="#FA6B16">█</font><font color="#FD5F1D">█</font><font color="#FE5326">█</font><font color="#FE472F">█</font><font color="#FD3C3A">█</font><font color="#FB3244">█</font><font color="#F82850">█</font><font color="#F31F5C">█</font><font color="#ED1868">█</font><font color="#E61175">█</font><font color="#DE0B82">█</font><font color="#D5078E">█</font><font color="#CC039B">█</font><font color="#C101A7">█</font><font color="#B601B3">█</font><font color="#AA01BE">█</font><font color="#9E03C9">█</font><font color="#9106D3">█</font><font color="#850ADC">█</font> frequency = 0.100 center = 128 width = 127<br><font color="#8CF434">█</font><font color="#A2E827">█</font><font color="#B8D91E">█</font><font color="#CCC719">█</font><font color="#DEB219">█</font><font color="#EC9C1D">█</font><font color="#F78526">█</font><font color="#FD6E33">█</font><font color="#FE5943">█</font><font color="#FB4556">█</font><font color="#F4346B">█</font><font color="#E82782">█</font><font color="#D91E99">█</font><font color="#C719AF">█</font><font color="#B219C4">█</font><font color="#9C1DD7">█</font><font color="#8526E7">█</font><font color="#6E33F3">█</font><font color="#5943FB">█</font><font color="#4556FE">█</font><font color="#346BFD">█</font><font color="#2782F8">█</font><font color="#1E99EE">█</font><font color="#19AFE0">█</font><font color="#19C4CF">█</font><font color="#1DD7BB">█</font><font color="#26E7A5">█</font><font color="#33F38E">█</font><font color="#43FB77">█</font><font color="#56FE61">█</font><font color="#6BFD4D">█</font><font color="#82F83B">█</font> frequency = 0.200 center = 140 width = 115<br><font color="#98F54A">█</font><font color="#B6E439">█</font><font color="#D2CD31">█</font><font color="#E8B032">█</font><font color="#F8913D">█</font><font color="#FE734F">█</font><font color="#FC5868">█</font><font color="#F04385">█</font><font color="#DD35A4">█</font><font color="#C431C1">█</font><font color="#A635DB">█</font><font color="#8742EF">█</font><font color="#6A56FB">█</font><font color="#5171FE">█</font><font color="#3E8FF8">█</font><font color="#33AEEA">█</font><font color="#31CAD4">█</font><font color="#38E3B8">█</font><font color="#48F49A">█</font><font color="#5FFD7C">█</font><font color="#7BFD5F">█</font><font color="#99F448">█</font><font color="#B8E338">█</font><font color="#D3CB31">█</font><font color="#E9AE33">█</font><font color="#F8903D">█</font><font color="#FE7250">█</font><font color="#FB5769">█</font><font color="#F04286">█</font><font color="#DC35A5">█</font><font color="#C231C3">█</font><font color="#A435DC">█</font> frequency = 0.300 center = 152 width = 103<br><font color="#A4F65F">█</font><font color="#C7E14D">█</font><font color="#E5C249">█</font><font color="#F89E53">█</font><font color="#FE7B6A">█</font><font color="#F65F8A">█</font><font color="#E14DAE">█</font><font color="#C249D0">█</font><font color="#9E53EC">█</font><font color="#7B6AFC">█</font><font color="#5F8AFE">█</font><font color="#4DAEF1">█</font><font color="#49D0D9">█</font><font color="#53ECB8">█</font><font color="#6AFC94">█</font><font color="#8AFE72">█</font><font color="#AEF158">█</font><font color="#D0D94A">█</font><font color="#ECB84A">█</font><font color="#FC9459">█</font><font color="#FE7273">█</font><font color="#F15894">█</font><font color="#D94AB9">█</font><font color="#B84AD9">█</font><font color="#9459F2">█</font><font color="#7273FE">█</font><font color="#5894FB">█</font><font color="#4AB9EB">█</font><font color="#4AD9D0">█</font><font color="#59F2AD">█</font><font color="#73FE89">█</font><font color="#94FB69">█</font> frequency = 0.400 center = 164 width = 91<br><font color="#B0F774">█</font><font color="#D5DF62">█</font><font color="#F2BB64">█</font><font color="#FE9478">█</font><font color="#F77499">█</font><font color="#DF62C0">█</font><font color="#BB64E3">█</font><font color="#9478FA">█</font><font color="#7499FE">█</font><font color="#62C0EF">█</font><font color="#64E3D0">█</font><font color="#78FAAA">█</font><font color="#99FE85">█</font><font color="#C0EF6A">█</font><font color="#E3D061">█</font><font color="#FAAA6A">█</font><font color="#FE8585">█</font><font color="#EF6AAA">█</font><font color="#D061D1">█</font><font color="#AA6AEF">█</font><font color="#8585FE">█</font><font color="#6AAAF9">█</font><font color="#61D1E3">█</font><font color="#6AEFC0">█</font><font color="#85FE99">█</font><font color="#AAF977">█</font><font color="#D1E364">█</font><font color="#EFC062">█</font><font color="#FE9974">█</font><font color="#F97794">█</font><font color="#E364BB">█</font><font color="#C062DF">█</font> frequency = 0.500 center = 176 width = 79<br><font color="#BCF889">█</font><font color="#E1DE79">█</font><font color="#FAB880">█</font><font color="#FD939C">█</font><font color="#E97CC3">█</font><font color="#C57BE8">█</font><font color="#9E91FC">█</font><font color="#81B6FB">█</font><font color="#79DDE3">█</font><font color="#88F8BD">█</font><font color="#A9FE97">█</font><font color="#D0ED7E">█</font><font color="#F1CA7A">█</font><font color="#FEA38D">█</font><font color="#F584B0">█</font><font color="#D779D8">█</font><font color="#B084F5">█</font><font color="#8DA3FE">█</font><font color="#7ACBF0">█</font><font color="#7EEDD0">█</font><font color="#98FEA8">█</font><font color="#BEF787">█</font><font color="#E3DC79">█</font><font color="#FBB581">█</font><font color="#FC919E">█</font><font color="#E77BC6">█</font><font color="#C37CE9">█</font><font color="#9C93FD">█</font><font color="#80B8FA">█</font><font color="#79DFE1">█</font><font color="#89F9BB">█</font><font color="#ABFD95">█</font> frequency = 0.600 center = 188 width = 67<br><font color="#C8FA9E">█</font><font color="#EBDF91">█</font><font color="#FEB99D">█</font><font color="#F79ABD">█</font><font color="#DA91E3">█</font><font color="#B4A1FB">█</font><font color="#98C3FB">█</font><font color="#91E7E3">█</font><font color="#A5FDBE">█</font><font color="#C8F99D">█</font><font color="#ECDE91">█</font><font color="#FEB99E">█</font><font color="#F79ABE">█</font><font color="#D991E3">█</font><font color="#B3A1FB">█</font><font color="#97C4FB">█</font><font color="#92E8E2">█</font><font color="#A6FDBD">█</font><font color="#C9F99D">█</font><font color="#ECDD91">█</font><font color="#FEB89E">█</font><font color="#F699BF">█</font><font color="#D891E4">█</font><font color="#B2A2FC">█</font><font color="#97C5FB">█</font><font color="#92E9E1">█</font><font color="#A6FDBC">█</font><font color="#CAF89C">█</font><font color="#EDDC91">█</font><font color="#FEB79F">█</font><font color="#F699C0">█</font><font color="#D791E5">█</font> frequency = 0.700 center = 200 width = 55<br><font color="#D4FBB3">█</font><font color="#F2E2A9">█</font><font color="#FEC0B8">█</font><font color="#F1ABD9">█</font><font color="#D1AEF6">█</font><font color="#B3C7FE">█</font><font color="#A9E9ED">█</font><font color="#B8FDCC">█</font><font color="#D9F8B0">█</font><font color="#F6DDA9">█</font><font color="#FEBCBC">█</font><font color="#EDA9DD">█</font><font color="#CCB0F8">█</font><font color="#B0CCFD">█</font><font color="#A9EDE8">█</font><font color="#BCFEC7">█</font><font color="#DDF5AD">█</font><font color="#F8D8AB">█</font><font color="#FDB8C1">█</font><font color="#E8A9E2">█</font><font color="#C7B3FB">█</font><font color="#ADD1FB">█</font><font color="#ABF1E4">█</font><font color="#C1FEC2">█</font><font color="#E2F2AB">█</font><font color="#FBD3AD">█</font><font color="#FBB4C5">█</font><font color="#E4A9E7">█</font><font color="#C2B7FD">█</font><font color="#ABD6F9">█</font><font color="#ADF4DF">█</font><font color="#C5FEBE">█</font> frequency = 0.799 center = 212 width = 43<br><font color="#E0FCC8">█</font><font color="#F8E7C1">█</font><font color="#FECDD1">█</font><font color="#EDC1EC">█</font><font color="#D2CCFE">█</font><font color="#C1E6F8">█</font><font color="#C8FBE0">█</font><font color="#E0FBC8">█</font><font color="#F8E6C1">█</font><font color="#FECCD2">█</font><font color="#ECC1ED">█</font><font color="#D1CCFE">█</font><font color="#C1E7F8">█</font><font color="#C8FCE0">█</font><font color="#E1FBC7">█</font><font color="#F8E6C1">█</font><font color="#FDCCD2">█</font><font color="#ECC1ED">█</font><font color="#D1CDFE">█</font><font color="#C1E7F8">█</font><font color="#C8FCDF">█</font><font color="#E1FBC7">█</font><font color="#F9E5C1">█</font><font color="#FDCBD2">█</font><font color="#EBC1ED">█</font><font color="#D0CDFE">█</font><font color="#C1E8F7">█</font><font color="#C9FCDF">█</font><font color="#E2FBC7">█</font><font color="#F9E5C2">█</font><font color="#FDCBD3">█</font><font color="#EBC1EE">█</font> frequency = 0.900 center = 224 width = 31<br><font color="#ECFDDD">█</font><font color="#FBEED9">█</font><font color="#FDDDE6">█</font><font color="#EED9F8">█</font><font color="#DDE6FE">█</font><font color="#D9F8F3">█</font><font color="#E6FEE1">█</font><font color="#F8F3D9">█</font><font color="#FEE1E1">█</font><font color="#F3D9F3">█</font><font color="#E1E1FE">█</font><font color="#D9F3F8">█</font><font color="#E1FEE6">█</font><font color="#F3F8D9">█</font><font color="#FEE6DD">█</font><font color="#F8D9EE">█</font><font color="#E6DDFD">█</font><font color="#D9EEFB">█</font><font color="#DDFDEB">█</font><font color="#EEFBDB">█</font><font color="#FDEBDA">█</font><font color="#FBDBE9">█</font><font color="#EBDAFA">█</font><font color="#DBE9FE">█</font><font color="#DAFAF1">█</font><font color="#E9FEDF">█</font><font color="#FAF1D9">█</font><font color="#FEDFE4">█</font><font color="#F1D9F6">█</font><font color="#DFE4FE">█</font><font color="#D9F6F6">█</font><font color="#E4FEE3">█</font> frequency = 0.000 center = 236 width = 19<br>
+</p><p>
+</p><h2>Experimenting with phase</h2>
+For the basic rainbow effect, I separated the phases of each sine wave by 120°.  What happens if I
+put the phases closer together?  Let's find out:
+<p>
+<script language="JavaScript">
+<!--
+center = 128;
+width = 127;
+frequency = .3;
+for (phaseShift = 2*Math.PI/3; phaseShift >= -.001; phaseShift -= Math.PI/18)
+{
+    makeColorGradient(frequency,frequency,frequency,0,phaseShift,phaseShift*2,center,width,32);
+    document.write(' phaseShift = ' + Math.ceil(phaseShift*180/Math.PI) + '&deg;<br>');
+}
+// -->
+</script><font color="#80ED12">█</font><font color="#A5D604">█</font><font color="#C7B601">█</font><font color="#E39209">█</font><font color="#F66C1C">█</font><font color="#FE4838">█</font><font color="#FB295B">█</font><font color="#ED1180">█</font><font color="#D504A6">█</font><font color="#B601C8">█</font><font color="#910AE3">█</font><font color="#6B1DF6">█</font><font color="#4739FE">█</font><font color="#285BFB">█</font><font color="#1181ED">█</font><font color="#03A6D5">█</font><font color="#01C8B5">█</font><font color="#0AE491">█</font><font color="#1DF66B">█</font><font color="#3AFE47">█</font><font color="#5CFB28">█</font><font color="#82EC10">█</font><font color="#A7D403">█</font><font color="#C9B401">█</font><font color="#E4900A">█</font><font color="#F76A1E">█</font><font color="#FE463A">█</font><font color="#FB275D">█</font><font color="#EC1082">█</font><font color="#D403A8">█</font><font color="#B401CA">█</font><font color="#8F0AE5">█</font> phaseShift = 120°<br><font color="#80F72E">█</font><font color="#A5E515">█</font><font color="#C7C905">█</font><font color="#E3A801">█</font><font color="#F68207">█</font><font color="#FE5D19">█</font><font color="#FB3A33">█</font><font color="#ED1E55">█</font><font color="#D50A7A">█</font><font color="#B601A0">█</font><font color="#9103C3">█</font><font color="#6B11DF">█</font><font color="#4728F4">█</font><font color="#2847FE">█</font><font color="#116BFC">█</font><font color="#0391F0">█</font><font color="#01B5D9">█</font><font color="#0AD5BB">█</font><font color="#1DED97">█</font><font color="#3AFB71">█</font><font color="#5CFE4C">█</font><font color="#82F62C">█</font><font color="#A7E314">█</font><font color="#C9C805">█</font><font color="#E4A601">█</font><font color="#F78008">█</font><font color="#FE5B1A">█</font><font color="#FB3835">█</font><font color="#EC1C57">█</font><font color="#D4097C">█</font><font color="#B401A2">█</font><font color="#8F04C4">█</font> phaseShift = 110°<br><font color="#80FD54">█</font><font color="#A5F033">█</font><font color="#C7DA18">█</font><font color="#E3BC07">█</font><font color="#F69801">█</font><font color="#FE7205">█</font><font color="#FB4E15">█</font><font color="#ED2D2E">█</font><font color="#D5144F">█</font><font color="#B60574">█</font><font color="#91019A">█</font><font color="#6B07BD">█</font><font color="#4719DB">█</font><font color="#2834F1">█</font><font color="#1155FD">█</font><font color="#037BFD">█</font><font color="#01A0F3">█</font><font color="#0AC3DE">█</font><font color="#1DE0C0">█</font><font color="#3AF49D">█</font><font color="#5CFE77">█</font><font color="#82FC52">█</font><font color="#A7EF31">█</font><font color="#C9D917">█</font><font color="#E4BA06">█</font><font color="#F79601">█</font><font color="#FE7006">█</font><font color="#FB4C16">█</font><font color="#EC2C30">█</font><font color="#D41351">█</font><font color="#B40476">█</font><font color="#8F019C">█</font> phaseShift = 100°<br><font color="#80FF80">█</font><font color="#A5F95A">█</font><font color="#C7E838">█</font><font color="#E3CE1C">█</font><font color="#F6AE09">█</font><font color="#FE8801">█</font><font color="#FB6304">█</font><font color="#ED3F12">█</font><font color="#D5222A">█</font><font color="#B60D49">█</font><font color="#91026E">█</font><font color="#6B0294">█</font><font color="#470EB8">█</font><font color="#2823D7">█</font><font color="#1141EE">█</font><font color="#0365FC">█</font><font color="#018BFE">█</font><font color="#0AB0F5">█</font><font color="#1DD0E2">█</font><font color="#3AEAC5">█</font><font color="#5CF9A3">█</font><font color="#82FE7D">█</font><font color="#A7F858">█</font><font color="#C9E736">█</font><font color="#E4CD1B">█</font><font color="#F7AC08">█</font><font color="#FE8601">█</font><font color="#FB6104">█</font><font color="#EC3E13">█</font><font color="#D4202B">█</font><font color="#B40C4B">█</font><font color="#8F0170">█</font> phaseShift = 90°<br><font color="#80FDAB">█</font><font color="#A5FE86">█</font><font color="#C7F360">█</font><font color="#E3DF3D">█</font><font color="#F6C120">█</font><font color="#FE9E0C">█</font><font color="#FB7901">█</font><font color="#ED5303">█</font><font color="#D5320F">█</font><font color="#B61825">█</font><font color="#910744">█</font><font color="#6B0167">█</font><font color="#47068D">█</font><font color="#2816B2">█</font><font color="#112FD2">█</font><font color="#0350EB">█</font><font color="#0174FA">█</font><font color="#0A9AFE">█</font><font color="#1DBEF7">█</font><font color="#3ADCE5">█</font><font color="#5CF1CB">█</font><font color="#82FDA9">█</font><font color="#A7FD84">█</font><font color="#C9F25E">█</font><font color="#E4DD3B">█</font><font color="#F7C01F">█</font><font color="#FE9C0B">█</font><font color="#FB7601">█</font><font color="#EC5103">█</font><font color="#D43010">█</font><font color="#B41727">█</font><font color="#8F0646">█</font> phaseShift = 80°<br><font color="#80F7D1">█</font><font color="#A5FEB1">█</font><font color="#C7FB8C">█</font><font color="#E3EC66">█</font><font color="#F6D342">█</font><font color="#FEB324">█</font><font color="#FB8F0E">█</font><font color="#ED6902">█</font><font color="#D54502">█</font><font color="#B6260C">█</font><font color="#910F21">█</font><font color="#6B033E">█</font><font color="#470161">█</font><font color="#280B87">█</font><font color="#111FAC">█</font><font color="#033CCD">█</font><font color="#015FE8">█</font><font color="#0A84F8">█</font><font color="#1DAAFE">█</font><font color="#3ACBF9">█</font><font color="#5CE6E9">█</font><font color="#82F8CF">█</font><font color="#A7FEAF">█</font><font color="#C9FA8A">█</font><font color="#E4EB64">█</font><font color="#F7D241">█</font><font color="#FEB123">█</font><font color="#FB8D0D">█</font><font color="#EC6702">█</font><font color="#D44302">█</font><font color="#B4250D">█</font><font color="#8F0E22">█</font> phaseShift = 70°<br><font color="#80EDED">█</font><font color="#A5FBD6">█</font><font color="#C7FEB6">█</font><font color="#E3F692">█</font><font color="#F6E36C">█</font><font color="#FEC748">█</font><font color="#FBA429">█</font><font color="#ED7F11">█</font><font color="#D55904">█</font><font color="#B63701">█</font><font color="#911C0A">█</font><font color="#6B091D">█</font><font color="#470139">█</font><font color="#28045B">█</font><font color="#111281">█</font><font color="#032AA6">█</font><font color="#014AC8">█</font><font color="#0A6EE4">█</font><font color="#1D94F6">█</font><font color="#3AB8FE">█</font><font color="#5CD7FB">█</font><font color="#82EFEC">█</font><font color="#A7FCD4">█</font><font color="#C9FEB4">█</font><font color="#E4F590">█</font><font color="#F7E16A">█</font><font color="#FEC546">█</font><font color="#FBA227">█</font><font color="#EC7D10">█</font><font color="#D45703">█</font><font color="#B43501">█</font><font color="#8F1A0A">█</font> phaseShift = 60°<br><font color="#80E1FD">█</font><font color="#A5F5F0">█</font><font color="#C7FEDA">█</font><font color="#E3FCBC">█</font><font color="#F6EF98">█</font><font color="#FED872">█</font><font color="#FBB94E">█</font><font color="#ED952D">█</font><font color="#D56F14">█</font><font color="#B64A05">█</font><font color="#912B01">█</font><font color="#6B1307">█</font><font color="#470419">█</font><font color="#280134">█</font><font color="#110955">█</font><font color="#031B7B">█</font><font color="#0137A0">█</font><font color="#0A59C3">█</font><font color="#1D7EE0">█</font><font color="#3AA4F4">█</font><font color="#5CC6FE">█</font><font color="#82E2FC">█</font><font color="#A7F5EF">█</font><font color="#C9FED9">█</font><font color="#E4FBBA">█</font><font color="#F7EE96">█</font><font color="#FED670">█</font><font color="#FBB74C">█</font><font color="#EC932C">█</font><font color="#D46D13">█</font><font color="#B44904">█</font><font color="#8F2901">█</font> phaseShift = 50°<br><font color="#80D1FD">█</font><font color="#A5EAFE">█</font><font color="#C7FAF3">█</font><font color="#E3FEDF">█</font><font color="#F6F8C1">█</font><font color="#FEE69E">█</font><font color="#FBCC79">█</font><font color="#EDAA53">█</font><font color="#D58532">█</font><font color="#B65F18">█</font><font color="#913C07">█</font><font color="#6B2001">█</font><font color="#470B06">█</font><font color="#280116">█</font><font color="#11032F">█</font><font color="#030F50">█</font><font color="#012674">█</font><font color="#0A449A">█</font><font color="#1D68BE">█</font><font color="#3A8EDC">█</font><font color="#5CB3F1">█</font><font color="#82D3FD">█</font><font color="#A7EBFD">█</font><font color="#C9FAF2">█</font><font color="#E4FEDD">█</font><font color="#F7F7C0">█</font><font color="#FEE59C">█</font><font color="#FBCA76">█</font><font color="#ECA851">█</font><font color="#D48330">█</font><font color="#B45D17">█</font><font color="#8F3B06">█</font> phaseShift = 40°<br><font color="#80BFED">█</font><font color="#A5DDFB">█</font><font color="#C7F2FE">█</font><font color="#E3FDF6">█</font><font color="#F6FDE3">█</font><font color="#FEF2C7">█</font><font color="#FBDCA4">█</font><font color="#EDBE7F">█</font><font color="#D59B59">█</font><font color="#B67537">█</font><font color="#91501C">█</font><font color="#6B2F09">█</font><font color="#471601">█</font><font color="#280604">█</font><font color="#110112">█</font><font color="#03072A">█</font><font color="#01174A">█</font><font color="#0A326E">█</font><font color="#1D5394">█</font><font color="#3A78B8">█</font><font color="#5C9ED7">█</font><font color="#82C1EF">█</font><font color="#A7DEFC">█</font><font color="#C9F3FE">█</font><font color="#E4FDF5">█</font><font color="#F7FDE1">█</font><font color="#FEF1C5">█</font><font color="#FBDBA2">█</font><font color="#ECBD7D">█</font><font color="#D49957">█</font><font color="#B47335">█</font><font color="#8F4E1A">█</font> phaseShift = 30°<br><font color="#80ABD1">█</font><font color="#A5CCEA">█</font><font color="#C7E7FA">█</font><font color="#E3F8FE">█</font><font color="#F6FEF8">█</font><font color="#FEFAE6">█</font><font color="#FBEACC">█</font><font color="#EDD1AA">█</font><font color="#D5B085">█</font><font color="#B68B5F">█</font><font color="#91653C">█</font><font color="#6B4220">█</font><font color="#47240B">█</font><font color="#280E01">█</font><font color="#110203">█</font><font color="#03020F">█</font><font color="#010C26">█</font><font color="#0A2144">█</font><font color="#1D3F68">█</font><font color="#3A628E">█</font><font color="#5C88B3">█</font><font color="#82ADD3">█</font><font color="#A7CEEB">█</font><font color="#C9E8FA">█</font><font color="#E4F9FE">█</font><font color="#F7FEF7">█</font><font color="#FEF9E5">█</font><font color="#FBE9CA">█</font><font color="#ECCFA8">█</font><font color="#D4AE83">█</font><font color="#B4895D">█</font><font color="#8F633B">█</font> phaseShift = 20°<br><font color="#8096AB">█</font><font color="#A5BACC">█</font><font color="#C7D8E7">█</font><font color="#E3EFF8">█</font><font color="#F6FCFE">█</font><font color="#FEFEFA">█</font><font color="#FBF4EA">█</font><font color="#EDE0D1">█</font><font color="#D5C4B0">█</font><font color="#B6A18B">█</font><font color="#917B65">█</font><font color="#6B5642">█</font><font color="#473424">█</font><font color="#28190E">█</font><font color="#110802">█</font><font color="#030102">█</font><font color="#01050C">█</font><font color="#0A1421">█</font><font color="#1D2D3F">█</font><font color="#3A4D62">█</font><font color="#5C7288">█</font><font color="#8298AD">█</font><font color="#A7BBCE">█</font><font color="#C9DAE8">█</font><font color="#E4F0F9">█</font><font color="#F7FCFE">█</font><font color="#FEFEF9">█</font><font color="#FBF3E9">█</font><font color="#ECDFCF">█</font><font color="#D4C2AE">█</font><font color="#B49F89">█</font><font color="#8F7963">█</font> phaseShift = 10°<br><font color="#807F7F">█</font><font color="#A5A5A5">█</font><font color="#C7C7C7">█</font><font color="#E3E3E3">█</font><font color="#F6F6F6">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#EDEDED">█</font><font color="#D5D5D5">█</font><font color="#B6B6B6">█</font><font color="#919191">█</font><font color="#6B6B6B">█</font><font color="#474747">█</font><font color="#282828">█</font><font color="#111111">█</font><font color="#030303">█</font><font color="#010101">█</font><font color="#0A0A0A">█</font><font color="#1D1D1D">█</font><font color="#3A3A3A">█</font><font color="#5C5C5C">█</font><font color="#828282">█</font><font color="#A7A7A7">█</font><font color="#C9C9C9">█</font><font color="#E4E4E4">█</font><font color="#F7F7F7">█</font><font color="#FEFEFE">█</font><font color="#FBFBFB">█</font><font color="#ECECEC">█</font><font color="#D4D4D4">█</font><font color="#B4B4B4">█</font><font color="#8F8F8F">█</font> phaseShift = 0°<br>
+
+
+</p><h2>Get more variety by using separate frequencies for each component</h2>
+<p>
+Another trick I've used which produces greater color variety is to put each color component on a different
+frequency.  Here's the code:
+</p><pre>redFrequency = .1;
+grnFrequency = .2;
+bluFrequency = .3;
+center = 128;
+width = 127;
+makeColorGradient(redFrequency,redFrequency,redFrequency,0,0,0,center,width,50);
+</pre>
+
+...and here's what it looks like:
+<p>
+<script language="JavaScript">
+<!--
+redFrequency = .1;
+grnFrequency = .2;
+bluFrequency = .3;
+center = 128;
+width = 127;
+makeColorGradient(redFrequency,grnFrequency,bluFrequency,0,2,4,center,width,50);
+// -->
+</script><font color="#80F31F">█</font><font color="#8CE60B">█</font><font color="#99D501">█</font><font color="#A5C103">█</font><font color="#B1AA0F">█</font><font color="#BC9126">█</font><font color="#C77844">█</font><font color="#D15F68">█</font><font color="#DB478E">█</font><font color="#E332B3">█</font><font color="#EA1FD3">█</font><font color="#F111EC">█</font><font color="#F607FA">█</font><font color="#FA01FE">█</font><font color="#FD01F7">█</font><font color="#FE06E5">█</font><font color="#FE0FCA">█</font><font color="#FD1DA8">█</font><font color="#FB2F83">█</font><font color="#F8445D">█</font><font color="#F35C3A">█</font><font color="#ED751E">█</font><font color="#E68E0A">█</font><font color="#DEA701">█</font><font color="#D5BE03">█</font><font color="#CCD310">█</font><font color="#C1E427">█</font><font color="#B6F246">█</font><font color="#AAFA6A">█</font><font color="#9EFE90">█</font><font color="#91FDB5">█</font><font color="#85F7D5">█</font><font color="#78ECED">█</font><font color="#6BDDFB">█</font><font color="#5FCAFE">█</font><font color="#53B4F6">█</font><font color="#479CE4">█</font><font color="#3C83C8">█</font><font color="#3269A6">█</font><font color="#285181">█</font><font color="#1F3A5B">█</font><font color="#182739">█</font><font color="#11161D">█</font><font color="#0B0A0A">█</font><font color="#070301">█</font><font color="#030104">█</font><font color="#010311">█</font><font color="#010B29">█</font><font color="#011748">█</font><font color="#03276D">█</font>
+</p><p>
+If I separate out the individual channels, you can see what is going on:
+</p><pre>red    <script language="JavaScript">
+<!--
+makeColorGradient(redFrequency,redFrequency,redFrequency,0,0,0,center,width,50);
+// -->
+</script><font color="#808080">█</font><font color="#8C8C8C">█</font><font color="#999999">█</font><font color="#A5A5A5">█</font><font color="#B1B1B1">█</font><font color="#BCBCBC">█</font><font color="#C7C7C7">█</font><font color="#D1D1D1">█</font><font color="#DBDBDB">█</font><font color="#E3E3E3">█</font><font color="#EAEAEA">█</font><font color="#F1F1F1">█</font><font color="#F6F6F6">█</font><font color="#FAFAFA">█</font><font color="#FDFDFD">█</font><font color="#FEFEFE">█</font><font color="#FEFEFE">█</font><font color="#FDFDFD">█</font><font color="#FBFBFB">█</font><font color="#F8F8F8">█</font><font color="#F3F3F3">█</font><font color="#EDEDED">█</font><font color="#E6E6E6">█</font><font color="#DEDEDE">█</font><font color="#D5D5D5">█</font><font color="#CCCCCC">█</font><font color="#C1C1C1">█</font><font color="#B6B6B6">█</font><font color="#AAAAAA">█</font><font color="#9E9E9E">█</font><font color="#919191">█</font><font color="#858585">█</font><font color="#787878">█</font><font color="#6B6B6B">█</font><font color="#5F5F5F">█</font><font color="#535353">█</font><font color="#474747">█</font><font color="#3C3C3C">█</font><font color="#323232">█</font><font color="#282828">█</font><font color="#1F1F1F">█</font><font color="#181818">█</font><font color="#111111">█</font><font color="#0B0B0B">█</font><font color="#070707">█</font><font color="#030303">█</font><font color="#010101">█</font><font color="#010101">█</font><font color="#010101">█</font><font color="#030303">█</font> (freq = .1)
+green  <script language="JavaScript">
+<!--
+makeColorGradient(grnFrequency,grnFrequency,grnFrequency,2,2,2,center,width,50);
+// -->
+</script><font color="#F3F3F3">█</font><font color="#E6E6E6">█</font><font color="#D5D5D5">█</font><font color="#C1C1C1">█</font><font color="#AAAAAA">█</font><font color="#919191">█</font><font color="#787878">█</font><font color="#5F5F5F">█</font><font color="#474747">█</font><font color="#323232">█</font><font color="#1F1F1F">█</font><font color="#111111">█</font><font color="#070707">█</font><font color="#010101">█</font><font color="#010101">█</font><font color="#060606">█</font><font color="#0F0F0F">█</font><font color="#1D1D1D">█</font><font color="#2F2F2F">█</font><font color="#444444">█</font><font color="#5C5C5C">█</font><font color="#757575">█</font><font color="#8E8E8E">█</font><font color="#A7A7A7">█</font><font color="#BEBEBE">█</font><font color="#D3D3D3">█</font><font color="#E4E4E4">█</font><font color="#F2F2F2">█</font><font color="#FAFAFA">█</font><font color="#FEFEFE">█</font><font color="#FDFDFD">█</font><font color="#F7F7F7">█</font><font color="#ECECEC">█</font><font color="#DDDDDD">█</font><font color="#CACACA">█</font><font color="#B4B4B4">█</font><font color="#9C9C9C">█</font><font color="#838383">█</font><font color="#696969">█</font><font color="#515151">█</font><font color="#3A3A3A">█</font><font color="#272727">█</font><font color="#161616">█</font><font color="#0A0A0A">█</font><font color="#030303">█</font><font color="#010101">█</font><font color="#030303">█</font><font color="#0B0B0B">█</font><font color="#171717">█</font><font color="#272727">█</font> (freq = .2)
+blue   <script language="JavaScript">
+<!--
+makeColorGradient(bluFrequency,bluFrequency,bluFrequency,4,4,4,center,width,50);
+// --></script><font color="#1F1F1F">█</font><font color="#0B0B0B">█</font><font color="#010101">█</font><font color="#030303">█</font><font color="#0F0F0F">█</font><font color="#262626">█</font><font color="#444444">█</font><font color="#686868">█</font><font color="#8E8E8E">█</font><font color="#B3B3B3">█</font><font color="#D3D3D3">█</font><font color="#ECECEC">█</font><font color="#FAFAFA">█</font><font color="#FEFEFE">█</font><font color="#F7F7F7">█</font><font color="#E5E5E5">█</font><font color="#CACACA">█</font><font color="#A8A8A8">█</font><font color="#838383">█</font><font color="#5D5D5D">█</font><font color="#3A3A3A">█</font><font color="#1E1E1E">█</font><font color="#0A0A0A">█</font><font color="#010101">█</font><font color="#030303">█</font><font color="#101010">█</font><font color="#272727">█</font><font color="#464646">█</font><font color="#6A6A6A">█</font><font color="#909090">█</font><font color="#B5B5B5">█</font><font color="#D5D5D5">█</font><font color="#EDEDED">█</font><font color="#FBFBFB">█</font><font color="#FEFEFE">█</font><font color="#F6F6F6">█</font><font color="#E4E4E4">█</font><font color="#C8C8C8">█</font><font color="#A6A6A6">█</font><font color="#818181">█</font><font color="#5B5B5B">█</font><font color="#393939">█</font><font color="#1D1D1D">█</font><font color="#0A0A0A">█</font><font color="#010101">█</font><font color="#040404">█</font><font color="#111111">█</font><font color="#292929">█</font><font color="#484848">█</font><font color="#6D6D6D">█</font> (freq = .3)
+RGB    <script language="JavaScript">
+<!--
+makeColorGradient(redFrequency,grnFrequency,bluFrequency,0,2,4,center,width,50);
+// -->
+</script><font color="#80F31F">█</font><font color="#8CE60B">█</font><font color="#99D501">█</font><font color="#A5C103">█</font><font color="#B1AA0F">█</font><font color="#BC9126">█</font><font color="#C77844">█</font><font color="#D15F68">█</font><font color="#DB478E">█</font><font color="#E332B3">█</font><font color="#EA1FD3">█</font><font color="#F111EC">█</font><font color="#F607FA">█</font><font color="#FA01FE">█</font><font color="#FD01F7">█</font><font color="#FE06E5">█</font><font color="#FE0FCA">█</font><font color="#FD1DA8">█</font><font color="#FB2F83">█</font><font color="#F8445D">█</font><font color="#F35C3A">█</font><font color="#ED751E">█</font><font color="#E68E0A">█</font><font color="#DEA701">█</font><font color="#D5BE03">█</font><font color="#CCD310">█</font><font color="#C1E427">█</font><font color="#B6F246">█</font><font color="#AAFA6A">█</font><font color="#9EFE90">█</font><font color="#91FDB5">█</font><font color="#85F7D5">█</font><font color="#78ECED">█</font><font color="#6BDDFB">█</font><font color="#5FCAFE">█</font><font color="#53B4F6">█</font><font color="#479CE4">█</font><font color="#3C83C8">█</font><font color="#3269A6">█</font><font color="#285181">█</font><font color="#1F3A5B">█</font><font color="#182739">█</font><font color="#11161D">█</font><font color="#0B0A0A">█</font><font color="#070301">█</font><font color="#030104">█</font><font color="#010311">█</font><font color="#010B29">█</font><font color="#011748">█</font><font color="#03276D">█</font>
+</pre>
+
+<p>
+Using three different frequencies may produce colors with a low saturation value, such as the black seen in the example above, or grays or whites.
+This happens when the three sine waves cross the same value simultaneously.
+</p><p>
+
+
+
+</p><h2>Getting cycles to repeat</h2>
+Let's say you want the color cycle to repeat every 6 steps.  How do you do it?  The way I accomplish
+this is by using a frequency value which corresponds to 1/6th of 2π.  Remember that the sine wave repeats
+every 2π, so this will make the colors repeat every 6 increments.  Here's the code...
+<pre>center = 128;
+width = 127;
+steps = 6;
+frequency = 2*Math.PI/steps;
+makeColorGradient(frequency,frequency,frequency,0,2,4,center,width,50);
+</pre>
+And here's what it looks like:
+<p>
+<script language="JavaScript">
+<!--
+center = 128;
+width = 127;
+steps = 6;
+frequency = 2*Math.PI/steps;
+makeColorGradient(frequency,frequency,frequency,0,2,4,center,width,50);
+// -->
+</script><font color="#80F31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font><font color="#ED1868">█</font><font color="#800CE0">█</font><font color="#1274F7">█</font><font color="#12E797">█</font><font color="#7FF31F">█</font><font color="#ED8B08">█</font>
+
+</p><h2>Getting cycles to not repeat</h2>
+If you don't want the colors to repeat exactly, then use frequency values which don't go evenly into 2π.
+It turns out that the number 2.4 works very well for this.  2.4 in radians, is very close to the <a href="http://en.wikipedia.org/wiki/Golden_angle">golden angle (137.51°)</a>, which
+is the angle that many plants grow new shoots to maximize the sunlight received by leaves.  Here I'm using essentially the same technique -
+I am maximizing the distance between color repeats (which would be like overlapping leaves around a stem).  2.4 is a good frequency to use if you're selecting colors for a pie chart or graph, and you're not sure how many data values you're going to need to plot.
+Here's the code.
+<pre>center = 128;
+width = 127;
+frequency = 2.4;
+makeColorGradient(frequency,frequency,frequency,0,2,4,center,width,50);
+</pre>
+And here's what it looks like with a frequency of 2.4:
+<p>
+<script language="JavaScript">
+<!--
+center = 128;
+width = 127;
+frequency = 2.4;
+makeColorGradient(frequency,frequency,frequency,0,2,4,center,width,50);
+// -->
+</script><font color="#80F31F">█</font><font color="#D5078E">█</font><font color="#01BECA">█</font><font color="#E49C03">█</font><font color="#6917ED">█</font><font color="#3BFD5B">█</font><font color="#FA2E48">█</font><font color="#0F79F5">█</font><font color="#ABDA09">█</font><font color="#B001B9">█</font><font color="#0CE0A2">█</font><font color="#F97014">█</font><font color="#4036FC">█</font><font color="#64FC33">█</font><font color="#E71273">█</font><font color="#02A5DE">█</font><font color="#D1B601">█</font><font color="#850ADC">█</font><font color="#26F776">█</font><font color="#FE4531">█</font><font color="#1E5EFD">█</font><font color="#91EB15">█</font><font color="#C8039F">█</font><font color="#04CCBB">█</font><font color="#EE8B08">█</font><font color="#5922F4">█</font><font color="#4AFE4B">█</font><font color="#F52258">█</font><font color="#088AEE">█</font><font color="#BBCD04">█</font><font color="#A002C7">█</font><font color="#15EA91">█</font><font color="#FD5F1E">█</font><font color="#3245FE">█</font><font color="#75F726">█</font><font color="#DD0A84">█</font><font color="#01B5D2">█</font><font color="#DEA601">█</font><font color="#7411E7">█</font><font color="#33FB65">█</font><font color="#FC373F">█</font><font color="#146FF9">█</font><font color="#A1E10D">█</font><font color="#B901AF">█</font><font color="#08D9AC">█</font><font color="#F57A0E">█</font><font color="#492EFA">█</font><font color="#5AFD3C">█</font><font color="#ED1769">█</font><font color="#039BE5">█</font>
+</p><p>
+If you combine this with the trick of using separate freqencies for each color, and insure that none of the
+individual frequencies are multiples of each other, you can get even more variety.
+Here I'm using frequency of 1.666, 2.666, and 4.666.
+</p><pre>center = 128;
+width = 127;
+redFrequency = 1.666;
+grnFrequency = 2.666;
+bluFrequency = 3.666;
+makeColorGradient(redFrequency,grnFrequency,bluFrequency,0,0,0,center,width,50);
+</pre>
+<p>
+<script language="JavaScript">
+<!--
+center = 128;
+width = 127;
+redFrequency = 1.666;
+grnFrequency = 2.666;
+bluFrequency = 3.666;
+makeColorGradient(redFrequency,grnFrequency,bluFrequency,0,0,0,center,width,50);
+// -->
+</script><font color="#808080">█</font><font color="#FEBA40">█</font><font color="#6718EE">█</font><font color="#06FD01">█</font><font color="#AF07ED">█</font><font color="#F0D740">█</font><font color="#3B5B7F">█</font><font color="#1C68C0">█</font><font color="#D7CE11">█</font><font color="#D30CFE">█</font><font color="#18FE12">█</font><font color="#4011BE">█</font><font color="#F3C581">█</font><font color="#A9733F">█</font><font color="#0451EE">█</font><font color="#6DDF01">█</font><font color="#FE04ED">█</font><font color="#79FB42">█</font><font color="#021F7E">█</font><font color="#9DB0C1">█</font><font color="#F88B11">█</font><font color="#4B3CFE">█</font><font color="#12ED13">█</font><font color="#C901BD">█</font><font color="#DFF482">█</font><font color="#24303E">█</font><font color="#3199EF">█</font><font color="#EAA201">█</font><font color="#BA29EC">█</font><font color="#0AF743">█</font><font color="#5C027C">█</font><font color="#FCE8C2">█</font><font color="#8C4410">█</font><font color="#0181FE">█</font><font color="#8CB813">█</font><font color="#FC19BC">█</font><font color="#5CFD83">█</font><font color="#0A073D">█</font><font color="#BAD9EF">█</font><font color="#EA5A01">█</font><font color="#3169EB">█</font><font color="#24CC44">█</font><font color="#DF0D7B">█</font><font color="#C9FEC3">█</font><font color="#12100F">█</font><font color="#4BC6FE">█</font><font color="#F87114">█</font><font color="#9D53BB">█</font><font color="#02DE84">█</font><font color="#79053C">█</font>
+</p><p>
+Finally, here's a function that does the rainbow effect on a line of text.
+</p><pre>function colorText(str,phase)
+{
+    if (phase == undefined) phase = 0;
+  center = 128;
+  width = 127;
+  frequency = Math.PI*2/str.length;
+  for (var i = 0; i &lt; str.length; ++i)
+  {
+     red   = Math.sin(frequency*i+2+phase) * width + center;
+     green = Math.sin(frequency*i+0+phase) * width + center;
+     blue  = Math.sin(frequency*i+4+phase) * width + center;
+     document.write( '&lt;font color="' + RGB2Color(red,green,blue) + '"&gt;' + str.substr(i,1) + '&lt;/font&gt;');
+  }
+}
+</pre>
+<p>
+<script language="JavaScript">
+<!--
+colorText('Now is the time for all good hackersr to come to the aid of their country.',0);
+document.write('<br>');
+colorText('Now is the time for all good hackersr to come to the aid of their country.',2);
+document.write('<br>');
+colorText('Now is the time for all good hackersr to come to the aid of their country.',4);
+// -->
+</script><font color="#F3801F">N</font><font color="#EE8A19">o</font><font color="#E89513">w</font><font color="#E2A00E"> </font><font color="#DBAA09">i</font><font color="#D3B406">s</font><font color="#CBBD03"> </font><font color="#C2C701">t</font><font color="#B8CF01">h</font><font color="#AED701">e</font><font color="#A4DF02"> </font><font color="#9AE604">t</font><font color="#8FEC06">i</font><font color="#84F10A">m</font><font color="#7AF50F">e</font><font color="#6FF914"> </font><font color="#64FC1A">f</font><font color="#5AFD21">o</font><font color="#50FE28">r</font><font color="#46FE31"> </font><font color="#3CFD39">a</font><font color="#34FC43">l</font><font color="#2BF94C">l</font><font color="#23F556"> </font><font color="#1CF161">g</font><font color="#16EC6B">o</font><font color="#10E676">o</font><font color="#0CDF81">d</font><font color="#08D78B"> </font><font color="#04CF96">h</font><font color="#02C7A1">a</font><font color="#01BDAB">c</font><font color="#01B4B5">k</font><font color="#01AABE">e</font><font color="#02A0C8">r</font><font color="#0595D0">s</font><font color="#088AD8">r</font><font color="#0C80E0"> </font><font color="#1175E6">t</font><font color="#176AEC">o</font><font color="#1D5FF1"> </font><font color="#2455F6">c</font><font color="#2C4BF9">o</font><font color="#3442FC">m</font><font color="#3D38FE">e</font><font color="#4730FE"> </font><font color="#5128FE">t</font><font color="#5B20FD">o</font><font color="#6519FB"> </font><font color="#7013F9">t</font><font color="#7B0EF5">h</font><font color="#850AF0">e</font><font color="#9006EB"> </font><font color="#9B03E5">a</font><font color="#A502DE">i</font><font color="#AF01D7">d</font><font color="#B901CE"> </font><font color="#C302C6">o</font><font color="#CB03BC">f</font><font color="#D406B3"> </font><font color="#DC0AA9">t</font><font color="#E30E9E">h</font><font color="#E91394">e</font><font color="#EF1989">i</font><font color="#F3207E">r</font><font color="#F72874"> </font><font color="#FB3069">c</font><font color="#FD385E">o</font><font color="#FE4254">u</font><font color="#FE4B4A">n</font><font color="#FE5541">t</font><font color="#FD5F37">r</font><font color="#FA6A2F">y</font><font color="#F77527">.</font><br><font color="#1FF35C">N</font><font color="#19EE66">o</font><font color="#13E871">w</font><font color="#0EE27C"> </font><font color="#09DB87">i</font><font color="#06D391">s</font><font color="#03CB9C"> </font><font color="#01C2A6">t</font><font color="#01B8B0">h</font><font color="#01AEBA">e</font><font color="#02A4C4"> </font><font color="#049ACC">t</font><font color="#068FD5">i</font><font color="#0A84DC">m</font><font color="#0F7AE3">e</font><font color="#146FEA"> </font><font color="#1A64EF">f</font><font color="#215AF4">o</font><font color="#2850F8">r</font><font color="#3146FB"> </font><font color="#393CFD">a</font><font color="#4334FE">l</font><font color="#4C2BFE">l</font><font color="#5623FE"> </font><font color="#611CFC">g</font><font color="#6B16FA">o</font><font color="#7610F7">o</font><font color="#810CF2">d</font><font color="#8B08ED"> </font><font color="#9604E8">h</font><font color="#A102E1">a</font><font color="#AB01DA">c</font><font color="#B501D2">k</font><font color="#BE01CA">e</font><font color="#C802C1">r</font><font color="#D005B7">s</font><font color="#D808AD">r</font><font color="#E00CA3"> </font><font color="#E61199">t</font><font color="#EC178E">o</font><font color="#F11D83"> </font><font color="#F62478">c</font><font color="#F92C6E">o</font><font color="#FC3463">m</font><font color="#FE3D59">e</font><font color="#FE474F"> </font><font color="#FE5145">t</font><font color="#FD5B3B">o</font><font color="#FB6533"> </font><font color="#F9702A">t</font><font color="#F57B23">h</font><font color="#F0851C">e</font><font color="#EB9015"> </font><font color="#E59B10">a</font><font color="#DEA50B">i</font><font color="#D7AF07">d</font><font color="#CEB904"> </font><font color="#C6C302">o</font><font color="#BCCB01">f</font><font color="#B3D401"> </font><font color="#A9DC01">t</font><font color="#9EE303">h</font><font color="#94E905">e</font><font color="#89EF08">i</font><font color="#7EF30D">r</font><font color="#74F712"> </font><font color="#69FB17">c</font><font color="#5EFD1E">o</font><font color="#54FE25">u</font><font color="#4AFE2D">n</font><font color="#41FE35">t</font><font color="#37FD3E">r</font><font color="#2FFA48">y</font><font color="#27F752">.</font><br><font color="#5C1FFD">N</font><font color="#6619FB">o</font><font color="#7113F8">w</font><font color="#7C0EF4"> </font><font color="#8709F0">i</font><font color="#9106EA">s</font><font color="#9C03E4"> </font><font color="#A601DD">t</font><font color="#B001D6">h</font><font color="#BA01CD">e</font><font color="#C402C5"> </font><font color="#CC04BB">t</font><font color="#D506B2">i</font><font color="#DC0AA8">m</font><font color="#E30F9D">e</font><font color="#EA1493"> </font><font color="#EF1A88">f</font><font color="#F4217D">o</font><font color="#F82872">r</font><font color="#FB3168"> </font><font color="#FD395D">a</font><font color="#FE4353">l</font><font color="#FE4C49">l</font><font color="#FE5640"> </font><font color="#FC6136">g</font><font color="#FA6B2E">o</font><font color="#F77626">o</font><font color="#F2811F">d</font><font color="#ED8B18"> </font><font color="#E89612">h</font><font color="#E1A10D">a</font><font color="#DAAB09">c</font><font color="#D2B505">k</font><font color="#CABE03">e</font><font color="#C1C801">r</font><font color="#B7D001">s</font><font color="#ADD801">r</font><font color="#A3E002"> </font><font color="#99E604">t</font><font color="#8EEC07">o</font><font color="#83F10B"> </font><font color="#78F60F">c</font><font color="#6EF915">o</font><font color="#63FC1B">m</font><font color="#59FE22">e</font><font color="#4FFE29"> </font><font color="#45FE32">t</font><font color="#3BFD3A">o</font><font color="#33FB44"> </font><font color="#2AF94D">t</font><font color="#23F557">h</font><font color="#1CF062">e</font><font color="#15EB6C"> </font><font color="#10E577">a</font><font color="#0BDE82">i</font><font color="#07D78D">d</font><font color="#04CE97"> </font><font color="#02C6A2">o</font><font color="#01BCAC">f</font><font color="#01B3B6"> </font><font color="#01A9BF">t</font><font color="#039EC9">h</font><font color="#0594D1">e</font><font color="#0889D9">i</font><font color="#0D7EE0">r</font><font color="#1274E7"> </font><font color="#1769ED">c</font><font color="#1E5EF2">o</font><font color="#2554F6">u</font><font color="#2D4AFA">n</font><font color="#3541FC">t</font><font color="#3E37FE">r</font><font color="#482FFE">y</font><font color="#5227FE">.</font>
+</p><p>
+Well, that's it.  I hope you enjoyed the tutorial!  
+</p><p>
+</p><center>
+<table width="80%"><tbody><tr>
+<td>
+<a class="donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=dad%40krazydad%2ecom&item_name=KrazyDad%20Sudoku%20Puzzles&item_number=RAINBOWS_0&no_shipping=1&cn=Your%20comments%20are%20welcome&tax=0&currency_code=USD&bn=PP%2dDonationsBF&charset=UTF%2d8">
+If you liked this tutorial, and you can afford it, consider donating a dollar or two, via PayPal, to help me send my children to college.  Thank you!
+</a>
+</td>
+<td>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="dad@krazydad.com">
+<input type="hidden" name="item_name" value="KrazyDad - Jim Bumgardner - Annoying Rainbows">
+<input type="hidden" name="item_number" value="RAINBOW_0">
+<input type="hidden" name="no_shipping" value="1">
+<input type="hidden" name="cn" value="Your comments are welcome">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="tax" value="0">
+<input type="hidden" name="bn" value="PP-DonationsBF">
+<input type="image" src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/btn_donateCC_LG.gif" border="0" name="submit" alt="Donate with PayPal"></form>
+
+
+</td></tr></tbody></table>
+</center>
+<p>
+If you have any questions or comments, add them to the <a href="http://krazydad.com/blog/2006/10/13/making-annoying-rainbows-in-javascript/">blog
+entry about this article</a>, which you'll find <a href="http://krazydad.com/blog/2006/10/13/making-annoying-rainbows-in-javascript/">here</a>.
+</p><hr width="80%">
+My second Javascript tutorial: <a href="http://krazydad.com/arcaneoperators.php">Using the Arcane Operators in Javascript/Actionscript</a>
+<p>
+My other blog: <a href="http://joyofprocessing.com/">The Joy of Processing</a>
+</p><p>
+</p><hr>
+<center>
+<font size="1">
+Copyright © 2012 by KrazyDad.  All Rights Reserved.<br>
+<a href="http://krazydad.com/blog/contact-krazydad/">Send Jim a message.</a><br>
+</font>
+</center>
+
+
+</td>
+</tr></tbody></table>
+</div> <!-- end logo -->
+</div> <!-- inner -->
+</div> <!-- outer -->
+<!-- Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
+
+(function() {
+var elem = document.createElement('script');
+elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+})();
+
+_qevents.push({
+qacct:"p-4dk_MYkZQ7bvI"
+});
+</script>
+
+<noscript>
+&lt;div style="display:none;"&gt;
+&lt;img src="//pixel.quantserve.com/pixel/p-4dk_MYkZQ7bvI.gif" border="0" height="1" width="1" alt="Quantcast"/&gt;
+&lt;/div&gt;
+</noscript>
+<!-- End Quantcast tag -->
+<script type="text/javascript"><!-- begin chartbeat -->
+var _sf_async_config={uid:32338,domain:"krazydad.com"};
+(function(){
+  function loadChartbeat() {
+    window._sf_endpt=(new Date()).getTime();
+    var e = document.createElement('script');
+    e.setAttribute('language', 'javascript');
+    e.setAttribute('type', 'text/javascript');
+    e.setAttribute('src',
+       (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+       "js/chartbeat.js");
+    document.body.appendChild(e);
+  }
+  var oldonload = window.onload;
+  window.onload = (typeof window.onload != 'function') ?
+     loadChartbeat : function() { oldonload(); loadChartbeat(); };
+})();
+</script><!-- end chartbeat -->
+
+
+
+
+
+
+
+
+<script language="javascript" type="text/javascript" src="./Tutorial  Making annoying rainbows and other color cycles in Javascript_files/chartbeat.js"></script></body></html>

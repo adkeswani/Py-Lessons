@@ -1,0 +1,32 @@
+  body,div,p,blockquote,ol,ul,dl,li,dt,dd,td,th,h1,h2,h3,h4,b,i,br { font-family: verdana,arial,geneva,helvetica,sans-serif; 
+         color: #222222; }
+  body,p,div,td,br,tr { font-size: small; font-weight: normal }
+  body { background-color:#FFFFFF; margin: 0px; }
+  h2 { color: #000; }
+  h3 { color: #000; }
+  h1 { color: #000; }
+a, h2 a:hover, h3 a:hover {
+	color: #4924C8;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #00A;
+	text-decoration: underline;
+}
+  a.hdr { color: #C81020; text-decoration: none; }
+  a.outer { color: #C81020; text-decoration: none; }
+  a.outer:hover { color: #C81020; text-decoration: underline; }
+  a.logo { color: #FFBBBB; text-decoration: none; font-family: Arial Black,Helvetica; font-size: 50px; font-weight: bold;}
+  a.donate { color: #F37280; }
+
+  /* img { border: 1px solid #AAAAAA } */
+  .scripttable, .scripttable td, .scripttable p { /* font-family: serif,Palatino,Palatino-LinoType,Garamond,New Courier,Courier,Times New Roman,Times; */ font-size:12pt; }
+  div.outer { background:#FFFFFF; left:0px; right:0px;  }
+  div.inner { background:#FFFFFF; width:976px; margin:0 auto; }
+  div.adbar { background:#FFFFFF; }
+  /* div.logo { background:#FFFFFF; background-image: url(/img/kz_logo98C95C.jpg); background-repeat: repeat-x;} */
+  div.logo { background:#FFFFFF; background-image: url(/img/kz_whitelogo_wood.png); background-repeat: no-repeat; background-position: 40px 0px;}
+  img.puzzlink { border: none; }
+  img.newbug { position:relative; top: 10px; }
+  .hh { display:none; }

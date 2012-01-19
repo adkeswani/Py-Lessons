@@ -1,3 +1,12 @@
+- References and Copying a sequence: - 7 mins
+    - One thing I didn't mention earlier was how to copy a list or tuple
+    - *Demonstrate using references.py, ask what they expect to happen, ask how many know about pointers, draw the below on board*
+    - l does not actually contain the list, it only points to the list in memory, think of it as storing its memory location, this is known as a reference
+    - Assigning l to m only assigns this memory location, so both are pointing at same memory location and same instance of list, so changing m changes l
+    - Same happens with all other objects, e.g. if we created a Vehicle, then assigned it to another variable, it would again be pointing at the original Vehicle
+    - Same also happens when we pass an object as an argument, passes the memory location, so changes made inside method will affect original object, we must be careful
+    - Python does have ways of doing a deep copy, where it's not just memory location, look it up
+
 - Try/except blocks:
     - Going to show you exception handling, which some might already be familiar with
     - When an error occurs, *demonstrate converting banana to an int*, notice this Error here
@@ -39,14 +48,16 @@
 
     - Also possible to take a variable number of arguments using 
 
+- File objects
+    
 
+- Exercise: Use the encoder from before and use it on files
 
 
 - Private variables
 
 - Exercise, maybe go back to the Vehicle?
 
-- File objects
 
 - Docstrings
 
@@ -59,16 +70,6 @@
     - Languages where types only worked out a run time like this == dynamically typed, if beforehand == statically typed
 
 
-- References and Copying a sequence
-    - One thing I didn't mention earlier was how to copy a list or tuple
-    - *Demonstrate using references.py, ask what they expect to happen, ask how many know about pointers, draw the below on board*
-    - l does not actually contain the list, it only points to the list in memory, think of it as storing its memory location, this is known as a reference
-    - Assigning l to m only assigns this memory location, so both are pointing at same memory location and same instance of list, so changing m changes l
-    - Same happens with all other objects, e.g. if we created a Vehicle, then assigned it to another variable, it would again be pointing at the original Vehicle
-    - Same also happens when we pass an object as an argument, passes the memory location, so changes made inside method will affect original object
-
-    - 
-
 
 
 - Lists and sequences also support slicing, allows you to select multiple elements in a single statement
@@ -77,4 +78,10 @@
 
 
 
+- Technical sidetrack, *ask if anyone's interested, see how time is going*
+            - Sometimes we compile, i.e. transform straight to machine code
+            - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
+            - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
+            - Same language can be implemented in different ways, e.g. there are interpreters for C, normally we think of it as compiled
+            - Similarly different implementations of Python use different approaches, most common is bytecode compilation
 

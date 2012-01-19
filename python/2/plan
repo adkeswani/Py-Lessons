@@ -1,12 +1,13 @@
-Time: 70 mins 
+Time: 60 mins 
 
-- Main
+- Main - 12 mins
     - Don't want to use interpreter for everything, esp. if we wanted to distribute
-    - Pygame example showed that it's possible to do without it
+    - Pygame example worked without it, how?
     - Python reads files from top to bottom
     - Lines outside class definition are just executed
-    - What we typed in interpreter were lines outside a class definition, so we can add to end of file instead
+    - What we typed in interpreter were just lines outside a class definition, so we can add to end of file instead
     - *Demonstrate without import*
+
     - Need the import to access the other file's class
     - Each file containing Python definitions and statements is called a module
     - And using import keyword is known as importing the module, just import followed by file name without py
@@ -14,7 +15,7 @@ Time: 70 mins
     - *Demonstrate with import, works now*
 
     - However, not the best way
-    - Suppose I wanted a main inside Vehicle
+    - Suppose I wanted a main inside Vehicle too
     - *Add main and demonstrate what happens when vehicle is imported*
     - To prevent this, we want module to recognise if it's the one that we're running
     - For each module, a global variable gets created called __name__, stores name of module
@@ -22,22 +23,22 @@ Time: 70 mins
     - Using __name__ can tell which module is being run
     - *Fix and demonstrate Vehicle*
 
-- Exercise 2a:
-    - Move OptimusPrime out to a separate file from vehicle.py
+- Exercise 2a: - 5 mins
+    - Move OptimusPrime out to a separate file from vehicle.py but in same directory
     - Give OptimusPrime a main using technique above where:
         - An OptimusPrime is created
         - A SpeedCamera is created
         - The SpeedCamera's isOverLimit is called on the OptimusPrime
     - Remember: When you refer to things inside other modules, need to prefix with the module's name
 
-- Namespaces and modules:
+- Namespaces and modules: - 11 mins
     - Modules are important because they allow us to split code into multiple files
-    - Keeps things neater, but also means we can put commonly used things into modules and distribute
+    - Keeps things neater, but also means we can put reusable things into modules and distribute
     - Examples: random number generation, image manipulation, Pygame
 
     - Will explain a bit more behind how modules work, something called a namespace
-    - A namespace is where identifiers, meaning names of things like classes, methods *example*, are stored
-    - Maps these names to whatever they refer to == a space containing names
+    - A namespace is where identifiers, meaning the names of things like classes, methods *example*, are stored
+    - Namespace maps these names to whatever they refer to == a space containing names
     - When you do an import, brings that module's name into our module's namespace, using it we can access module's namespace
     - Example, importing SpeedCamera into OptimusPrime, can access SpeedCamera using the module's name
     - Can also import names from inside module rather than the module's name only, so that we don't need to prefix with module name
@@ -48,17 +49,17 @@ Time: 70 mins
     - In some cases, import * is recommended in a module's docs, should use it as it's been designed not to clash and easier to type
 
     - Python also has submodules, where directories are used to create a heirarchy of modules
-    - This is for neatness and to allow you to select modules to import, since it does take time/resources
+    - This is for neatness and to allow you to select specific submodules to import, since importing does take time/resources
     - Example, maybe have separate modules for accessing different image files, so image module and jpeg/png/bmp submodules
     - Will not go into detail such as creating one, won't be necessary here, easy to learn from docs
     - But to import, use dot syntax to access submodules, e.g. import image.png
     - Need to write entire path as prefix
-    - In some cases, might use from image import png, so prefix is shorter, still makes sense, won't pollute
+    - In some cases, might use "from image import png", so prefix is shorter, still makes sense, won't pollute
 
-- Scope and variables
+- Scope and variables - 12 mins
     - Briefly going to go over a couple more things before we move onto another Pygame exercise
     
-    - *Draw diagram*
+    - *Draw diagram with syntax, put boxes around regions of scope*
     - When you're inside a method, you can create variables
     - Only accessible inside this method and no need for prefix
     - This is called the local scope and the variable actually gets added to a namespace belonging to the method
@@ -69,7 +70,7 @@ Time: 70 mins
     - *Show global.py, demonstrate read and write to global from local and how to fix*
     - By default, write to variable creates it in the local scope
     - And reading will try local scope, then try global scope, inside -> out
-    - global keyword allows you to write to the global scope, main thing that can trip you up
+    - global keyword allows you to write to the global scope, something that can commonly trip you up
     - Can also access a module's variables from another module, but need the prefix (unless you import it)
 
     - There are also other levels of scope
@@ -84,30 +85,28 @@ Time: 70 mins
     - *Demonstrate, OptimusPrime gets jetpack in second movie*
     - I don't use this, prefer to define any data fields in the constructor, rather than having random fields pop up in the middle
 
-- Exercise 2b:
+- Exercise 2b: - 18 mins
     - Give you experience with using modules and reading the docs for some of them
     - You will be filling in parts of a standard tank game: turn-based, choose angle and power
 
+    - 6 mins
     - *Draw following on board*
     - There is a module called sys, that provides variables and operations related to the Python interpreter
     - sys has an object called stdin, which allows you to get input typed into the interpreter or the command line
     - stdin has a readline() method that waits for the user to type input and then press enter, and then returns this as a string
-    - First task is to set up the import, then use this twice to get angle and power from user. Store as integers by using int() on the value returned
-    - *Demonstrate call to int and readline, show update method*
+    - First task is to set up the import, then use this twice to get angle in degrees and power from user. Store as integers by using int() on the value returned
+    - *Demonstrate call to int and readline, then show update method*
     - Can experiment first, then add code to update method to prompt user to enter the values. Print values out to ensure you got them
 
+    - 5 mins
     - Currently tanks have a fixed position
     - Use the random module to place them between 50 and 150 from sides of the screen
-    - Google "python random" to find out about the module and look for a method to do this
-    - Then modify call to the super call in tank.py to use this position, *show where*
+    - Google "python random", use first link to find out about the module and look for a method to get a random integer
+    - Then modify call to the super call in tank.py to use this position, *show where call is*
 
-    - Currently angle and power make no difference to projectile
+    - 6 mins
+    - Currently angle and power user enters make no difference to projectile
     - Modify constructor of Projectile to take angle and power, then use math.cos and math.sin calculate xVel and yVel
     - *Draw diagram*
-    - Also add gravity to projectile, will leave that for you to work out
-
-    - *Add the following if time permits*
-    - Also want to add some random horizontal wind to projectile every turn:
-        - Generate a random floating point number between 0 and 0.1
-        - Every time update gets called, subtract xVel times this number from xVel
-    - I leave it to you where you want to add it
+    - Will need to import the math module, will need to convert degrees to radians so need math.pi too, 
+    - Also add some gravity to projectile, will leave that for you to work out

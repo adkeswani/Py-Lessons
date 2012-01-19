@@ -1,8 +1,8 @@
-Time: 100 mins
+Time: 90 mins
 
 *Explain syntax as you type*
 
-- Class definition:
+- Class definition: - 5 min
     - Going to create a Vehicle class
     - New file, vehicle.py, could be dinosaur.py, but more understandable this way, other languages require it
     - Code we write for a class is called the class definition
@@ -16,7 +16,7 @@ Time: 100 mins
             - Opening line ends in colon and all code inside is indented
             - Helps keep things looking neat and Python will complain without it
 
-- Constructor:
+- Constructor: - 10 min
     - Next part of class definition is a method called the constructor
     - Sets default values of instance's data fields, *examples*:
         - Number of wheels Vehicle has
@@ -33,7 +33,7 @@ Time: 100 mins
         - self:
             - *Ask someone to guess what self is*
             - Refers to the instance of the class
-            - First argument to every method
+            - First argument to EVERY method
             - We use it here to set default values of data fields
         - super call, will make a lot more sense when I explain subclassing, for now, it is magic
         - Data fields
@@ -45,21 +45,17 @@ Time: 100 mins
                 - Number of wheels - integer
                 - inDisguise - Boolean, True or False, remember the capitals
                 - modelName - String, just put "" or '' around it
+                - fuelCapacity - float, indicated by decimal point
                 - *Ask for others*
 
-- The Python Interpreter:
+- The Python Interpreter: - 5 min
     - Test our class
     - Ensure we're in the same directory as vehicle.py
-    - The interpreter:
+    - *Start the interpreter*:
         - Runs your Python program
         - Can also write code directly into it
-        - Technical sidetrack, *ask if anyone's interested, see how time is going*
-            - Sometimes we compile, i.e. transform straight to machine code
-            - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
-            - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
-            - Same language can be implemented in different ways, e.g. there are interpreters for C, normally we think of it as compiled
-            - Similarly different implementations of Python use different approaches, most common is bytecode compilation
-    - import, for now think of it as loading the file, no .py extension
+        - *Do import*
+        - import, for now think of it as loading the file, in this case want vehicle.py, no .py extension, 
     - Instantiating a class:
         - First, write name of file we import, then dot, then write name of class then brackets
         - File at start required because that is where class was defined
@@ -71,17 +67,18 @@ Time: 100 mins
         - No need for file name at start, because v was defined here, not in that file
         - Interpreter automatically prints the value
         - Do the same with v, shows the class and a hex number. This is an id that Python associates with every object, and in the most common version of Python, its location in memory
-    - Later we'll see how to do all this automatically
+    - Later we'll see how to do all this using a main method
 
-- Arguments to constructor:
+- Arguments to constructor: - 3 mins
     - Current constructor is not flexible
     - Add more arguments to the constructor for all data fields
-    - *Demonstrate in interpreter, reiterate need for file name at start for constructor, show error when missing arguments*
+    - Now instead of a specific value, just use the argument names
+    - *Demonstrate in interpreter, reiterate need for file name at start for constructor, show error when no arguments/missing arguments*
 
 - *Ask if any questions so far*
 
-- Exercise 1a:
-    - In a new file, write a new class definition for the SpeedCamera class
+- Exercise 1a: - 7 mins
+    - In a new file, speedCamera.py, write a new class definition for the SpeedCamera class
     - In its constructor, take 4 arguments: 
         - A speed limit for vehicles with < 2 wheels
         - For 2 wheel vehicles
@@ -89,21 +86,23 @@ Time: 100 mins
         - And 4 or more wheels vehicles
     - Store all of them in data fields with understandable names
     - Create a SpeedCamera in interpreter, prints its limit, change its limit
+    - Will give you 5 minutes
     - *Demonstrate and explain*
 
-- Methods, print and conditions:
+- Methods, print and conditions: - 10 min
     - Make it do something, add other methods, getMaxSpeed, isTransformer, printMe
-    - getMaxSpeed syntax:
+    - getMaxSpeed syntax: - 2 mins
+        - Similar to the constructor
         - def followed by method name
         - self must be the first argument
         - colon and indent
         - Use random formula to convert speed to maxSpeed, demonstrate operators, especially powers
         - return keyword is used for returning values from a method
-    - isTransformer syntax:
+    - isTransformer syntax: - 1 min
         - Same method syntax, def, method name, self
         - Same colon and indent
         - Now we just return inDisguise, if it is inDisguise, it is a transformer
-    - printMe syntax:
+    - printMe syntax: - 5 min
         - Same again, def, method name, self
         - *Include 3 Boolean arguments to print each type of info*
         - if statement == if keyword, then condition, then the colon and indent, because this is a block of code
@@ -125,45 +124,41 @@ Time: 100 mins
         - Note: elif allows you to check another condition, will keep going until a match is found or an else. If no else, none executed
         - Note: each new print starts on a new line
 
-- Calling methods:
+- Calling methods: - 3 min
     - *Start interpreter, import, create Vehicle, call each method*
     - Note: did not pass in any self argument, no need to do this when method is called from an instance of the Class
-    - Alternative way of calling methods:
-        - file name, dot, class name, dot, method name, then pass in a "self", i.e. an instance
-        - We need file name and class name because that is where the method is defined
-        - No need to use this method of calling, but keep in mind how we use dot syntax to access things defined elsewhere
 
-- Exercise 1b:
+- Exercise 1b: - 8 min
     - vehicle.py has what we've written up to here
     - Write an isOverLimit method in SpeedCamera:
         - Takes a Vehicle as an argument
-        - Checks its number of wheels and its speed (use the dot syntax to read these)
+        - Checks its number of wheels and its speed (use conditions and dot syntax to read fields)
         - If it is over the limit for that number of wheels, prints "Over limit by: " and the amount it is over limit by, and returns True
         - If not over limit, print "Under limit by: ", amount it is under limit by, and returns False
-    - Create some Vehicles in interpreter, create a SpeedCamera, test it out
+    - Create some Vehicles in interpreter, create a SpeedCamera, test it out, making sure to import both speedCamera and vehicle files
     - *Demonstrate and explain solution*
 
-- Exercise 1c:
+- Exercise 1c: - 12 min
     - Pygame example, not going into specifics, but more fun
-    - *Run game, then open file*:
+    - *Run game, then open file, highlight as you go*
         - Going to implement space invaders-like thing. Some code you won't recognise, but ignore it, will do what we can with existing skills
-        - Current Invader constructor, x and y control position (0,0) is top-left, image is loaded by filename, direction controls which way the invader moves
+        - Current Invader constructor, x and y control starting position, where (0,0) is the top-left corner, image is loaded by filename, direction controls which way the invader moves
         - You will need to modify the constructor and its arguments
-        - createInvaders uses a for loop, will explain the syntax later, loops 10 times to create all the invaders, see how i becomes a variable
-        - update gets called once every frame, as you can guess it moves the invaders and switches direction once it hits border
-        - You'll notice syntax for comments here, just put hash in front of the line
-        - Tasks:
-            - Create 3 rows of 10 invaders, like in Space Invaders
-            - Stop the invaders just before hitting edge of screen, rather than going through it
-            - Make each row of invaders have a different image, *show images available*
-            - Make the invaders move down and speed up when they hit either border
+        - You'll notice syntax for comments here to mark where you need to work, just put hash in front of the line
+        - createInvaders uses a for loop, will explain fully later but you can probably understand it, loops 10 times to create all the invaders, *show how i becomes a variable*
+        - Tasks: - 4 min
+            - First, create 3 rows of 10 invaders, like in Space Invaders, can do this with 3 constructors instead of 1
+            - Make each row of invaders have a different image, *show images available*, will need to modify constructor
+        - update gets called once every frame, as you can guess it moves the invaders, *show where* and switches direction once it hits border, *show where*
+        - Tasks: - 4 min
+            - Make the invaders move down and speed up when they hit either border, will need to add extra speed data field in the constructor
 
-- and, or, not:
+- and, or, not: - 3 min
     - *Ask who is familiar with Boolean operations*
     - Can combine conditions with Python's Boolean operations
-    - *Change code from exercise 1b and Vehicle to demonstrate*
+    - *Change code from printMe to demonstrate, use and for 
 
-- Subclassing:
+- Subclassing: - 12 mins
     - Remember, subclassing == create specialised versions based on a parent class
     - Will create subclass OptimusPrime, *ask if everyone knows Optimus Prime*
     - To create subclass, same class keyword, but brackets and parent class afterwards
@@ -194,14 +189,14 @@ Time: 100 mins
     - *Override maxSpeed method and demonstrate*
     - Can override existing behaviours just by writing method with same name
     - *Call parent's maxSpeed and demonstrate*
-    - As mentioned earlier, super can be used to call any of parent's methods
-    - *Change type returned by maxSpeed to "banana", demonstrate error*
-    - Other languages would prevent you overriding and returning a different type, will explain why Python is different shortly
+    - As mentioned earlier, super can be used to call any of parent's methods, so we can use parent's results if we want
+    - *Change type returned by maxSpeed to "banana", demonstrate error* - This and below is optional
+    - Other languages would prevent you overriding and returning a different type, will explain why Python is different later on
     - *Ask if anyone knows another mechanism to prevent this*
-    - Private, would prevent us overriding. Would use it because another class, SpeedCamera, depends upon maxSpeed's output
-    - Will explain in code soon
+    - Private access control, would prevent us overriding. Would use it because another class, SpeedCamera, depends upon maxSpeed's output
+    - Will explain access control in code soon
 
-- Exercise 1d:
+- Exercise 1d: - 10 mins
     - Update method controls movement
     - Task:
         - In same file create a subclass of Invader called VerticalInvader
@@ -213,8 +208,7 @@ Time: 100 mins
             - Square
     - *Demonstrate solution, DarthInvader, diamond?*
 
-- *Ask: Can anyone guess what 1c and 1d were for?*
-- Demonstrate constructors vs. subclassing
-- When it is a simple difference, e.g. different images, just put it in constructor
-- For complicated differences, e.g. different movement, subclass and override the method
-- It will depend on how you want to design it
+    - Exercise 1c and 1d were intended to demonstrate constructors vs. subclassing
+    - When it is a simple difference, e.g. different images, just put it in constructor
+    - For complicated differences, e.g. different movement, subclass and override the method
+    - It will depend on how you want to design it

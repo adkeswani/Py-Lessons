@@ -1,4 +1,6 @@
-- Types are classes:
+Time = 85 mins
+
+- Types are classes: - 5 mins
     - Going to look at Python's built-in data types, incl. more detail about ones you know and some new ones
     - Before we do that, will first explain an important concept
     - *Open interpreter, use the float is_integer() method on a float*
@@ -10,7 +12,7 @@
     - Remember that dir() shows us all attributes and methods, here are a float's
     - Reason I'm telling you this is that the other types have similar methods, will see them as we go through the types
 
-- Basic types:
+- Basic types: - 6 mins
     - *Open http://docs.python.org/library/stdtypes.html*
     - Python website has documentation for most things, incl. built-in types
     - Booleans:
@@ -20,13 +22,14 @@
         - We've seen integers and floats
         - Here we see the operations available, abs gives you absolute value
         - Can also convert things into these numeric types, e.g. int("5"), int(5.0) give 5, same for float
-        - Python also has complex numbers, can create using complex(re, im)
+        - Python also has complex numbers, can create using complex(re, im), but not going into those today
         - Note 1 is important, integer division always gives an integer and rounds towards -infinity, common mistake to expect a float
             - // does the same, but for other types, will not necessarily return integer though
-        - Also have bit operations on integers, do you know how an integer can be represented as bits? Does operations on these bits
-        - Then there are some extra methods that numeric types have, can read through later
+        - Also have bit operations on integers, do you know how an integer can be represented in binary, performs operations on the bits
+            - For negative numbers, performs operation as though it was positive, and returns negative of that
+        - Then there are some extra methods that numeric types have, *skim*
 
-- Sequence types - lists:
+- Sequence types - lists: - 10 mins 
     - Will skip over some types and move onto sequence types
     - Obviously store sequences of data
     - *Open interpreter, demonstrate creating a list of assorted types incl. another list*
@@ -36,7 +39,7 @@
     - There are some built-in methods that work on lists
         - To get length of list use len(list)
         - To get min and max, use min(list) and max(list)
-    - Again, as objects, lists have other methods, *demonstrate, create 2 lists, consult stdtypes page*
+    - Again, as objects, lists have other methods, *demonstrate, create 2 lists, consult stdtypes page, skip if time insists*
         - Append, adds object in brackets to end of list as a single item, even if it's a sequence
         - Extend, adds items from a sequence in brackets to end of list
         - Count, number of occurrences
@@ -45,26 +48,29 @@
         - Remove, just deletes element at given index
         - Pop, deletes the element at the index and returns it to you. No argument pops last element
         - Reverse, obvious
-        - Sort, sorts the list in place, i.e. doesn't return a new list, alters this one, will talk more about this later
+        - Sort, sorts the list in place, i.e. doesn't return a new list, alters this one, careful it returns None, not a sorted copy of list
     - So lists are quite versatile, if you're used to arrays then lists make things a lot easier
 
-- in keyword, for loops and while loops
+- in keyword, for loops and while loops - 15 mins
     - Now that we have lists, we can use some more keywords and control structures 
 
+    - 2 mins
     - Sequences support the in keyword
     - This returns a boolean, whether or not a given item is in the sequence
     - *Demonstrate with no spoon example*
     - Also, normally we'd use "not a in b", but Python gives use "a not in b" to sound more English-like
 
+    - 4 mins
     - Finally we get loops, starting with for loop
-    - Different to how it's used in other languages, usually have a counter, runs the loop N times
-    - Python uses for loop to loop, or iterate, through sequences and other iterable objects
+    - Different to how it's used in other languages, where we usually have a counter, runs the loop N times
+    - Python uses for loop to loop through sequences
     - Syntax, *demonstrate with squarer.py*:
         - for keyword, variable, in keyword, sequence, then usual colon and indent
         - Goes through sequence from beginning to end and the variable contains the current object
         - No need for any variable++ or next keyword at the end
         - Works on sequences, so strings, lists, tuples, this means they are "iterable", later will talk about making other objects iterable
 
+    - 4 mins
     - Can also get the traditional for loop using range, briefly saw in invaders exercise
     - range can return lists of consecutive numbers, *demonstrate just a range call*
     - Can use this in for loops by putting range(N) as the sequence, N == number of times to loop
@@ -74,11 +80,17 @@
         - *Demonstrate range(start, end)*
         - *Demonstrate range(start, end, step)*
     
+    - 2 mins
     - while loops are similar to those in other languages, while keyword then condition, *demonstrate with printpop*
     - Very similar to if statements, no brackets needed, needs the colon and indent
     - Note how we use the feature that an empty list is considered false
+
+    - 2 mins
+    - Also a couple of other keywords inside loops
+    - break completely breaks out of a loop from wherever it is at the moment
+    - continue skips the rest of the current iteration and goes to the next one
    
-- Exercise 3a:
+- Exercise 3a: - TODO, est. 15 mins
     - Then exercise with sorts
         - Graphical using pygame
         - After each step it returns the list in its next form
@@ -89,17 +101,17 @@
         - Make the constructor take in a list, but get them to create it using shuffle
         - May want to test on its own, on a smaller list first
 
-- More sequence types - tuples and strings
+- More sequence types - tuples and strings - 13 mins
     - Another sequence type is the tuple, *demonstrate, try and change it too*
     - Similar to lists, store sequences of any types, but constructed using () and items cannot be added/replaced/removed from it
-    - None of the methods to change a list apply, *demonstrate*, but can still read its elements, count occurrences, use in, etc., *demonstrate*
+    - None of the methods to change a list apply, *demonstrate with sort*, but can still read its elements, count occurrences, use in, etc., *demonstrate in*
     - Note: although you can't remove/add/replace items in tuples, the internal parts of these items can still be changed, *demonstrate on a list*
     - Can construct without brackets, *demonstrate* but sometimes necessary to ensure it's understood as a tuple (e.g. nesting a tuple inside a tuple)
 
-    - When to use tuples and lists?
+    - When should you use tuples if lists are so powerful?
     - Tuples used where you want some sort of structure, e.g. (page number, line number), (x, y, z) which wouldn't make as much sense with a list
         - In our Pygame examples, tuples have been used to pass the width and height of sprites around, like the invaders
-        - Can also use tuples to store record, since the items the record contains aren't going to change:
+        - Can also use tuples to store records, since the items the record contains aren't going to change:
             - Python has a namedtuple type which lets you give and use names to refer to items in the tuple, look it up if interested
     - Meanwhile, when you know you're going to be adding/removing items, e.g. all of enemies visible on screen, then use a list
 
@@ -108,47 +120,50 @@
     - *Demonstrate: x, y, z = t and [x, y, z] = l
     - This is commonly used in return values, *demonstrate with unpacking.py*
 
-    - Can use some operators on sequences
+    - Can also use some operators on sequences
     - *Demonstrate + and * *
     - + returns a new list where 1st extended by 2nd, * returns a new list where original is repeated N times
 
     - Can also convert things into lists and tuples, so like int(), there is list() and tuple()
     - Can use to convert between lists and tuples, or can pass in other sequences like strings
 
-    - Strings we've already seen are also a sequence type, a sequence of characters
+    - Speaking of which, strings we've already seen are also a sequence type, a sequence of characters
     - They use the "" or '' constructor instead
     - Like tuples, they cannot be changed, *demonstrate*, and have the same methods, *demonstrate count, +, *, index*
     - Can convert other types into strings using str(), *demonstrate*
     - Strings have a lot of special methods, *show http://docs.python.org/library/stdtypes.html*
     - Some useful ones, *demonstrate split, lower/upper, replace*
 
-- Dictionaries
-    - *Ask what a dictionary is*. Gives words and their meanings, it is a "mapping" from words to their meanings
+- Dictionaries - 6 mins
+    - A dictionary as it stands gives words and their meanings, it is a "mapping" from words to their meanings
     - *Draw diagram showing a mapping*
     - Dictionaries in Python are similar, but allow you to map any type of object to any other type of object
     - Syntax, *demonstrate in interpreter with multiple types*
         - Curly brackets, then a comma-separated list of pairs, where a pair has an object, then a colon, then another object
-    - Left object is key, right object is value, together called a key-value pair
+    - Left object is key, right object is value, together called a key-value pair. 
     - Like words in a real dictionary, you look up the key to get the value, so in a real dictionary keys are words, values are their meanings
     - But here the key and value can be of any type, we could use a Vehicle if we wanted to
     - *Open http://docs.python.org/library/stdtypes.html*, shows methods for dictionaries, e.g. *demonstrate in interpreter*:
+        - To access an item, looks like a list, [], but use key rather than index, this is used to retrieve and also add items to a dictionary
         - Other ways to construct a dictionary
         - Can get the number of key-value pairs with len
-        - To access an item, looks like a list, [], but use key rather than index, this is used to retrieve and also add items to a dictionary
         - in and not in still work to see if a key exists
         - pop(key) is like pop on a list, removes key-value pair with the specified key and returns the value
         - items() returns a list of key-value pairs, each as a tuple, keys() returns list of keys, values() returns list of values
             - Show items() note, unlike sequence types, order of items is not same as they were inserted
-            - A common task is looping through the items in a dictionary, *demonstrate with 
+            - A common task is looping through the items in a dictionary, *demonstrate with cookies.py*, note the order is not same as insertion order
+            - To have them sorted instead, *add sorted()*
+            - Remember, sort returns None can't use it here, so we use Python's built-in method called sorted that returns a sorted copy of any sequence
     - Dictionaries, used when you need to be able to look up items using some sort of key, like a name:
         - e.g. To create a database of students, might use the student id as they key, store records as tuples, can look up by id
 
-- Exercise 3b:
+- Exercise 3b: - 11 mins, incl. soln.
     - Going to use dictionaries to implement a simple substitution cipher
     - In this cipher, the 26 lower case letters will be mapped to the same 26 letters shuffled
     - To encode, replace letter with the one it is mapped to, to decode, the reverse
-    - Punctuation and whitespace will be left the same encoded or decoded
     - You will write the SubCipher class, its constructor will take 2 lists, the original letters and the letters they map to
     - Will have an encode and decode method that take a string and return the encoded/decoded string
     - This is in the subcipher.py file. Also, change the call to the constructor so the 2nd list is randomly shuffled
-    - I recommend using 2 dictionaries and for loops, will also need to account for punctuation
+    - I recommend using 2 dictionaries, 1 for encoding, 1 for decoding. Set these up in constructor using a for loop with range
+    - Also use for loops in the encode/decode methods to scan through the string
+    - Ignore punctuation using the in keyword to skip if its not in the dictionary.

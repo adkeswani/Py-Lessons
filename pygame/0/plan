@@ -30,10 +30,10 @@
     - Next, we need to set up a window or the entire screen to display the game
     - Do this using pygame's display submodule
     - *Open http://www.pygame.org/docs/ref/display.html*
-    - Will quickly show you the docs for this, available from pygame.org site
+    - pygame.org has documentation for all its modules, so under display submodule, *find set_mode*
     - pygame.display.set_mode sets up your display, must be called before you can draw anything
     - takes a resolution, which is a tuple containing width and height, using 0 for either will default to the current screen's width and height
-    - Resolution defines how many pixels you have to draw on, so 50 * 50 will mean you have 50 by 50 pixels in which you ccan position things
+    - Resolution defines how many pixels you have to draw on, so 50 * 50 will mean you have 50 by 50 pixels in which you can position things
     - Also takes flags to choose what kind of window you want:
         - Fullscreen makes game fullscreen, it doesn't always stretch the drawing area to fit, it does its best. So 800 * 600 on a 1024 * 768 current resolution will stretch, but 50 * 50 won't
         - NoFrame and Resizable give you draggable windows, where noFrame obviously isn't resizable. From what I've seen, Pygame won't stretch the game if you change the window size
@@ -42,18 +42,42 @@
     - Depth controls colour depth, number of bits used to represent colours. Usually can ignore it, Pygame automatically chooses the fastest for the current system
     - Return value is a Surface, which I will describe shortly
 
-    - Lastly we have a while loop to keep game running
+    - Lastly we have a while loop to keep game running and some event code that I will also get to shortly
     - *Run it, blank screen*
 
 - *Ask, any questions so far*
 
-- Drawing background and RGB
+- Surfaces and drawing a background
+    - set_mode returns a Surface object
+    - A Surface is a canvas, a piece of paper, something to draw on
+    - Can fill it with a colour, load images onto it, copy its contents onto another surface, and set and read colours of pixels
+    - *Open surfaces.py*
+    - We'll create a background surface to demonstrate
+    - Class is Surface, so constructor is pygame.Surface, required argument is tuple with width and height of surface
+    - We then call convert() on this:
+        - Converts the Surface so it best matches current display settings, such as colour depth
+        - Otherwise every time Surface is drawn onto the display, would need to convert along the way, slow
+    - And we have a surface
+    - To fill a surface, fill method with RGB color as argument, *ask if everyone knows rgb*, numbers range from 0 to 255
+    - To display this surface, must draw it to the screen
+    - Surface returned by set_mode is special, anything we draw to it will be drawn to screen
+    - To get this surface, can call pygame.display.get_surface as shown
+    - To copy from one surface to another is called blitting
+    - Method is called from the destination surface, takes the source surface and a tuple containing x and y position of where to copy it to
+    - This brings up Pygame's coordinate system, (0,0) is top-left corner of a surface, positive is to the right and down
+    - x,y tuple says where to put top-left corner of the source surface, so (0,0) puts it in the top-left corner of destination
+    - Finally, to update screen to reflect what was just copied onto display surface, we call flip
+    - *Run it, blue square*
+    - So process was, create surface, draw something on it, blit it to screen, flip the screen
 
-
-
-    - Double-buffering
-    - Clock and frame rate
-
+- Clock and frame rate
+    - So that we can do a somewhat interesting exercise, will introduce frame rate now
+    - Frame rate is how many frames are shown per second, for games usually 30 to 60 frames per second
+    - Pygame has a Clock class for handling frame rate
+    - *Open rainbow.py*
+    - Clock is in the time submodule of pygame, so constructor is just pygame.time.Clock()
+    - This class can create a delay so that frame rate never exceeds a
 
 - Exercise 0a:
-    - Animated rainbows!
+    - Leads us to first exercise
+    - First, change to a resizable, 1000 * 500 resolution window

@@ -44,7 +44,8 @@ class Game(object):
     #TODO Exercise 1c:
     def createInvaders(self):
         for i in range(0,10):
-            self.invaderSprites.add(Invader((INVADER_WIDTH + INVADER_GAP) * i, SCREEN_HEIGHT / 2))
+            inv = Invader((INVADER_WIDTH + INVADER_GAP) * i, SCREEN_HEIGHT / 2)
+            self.invaderSprites.add(inv)
 
     def start(self):
         self.doGameLoop()
