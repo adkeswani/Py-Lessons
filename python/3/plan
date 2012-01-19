@@ -8,7 +8,7 @@
     - And the type of a value is actually its class
     - *Demonstrate dir(x) on float*
     - Remember that dir() shows us all attributes and methods, here are a float's
-    - The other types also have methods like is_integer, will see them as we go through the types
+    - Reason I'm telling you this is that the other types have similar methods, will see them as we go through the types
 
 - Basic types:
     - *Open http://docs.python.org/library/stdtypes.html*
@@ -33,7 +33,9 @@
     - Start with lists, to create a list, just put comma-separated items between square brackets
     - As you can see, stores multiple types at same time
     - To access items, can use list[index], where 0 is first element
-    - To get length of list use len(list)
+    - There are some built-in methods that work on lists
+        - To get length of list use len(list)
+        - To get min and max, use min(list) and max(list)
     - Again, as objects, lists have other methods, *demonstrate, create 2 lists, consult stdtypes page*
         - Append, adds object in brackets to end of list as a single item, even if it's a sequence
         - Extend, adds items from a sequence in brackets to end of list
@@ -90,11 +92,15 @@
 - More sequence types - tuples and strings
     - Another sequence type is the tuple, *demonstrate, try and change it too*
     - Similar to lists, store sequences of any types, but constructed using () and items cannot be added/replaced/removed from it
-    - None of the methods to change a list apply, *demonstrate*, but can still read its elements, count occurrences, etc., *demonstrate*
+    - None of the methods to change a list apply, *demonstrate*, but can still read its elements, count occurrences, use in, etc., *demonstrate*
     - Note: although you can't remove/add/replace items in tuples, the internal parts of these items can still be changed, *demonstrate on a list*
     - Can construct without brackets, *demonstrate* but sometimes necessary to ensure it's understood as a tuple (e.g. nesting a tuple inside a tuple)
 
+    - When to use tuples and lists?
     - Tuples used where you want some sort of structure, e.g. (page number, line number), (x, y, z) which wouldn't make as much sense with a list
+        - In our Pygame examples, tuples have been used to pass the width and height of sprites around, like the invaders
+        - Can also use tuples to store record, since the items the record contains aren't going to change:
+            - Python has a namedtuple type which lets you give and use names to refer to items in the tuple, look it up if interested
     - Meanwhile, when you know you're going to be adding/removing items, e.g. all of enemies visible on screen, then use a list
 
     - We've seen how to construct lists and tuples
@@ -105,23 +111,22 @@
     - Can use some operators on sequences
     - *Demonstrate + and * *
     - + returns a new list where 1st extended by 2nd, * returns a new list where original is repeated N times
-    - TODO: EQUALITY??
 
     - Can also convert things into lists and tuples, so like int(), there is list() and tuple()
     - Can use to convert between lists and tuples, or can pass in other sequences like strings
 
-    - Strings are also a sequence type, a sequence of characters
+    - Strings we've already seen are also a sequence type, a sequence of characters
     - They use the "" or '' constructor instead
     - Like tuples, they cannot be changed, *demonstrate*, and have the same methods, *demonstrate count, +, *, index*
-    - Escape characters?
-    - str()
+    - Can convert other types into strings using str(), *demonstrate*
     - Strings have a lot of special methods, *show http://docs.python.org/library/stdtypes.html*
+    - Some useful ones, *demonstrate split, lower/upper, replace*
 
 - Dictionaries
     - *Ask what a dictionary is*. Gives words and their meanings, it is a "mapping" from words to their meanings
     - *Draw diagram showing a mapping*
     - Dictionaries in Python are similar, but allow you to map any type of object to any other type of object
-    - Syntax, *demonstrate in interpreter*
+    - Syntax, *demonstrate in interpreter with multiple types*
         - Curly brackets, then a comma-separated list of pairs, where a pair has an object, then a colon, then another object
     - Left object is key, right object is value, together called a key-value pair
     - Like words in a real dictionary, you look up the key to get the value, so in a real dictionary keys are words, values are their meanings
@@ -133,8 +138,10 @@
         - in and not in still work to see if a key exists
         - pop(key) is like pop on a list, removes key-value pair with the specified key and returns the value
         - items() returns a list of key-value pairs, each as a tuple, keys() returns list of keys, values() returns list of values
-            - Show items() note, order of items is not same as they were inserted
-            - Common thing is to, for loop, sorted keys, lalala
+            - Show items() note, unlike sequence types, order of items is not same as they were inserted
+            - A common task is looping through the items in a dictionary, *demonstrate with 
+    - Dictionaries, used when you need to be able to look up items using some sort of key, like a name:
+        - e.g. To create a database of students, might use the student id as they key, store records as tuples, can look up by id
 
 - Exercise 3b:
     - Going to use dictionaries to implement a simple substitution cipher
