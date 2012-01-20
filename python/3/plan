@@ -91,7 +91,7 @@ Time = 95 mins
     - continue skips the rest of the current iteration and goes to the next one
    
 - Exercise 3a: 20 mins
-    - Going to see sorts in action
+    - Going to practice lists by doing some sorting
     - *Demonstrate sorter.py*
     - Currently this shows a bubble sort in action, each step on a shuffled list of 100 integers
     - You're going to change the nextStep method to do a selection sort instead
