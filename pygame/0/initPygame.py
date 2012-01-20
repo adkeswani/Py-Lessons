@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 
 pygame.init()
-pygame.display.set_mode((0,0), FULLSCREEN)
+pygame.display.set_mode((0,0))
 
 while True:
     for event in pygame.event.get():

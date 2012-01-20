@@ -1,4 +1,4 @@
-Time = 90 mins
+Time = 95 mins
 
 - Types are classes: - 5 mins
     - Going to look at Python's built-in data types, incl. more detail about ones you know and some new ones
@@ -90,16 +90,16 @@ Time = 90 mins
     - break completely breaks out of a loop from wherever it is at the moment
     - continue skips the rest of the current iteration and goes to the next one
    
-- Exercise 3a: - TODO, est. 15 mins
-    - Then exercise with sorts
-        - Graphical using pygame
-        - After each step it returns the list in its next form
-        - OK, will do
-        - Use a stub that just returns a range
-        - Will subclass to get different sorts
-        - Give people each a different one
-        - Make the constructor take in a list, but get them to create it using shuffle
-        - May want to test on its own, on a smaller list first
+- Exercise 3a: 20 mins
+    - Going to see sorts in action
+    - *Demonstrate sorter.py*
+    - Currently this shows a bubble sort in action, each step on a shuffled list of 100 integers
+    - You're going to change the nextStep method to do a selection sort instead
+    - Yes, we could subclass, but this saves time
+    - *Ask if everyone knows selection sort*
+    - In each step, I want you to find the minimum, put it at the beginnning, and just do nothing once all sorted
+    - I want you to use for loops to find the minimum, not the min method
+    - You can add or remove data fields from constructor if you need to
 
 - More sequence types - tuples and strings - 13 mins
     - Another sequence type is the tuple, *demonstrate, try and change it too*

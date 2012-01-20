@@ -1,5 +1,51 @@
-- Do this when we get to sounds
-- if pygame.mixer
-- sound quality
+Todo:
+    - Loading images
+        - Alpha and Convert_alpha()
+        - Colorkey
+        - Drawing them to screen
+        - Exercise/demos:
+            - Get background on
+            - A colorkey example?
+            - Exercise??? 
 
-Try and do the collisions, balls splitting apart, rejoining
+    - ADD TRANSFORMS AND RECTS TO ONE OF THESE!
+
+    - Sprites
+        - Explain how we'd do full screen updates
+        - Give better alternative
+        - Draw, update, clear
+        - All different types of sprites/groups
+        - Exercise:
+            - Get them to animate stuff bouncing around randomly
+                - Get it to spin, grow, shrink
+    - Input
+        - Event code
+        - Keyboard input
+        - mOuse input
+        - Exercise:
+            - Hook input up to ship
+            - Add momentum
+            - Give ship animation
+
+    - Collisions
+        - All different types
+        - What's actually happening in background
+        - Exercise:
+            - Try and do the collisions, collectables splitting apart, rejoining
+
+    - Sound
+        - Loading
+        - Playing
+        - if pygame.mixeer
+        - Exercise:
+            - Add sound to collision
+
+    - Final game
+        - A platformer
+        - Will have to create sprites for this
+        - Make one team create the game, will have to create custom collisions or something
+        - Make one team create an editor
+            - This will involve files and stuff
+            - And different mouse inputs
+        - Let them do a lot of the planning
+        - A few hints

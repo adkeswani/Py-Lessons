@@ -1,15 +1,15 @@
 import pygame
 from pygame.locals import *
 
-BACKGROUND_COLOUR = (0, 0, 170)
+BACKGROUND_COLOUR = (0, 0, 170.4)
 
 pygame.init()
-pygame.display.set_mode((0,0), FULLSCREEN)
+pygame.display.set_mode((0,0))
 screen = pygame.display.get_surface()
 
-background = pygame.Surface((100, 100)).convert()
-background.fill(BACKGROUND_COLOUR)
-screen.blit(background, (0,0))
+surf = pygame.Surface((100, 100)).convert()
+surf.fill(BACKGROUND_COLOUR)
+screen.blit(surf, (0,0))
 pygame.display.flip()
     
 exited = False

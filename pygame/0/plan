@@ -1,3 +1,5 @@
+Time: 50 mins
+
 - Prior setup:
     - Set displays to mirrored
     - NEVER use FULLSCREEN in Pygame
@@ -6,7 +8,7 @@
     - Take cups up with lunch
     - Slide keys under Brad's door, give cards to Beth to return
 
-- Introduction:
+- Introduction: - 2 min
     - Introductions, volunteers and myself
     - Aim: To teach you about Pygame, a set of modules built for writing games
     - These include modules for sounds, sprites, frame rate, handling input, setting up the display == everything you need for a 2D game
@@ -25,7 +27,7 @@
     - Set up zoom on my screen
     - Navigating around the filesystem on terminal, explain directories and plan file
 
-- Initializing Pygame
+- Initializing Pygame - 8 mins
     - *Open initPygame.py*
     - First thing is to import pygame module
     - We also do an import from pygame.locals. This contains constants used by pygame.
@@ -53,12 +55,11 @@
 
 - *Ask, any questions so far*
 
-- Surfaces and drawing a background
+- Surfaces and drawing a background - 7 mins
     - set_mode returns a Surface object
     - A Surface is a canvas, a piece of paper, something to draw on
     - Can fill it with a colour, load images onto it, copy its contents onto another surface, and set and read colours of pixels
     - *Open surfaces.py*
-    - We'll create a background surface to demonstrate
     - Class is Surface, so constructor is pygame.Surface, required argument is tuple with width and height of surface
     - We then call convert() on this:
         - Converts the Surface so it best matches current display settings, such as colour depth
@@ -76,14 +77,27 @@
     - *Run it, blue square*
     - So process was, create surface, draw something on it, blit it to screen, flip the screen
 
-- Clock and frame rate
+- Clock and frame rate - 5 mins
     - So that we can do a somewhat interesting exercise, will introduce frame rate now
     - Frame rate is how many frames are shown per second, for games usually 30 to 60 frames per second
     - Pygame has a Clock class for handling frame rate
+    - Without a frame rate, game would execute as fast as possible, and different for different computers
     - *Open rainbow.py*
     - Clock is in the time submodule of pygame, so constructor is just pygame.time.Clock()
-    - This class can create a delay so that frame rate never exceeds a
+    - This class can create a delay so that frame rate never exceeds some number of frames per second
+    - To cause that delay, using clock.tick(N), where N is frames per second
+    - This just adds a delay of 1 second divided by N
+    - This isn't very sophisticated, as after that we do all of the work, so frame rate will end up lower
+    - However, if we divide 1000 milliseconds by 30 frames, that's > 300 milliseconds per frame
+    - This is quite long compared to the processing that will be needed per frame, so change in framerate isn't huge
 
-- Exercise 0a:
+    - In this file, we also blit and flip background in each frame
+    - *Ask what this would achieve, and where we should be drawing stuff to screen*
+
+- Exercise 0a: - 20 mins with expl. and soln.
     - Leads us to first exercise
-    - First, change to a resizable, 1000 * 500 resolution window
+    - First, change to a resizable, 800 * 400 resolution window
+    - Then use a loop to create a list of 32 surfaces and get their colours using the formulae at bottom of rainbow
+    - Make them slightly smaller than 100 * 100 each, maybe 80 * 80
+    - Then in each iteration of the while loop, blit all 32 on in 4 rows of 8 so they're equally spaced
+    - In the next iteration, find a way to shift all of them along by 1

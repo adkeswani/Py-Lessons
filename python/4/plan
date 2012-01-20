@@ -77,25 +77,34 @@
 
 - File objects - 4 mins - TODO
     - There is another built in type I didn't cover, the file
-    - I don't have examples, you can code it in the next exercise
-    - To open a file, built-in called open():
-        - To read, only need filename argument
-        - To write, need ARGUMENTS?!
+    - To open a file, built-in called open(), this returns a file object
 
+    - To read, only need filename argument to open()
     - Then can read from the file in multiple ways:
-        - Using a for loop can go through its lines 1 by 1, where a line is something that ends in a newline
+        - Using a for loop can go through its lines 1 by 1, where a line is one that ends in a newline
         - *Open docs.python.org/library/stdtypes.html go to read, readline*, also other methods that can:
             - Get you specific number of bytes
-            - Get just one line (does this keep advancing the reader?)
-            - Get all lines in a list
+            - Get just one line
+            - Put all lines in a list
+        - Note that when you read from file, it advances the file forwards, so next time you read, will be from after the previous line read
+
+    - To write, you need a second argument, which is a string to say what mode to open the file in:
+        - If you send "w", it empties the file and starts writing from the beginning
+        - If you send "a", it appends to end of the file
+        - And as a sidenote, if you send "r", it opens the file for reading, but don't need this
 
     - For writing, *continue on stdtypes page*
         - Can use the file's write method to write a single string
-        - Note that strings must have \n, the character for a new line, inside it to add newlines
+        - Note that strings must have \n, the character for a new line, inside it to add newlines, *demonstrate*
+        - Otherwise keeps writing on the same line
         - Can use writelines to write each string in a sequence to the file
+    - After writing, you must call the file's flush method or its close method
+    - When you write, doesn't necessarily go to disk, might be stored in a buffer in memory first
+    - Flush flushes out this buffer, as does close
+    - When you're completely done with a file, call close on it, this frees up the resources associated with the file
 
-    - Calling flush method
-    - After done with file, must call its close method or else???
+    - There are also other modes including ones for reading and writing at the same time, binary mode for opening non-text files like images or zip files or whatever
+    - There is also a better way to open files that automatically closes files for you, it is called a context manager, I chose to teach this way as it uses more familiar syntax
 
 - Comments and Docstrings - 3 mins
     - Speaking of comments, we've seen how to do single line comments
