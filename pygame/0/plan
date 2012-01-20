@@ -1,3 +1,11 @@
+- Prior setup:
+    - Set displays to mirrored
+    - NEVER use FULLSCREEN in Pygame
+    - Put laptop with lesson open next to monitor, readable size.
+    - Tell BradH when to order pizza
+    - Take cups up with lunch
+    - Slide keys under Brad's door, give cards to Beth to return
+
 - Introduction:
     - Introductions, volunteers and myself
     - Aim: To teach you about Pygame, a set of modules built for writing games
@@ -6,18 +14,16 @@
     - Each section: Will go through the topic, ask a few questions, then coding exercises at the end
     - Ask questions: Others might be wondering the same thing and it could help everyone
 
-- Setup:
-    - Log in
+- Setup: - 7 min
+    - Everyone, be careful with cables under the desks
+    - Log in, ensure you use the correct numbered account, 00 - 09
     - Download files
-    - Opening up editor (what are we using?)
-        - Set up indenting
-        - Set up zoom on my screen
-    - Careful with cables under the desks
-    - Find a dry erase marker
-    - Opening a terminal
-    - Navigating around the filesystem 
-        - Brief detour into the Unix filesystem, *ask if anyone's interested*
-    - Explain directories and files for each section
+    - Opening up editor, *ask if people know vim*, otherwise xCode
+        - Set up indenting, *Go to Xcode menu, Preferences, Indentation, make sure tab width is 4 inserting spaces (unchecked)*
+        - Creating a new file, need to specify location and filename, usually in same folder as current lesson
+    - Opening a terminal - iTerm, I'll be using vim to edit/demonstrate
+    - Set up zoom on my screen
+    - Navigating around the filesystem on terminal, explain directories and plan file
 
 - Initializing Pygame
     - *Open initPygame.py*

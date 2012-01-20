@@ -1,8 +1,6 @@
-Prepare Pygame exercises for all lessons
-Maybe have a level editor for when we get to files
-Private stuff in lesson 3
-With the dict, have a collisons thing where balls of the same colour colliding will clump together, different colours will split apart!
-Need to teach default arguments, will do None then
-Keyword arguments - use list sort to explore this
-Pickling?
-
+Still need to cover:
+    - References - done!
+    - Immutability - done
+    - How dictionaries only do immutable - done
+    - File objects
+    - Exception handling - done!

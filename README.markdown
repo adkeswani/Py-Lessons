@@ -14,7 +14,7 @@ Each lesson will be in a separate directory containing the following:
 
 ## Time available
 
-Each day will go from 10AM to 4PM. Let's say we break for 45 mins at 12:30PM. That gives us 5:15, with maybe 45 minutes for shit happens or constipation (things taking longer than they should...). That leaves 4:30 hours for the lessons in total.
+Each day will go from 10AM to 4PM. Let's say we break for 45 mins at 12:30PM. That gives us 5:15, so with 15 mins buffer, that gives 5:00.
 
 ## Todo
 

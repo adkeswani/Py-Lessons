@@ -1,92 +1,127 @@
-- References and Copying a sequence: - 7 mins
-    - One thing I didn't mention earlier was how to copy a list or tuple
-    - *Demonstrate using references.py, ask what they expect to happen, ask how many know about pointers, draw the below on board*
+- Access control - 7 mins
+    - Remember access control was about preventing changes to data fields and overriding methods from outside the class
+    - Other languages use keywords like public and private next to the data fields and methods, then the compiler will prevent modifications
+    - In Python, we rely more on trusting that people want to use your code properly
+
+    - *Open private.py*:
+    - Syntax for private data fields and methods is to put __ in front, we'll look at __secret and showSecret first
+    - *Open interpreter, try showSecret, works as expected, try __secret, doesn't work*
+    - So we have what we want, accessible from inside only
+    - *dir the Answer, show what it has become*
+    - What it's actually done is the class is prefixed on the front, called name mangling
+    - *Access it with this, can read and write*
+    - So rather than enforce it, tells people using/subclassing, this is private, don't modify it or it will break
+    - *Show private.py*, methods work similarly, __changeSecret will also be mangled
+    - *Create a NewAnswer, dir() it*
+    - So in NewAnswer where we try to override it, instead of changing Answer's changeSecret, creates a new one, which is also mangled
+    
+    - Other languages also have a "protected" level of access
+    - Equivalent of only allowing subclasses or code inside the same module to have access
+    - Convention in python is to put single underscore, and this doesn't even mangle the name
+    - Again, it trusts people rather than enforcing it, we assume that people don't want to break everything
+    
+- References: - 8 mins
+    - One slightly confusing concept that trips up people is references
+    - *Demonstrate using references.py, ask what they expect to happen then run it*
+    - *Draw the below on board*
     - l does not actually contain the list, it only points to the list in memory, think of it as storing its memory location, this is known as a reference
     - Assigning l to m only assigns this memory location, so both are pointing at same memory location and same instance of list, so changing m changes l
     - Same happens with all other objects, e.g. if we created a Vehicle, then assigned it to another variable, it would again be pointing at the original Vehicle
-    - Same also happens when we pass an object as an argument, passes the memory location, so changes made inside method will affect original object, we must be careful
-    - Python does have ways of doing a deep copy, where it's not just memory location, look it up
-    - For the standard types, there are 
+    - *Open references2.py, ask what happens here, run it*
+    - Same happens when we pass an object as an argument, passes the memory location, so changes made inside method will affect original object
+    - Python has ways to copy the entire object rather than just memory location. This is called deep copying, so look it up if interested.
+    - There are built-in ways to copy lists, just use the list() method on the list to copy, *demonstrate in references.py*, same for tuples
+    - But note that if the list contains other objects, like lists, dictionaries or custom objects like Vehicles, modifying THOSE will modify the ones in original list, because again, the list only stores references to the objects
+    - *Open references.py, ask, finally to confuse you more, why is it that when I change m[2], l[2] doesn't change? I'm changing the object right?*
+    - *Ask if any questions*
 
-- Keyword arguments + None
+- Try/except blocks: - 7 mins
+    - Going to show you exception handling, which some might already be familiar with
+    - When an error occurs, *demonstrate converting banana to an int*, notice this Error here
+    - This error is known as an exception, and creating one is known as throwing or raising an exception
+    - Instead of crashing, can detect this exception and do something to handle it, known as catching or handling the exception
+    - *Open illegalBanana.py*, syntax for exception handling:
+        - try keyword, usual colon and indent
+        - Then lines where exception could occur
+        - Outdent, except, the specific error you're trying to catch, then usual colon and indent
+        - And then code to handle it
+    - Can leave out the error, but almost never want to do that, because you might be hiding an unexpected error that will bite you later
+
+    - Can also throw your own error, *add exception inside except*, syntax:
+        - raise, the type of exception, then a message
+    - As you can see, can also catch one exception and throw another, *demonstrate*
+
+    - This was just basic exception handling
+    - Many types of errors for other situations too, e.g. IOErrors when something goes wrong with files, should throw most appropriate one
+    - Actually, exceptions are also objects so you can just subclass your own
+    - Also there are keywords to control flow around an exception, such as code that only executes if exception doesn't happen or cleanup code that happens even if another exception gets thrown
+
+- Methods for operators - 4 mins
+    - *Show dir on int*
+    - When you add 2 integers with + operator, Python actually calls a method, __add__(self, other) where the addition is done
+    - Other operators have similar methods and the other types implement these methods too
+    - When calling print on an object the __str__(self) method is called, should return a human-readable string representation of it
+    - *Show MyInt example, uses some of these methods, also use type on result*
+    - So we can implement these methods for our classes too
+    - There are other similar methods Python calls for certain things that all have the underscores, might call them special methods:
+        - A class's __cmp__ method is called to compare instances of it, used for testing equality and for sorting
+        - A class can implement the __iter__ method to allow it to be used in for loops
+        - Read about them in docs
+
+- Exercise 4a: - 10 mins incl. expl. soln.
+    - RomanNumeral class, works on integers from 1 to 10 inclusive, *ensure everyone knows them*
+    - Constructor will take an integer, string, or float, if number is below 1 or above 10, throw a ValueError
+    - Using print on it will return a string with the number in Roman numerals
+    - Add and subtract operators should work using __add__ and __sub__, if it goes below 1 or above 10, throw a ValueError again
+    - *Ask for some good test cases*
+
+- File objects - 4 mins - TODO
+    - There is another built in type I didn't cover, the file
+    - I don't have examples, you can code it in the next exercise
+    - To open a file, built-in called open():
+        - To read, only need filename argument
+        - To write, need ARGUMENTS?!
+
+    - Then can read from the file in multiple ways:
+        - Using a for loop can go through its lines 1 by 1, where a line is something that ends in a newline
+        - *Open docs.python.org/library/stdtypes.html go to read, readline*, also other methods that can:
+            - Get you specific number of bytes
+            - Get just one line (does this keep advancing the reader?)
+            - Get all lines in a list
+
+    - For writing, *continue on stdtypes page*
+        - Can use the file's write method to write a single string
+        - Note that strings must have \n, the character for a new line, inside it to add newlines
+        - Can use writelines to write each string in a sequence to the file
+
+    - Calling flush method
+    - After done with file, must call its close method or else???
+
+- Comments and Docstrings - 3 mins
+    - Speaking of comments, we've seen how to do single line comments
+    - *Open docstrings.py*
+    - To do a multiline comment, type """ at the correct indentation level, then the comment
+    - If a multiline comment is the first line of a method, class or module, it becomes its "docstring"
+    - *Open interpreter, demonstrate help and __doc__*
+    - Then if you use help on it, shows it to you nicely, and __doc__ returns the comment as a string
+    - There are conventions about how to write these comments properly, can read about them online
+    - Useful for documenting your code
+ 
+- Default arguments + None - 4 mins
     - Possible to provide default values for arguments, just put = value afterwards
     - Means that in the call, won't need to provide a value
-    - But any arguments with default values must be after those without in argument list
-    - e.g. list.sort() 
-        - Can be called with 3 arguments, a custom sorting function, a key, to pick a data field to sort on, and a reverse boolean to reverse the order
-        - But by default, sorts in ascending order, uses the comparison method defined for the type, on the object rather than one of its fields
+    - *Show optimus.py*, an example of default arguments, *demonstrate*
+    - Any arguments with default values must be after those without in argument list
+    - So if I make it compulsory to have a weapon, it complains, *demonstrate then revert*
 
-    - *Show optimus.py*, another example of default arguments
-    - Here, we want to ignore if weapon is not provided
-    - Could use value here, e.g. False, and use a condition to check
+    - Now, at the moment we ignore the weapon if it is not provided using False and a condition to check it
     - Nicer way is similar to C's NULL, called None
     - None does nothing, is considered False in a condition, it makes more sense than False, which could have some other meaning
     - Useful where you want a nothing value, perhaps so you know to fill it with something
+    - *Change and demonstrate*
 
-    - Back to arguments, it's also possible to take a variable number of arguments using kwargs, args
-    - TODO
-
-- Try/except blocks:
-    - Going to show you exception handling, which some might already be familiar with
-    - When an error occurs, *demonstrate converting banana to an int*, notice this Error here
-    - This is known as throwing an exception, usually blahblah
-    - Instead of crashing, can detect this exception and do something to handle it, known as catching the exception
-    - *Demonstrate using RomanNumeralCalculator*
-    - Syntax:
-        - try keyword, usual colon and indent
-        - Then lines where exception could occur
-        - Outdent, except, optionally a specific error you're trying to catch, then usual colon and indent
-        - And then code to handle it
-    - Talk about different levels of handling things
-    - Talk about how there's a lot of types of errors
-    - Errors are actually objects too
-    - Say how you can throw errors
-
-- Methods for operators
-    - When you add 2 integers with + operator actually calls a method, __add__(self, other) where the addition is done, similar for other operators and types
-    - When calling print on an object the __str__(self) method is called, should return a human-readable string representation of it
-    - EQUALITY?!
-    - *Show MyInt example, uses some of these methods, also use type on result*
-    - There are other similar methods Python calls by default, e.g. if you try and sort a list of objects, the class's __cmp__ method is called to compare them
-    - Also, iterators, so we can for loop an object
-
-- Exercise 4a:
-    - RomanNumeral class, works on integers from 1 to 1000 inclusive, *ensure everyone knows them*
-    - Constructor will take an integer, string, or float, if number is below 1 or above 1000, throw a ValueError
-    - Using print on it will return the number in Roman numerals
-    - Add and subtract operators should work, if it goes below 1 or above 1000, throw a ValueError again
-    - *Ask for some good test cases*
-
-- File objects
-    
-
-- Private variables
-
-
-- Exercise: Use the encoder from before and use it on files
-
-
-
-- Exercise, maybe go back to the Vehicle?
-
-
-- Docstrings
-
-- Functional programming
-
-- Dynamically typed:
-    - Will have noticed, there's no types, other languages need to declare variables with a type
-    - In those languages, e.g. C, the compiler will tell you if something's wrong with the types
-    - In Python, only know when you run it, e.g. getMaxSpeed returning bananas
-    - Languages where types only worked out a run time like this == dynamically typed, if beforehand == statically typed
-
-- Lists and sequences also support slicing, allows you to select multiple elements in a single statement
-    - Then very briefly sets
-
-- Technical sidetrack, *ask if anyone's interested, see how time is going*
-    - Sometimes we compile, i.e. transform straight to machine code
-    - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
-    - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
-    - Same language can be implemented in different ways, e.g. there are interpreters for C, normally we think of it as compiled
-    - Similarly different implementations of Python use different approaches, most common is bytecode compilation
-
+- Exercise 4b:
+    - Modify the encoder from before to work on files instead
+    - Let the constructor remain the same
+    - Let encode take an existing filename to read from and a new filename to write encoded data to
+    - Let decode take an existing filename to read encoded from and a new filename to write decoded data to

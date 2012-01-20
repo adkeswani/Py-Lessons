@@ -1,4 +1,25 @@
 - You can create an arbitary field inside the object!
     - Tell them that this is a difference it has with Java etc.
 
+- Exercise, maybe go back to the Vehicle?
+
+
+
+- Functional programming
+
+- Dynamically typed:
+    - Will have noticed, there's no types, other languages need to declare variables with a type
+    - In those languages, e.g. C, the compiler will tell you if something's wrong with the types
+    - In Python, only know when you run it, e.g. getMaxSpeed returning bananas
+    - Languages where types only worked out a run time like this == dynamically typed, if beforehand == statically typed
+
+- Lists and sequences also support slicing, allows you to select multiple elements in a single statement
+    - Then very briefly sets
+
+- Technical sidetrack, *ask if anyone's interested, see how time is going*
+    - Sometimes we compile, i.e. transform straight to machine code
+    - Opposite end, we interpret, we read a line of code and perform an action based upon that, interpreter knows what to do
+    - In between, bytecode compilation, transform code into bytecode, which is understood by a "virtual machine", performs actions based upon bytecode
+    - Same language can be implemented in different ways, e.g. there are interpreters for C, normally we think of it as compiled
+    - Similarly different implementations of Python use different approaches, most common is bytecode compilation
 

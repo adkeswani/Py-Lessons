@@ -1,4 +1,4 @@
-Time = 85 mins
+Time = 90 mins
 
 - Types are classes: - 5 mins
     - Going to look at Python's built-in data types, incl. more detail about ones you know and some new ones
@@ -133,16 +133,27 @@ Time = 85 mins
     - Can convert other types into strings using str(), *demonstrate*
     - Strings have a lot of special methods, *show http://docs.python.org/library/stdtypes.html*
     - Some useful ones, *demonstrate split, lower/upper, replace*
+    - Note how these methods never modify the original string, they can't, they only return the modified string
 
-- Dictionaries - 6 mins
+- Immutability: - 2 mins
+    - As I just discussed, strings and tuples cannot be changed after created
+    - This is known as immutability
+    - Integers and floats are also immutable
+    - e.g. you never actually change an integer value, only ever apply operations like addition to create a new ones
+    - There are ways of making your own classes produce immutable objects too, but not discussing here as more advanced than necessary
+    - Reason I'm discussing it is that it's important for the dictionary type
+
+- Dictionaries - 8 mins
     - A dictionary as it stands gives words and their meanings, it is a "mapping" from words to their meanings
     - *Draw diagram showing a mapping*
-    - Dictionaries in Python are similar, but allow you to map any type of object to any other type of object
+    - Dictionaries in Python are similar, but allow you to map more than strings
     - Syntax, *demonstrate in interpreter with multiple types*
         - Curly brackets, then a comma-separated list of pairs, where a pair has an object, then a colon, then another object
     - Left object is key, right object is value, together called a key-value pair. 
     - Like words in a real dictionary, you look up the key to get the value, so in a real dictionary keys are words, values are their meanings
-    - But here the key and value can be of any type, we could use a Vehicle if we wanted to
+    - But here the key and value can be of other types too
+    - There is one restriction though, key must be immutable, so it cannot be a list or another dictionary
+
     - *Open http://docs.python.org/library/stdtypes.html*, shows methods for dictionaries, e.g. *demonstrate in interpreter*:
         - To access an item, looks like a list, [], but use key rather than index, this is used to retrieve and also add items to a dictionary
         - Other ways to construct a dictionary
@@ -154,7 +165,7 @@ Time = 85 mins
             - A common task is looping through the items in a dictionary, *demonstrate with cookies.py*, note the order is not same as insertion order
             - To have them sorted instead, *add sorted()*
             - Remember, sort returns None can't use it here, so we use Python's built-in method called sorted that returns a sorted copy of any sequence
-    - Dictionaries, used when you need to be able to look up items using some sort of key, like a name:
+    - Dictionaries are used when you need to be able to look up items using some sort of key, like a name:
         - e.g. To create a database of students, might use the student id as they key, store records as tuples, can look up by id
 
 - Exercise 3b: - 11 mins, incl. soln.
