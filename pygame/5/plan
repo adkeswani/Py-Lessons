@@ -9,7 +9,9 @@
     - Uses rects, not perfect, other shapes, other pairings, docs
 
 - Experiments:
-    - Take code from before make collisions work
+    - Take code from before make collisions work, just do it in directory 4, easier
     - If 2 Stars collide, let them coallescse into 1
     - If you shoot a star, let it break apart if it's big, or disappear if it's very small
     - If you collide with a star, do something else
+
+- Show off what you've achieved!
