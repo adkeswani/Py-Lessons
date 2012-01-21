@@ -20,6 +20,8 @@
     - blit uses image and rect instead
     - useless? more useful soon
 
+- *Run game.py*
+
 - Experiment:
     - Animate using the ship's rect inside the update method, try using the different rect positions on the rect (see Rect docs)
     - Create another Sprite class called Star, like Ship, but use star.png image, and pass in x, y, xVel and yVel in and get it to move around again using the update method

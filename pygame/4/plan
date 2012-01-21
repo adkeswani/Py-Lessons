@@ -1,4 +1,28 @@
+- *Open ship.py*
+    - update, bounces
+
+- *Open game.py*
+
+- Creating a sprite group:
+    - Group sprites, power of sprites
+    - constructor, add sprites
+
+- Displaying a sprite group:
+    - clear, efficiency vs. full screen
+    - update, calls for all
+    - draw == blit, returns rects
+    - display.update, takes rects
+    - remember this process, speed
+
+- *Run game.py*
+
 Experiments:
-    - Fix prev work with groups
-    - Add bullets class!
-    - Will do collisions next
+    - Add another 9 ship sprites between the existing 10, that start at a different y value using a for loop
+    - Mini game:
+        - Create 2 sprite groups, one that will just have the player's ship, one that will have a bunch of those star objects we made earlier
+        - Get the keyboard or mouse movement code back in
+        - Get the star objects bouncing around, create 10 of them
+        - Use our new efficient display methods to display the 2 sprite groups
+        - Add a Bullet Sprite that fires whenever user presses spacebar or something, use the bullet.png file
+
+- Show off what you've done!

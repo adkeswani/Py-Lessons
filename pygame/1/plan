@@ -1,14 +1,14 @@
 - *Open loader.py*
 
 - Loading images:
-    - image.load, filename, images dir, construct, returns Surface
+    - image.load, path to image, images dir path, exception, returns Surface
     - Make parts transparent, 3 ways:
-        - Per-pixel alpha, each pixel RGB + A, 0 to 255, 
+        - Colorkey transparency, pick colour, make it fully transparent, rest fully opaque, argument/-1
+        - Per-pixel alpha, each pixel RGB + A, 0 to 255, set up in image program
             - convert_alpha(), like convert(), keeps per-pixel alpha
-        - Colorkey transparency, pick colour, make it fully transparent, argument/-1
         - Surface alpha, set_alpha(N), not done in loader
-    - There is speed difference, read more if you need
-    - Can copy-paste this code
+    - There is speed difference, read more if you need speed
+    - Can copy-paste this code, does convert for us
 
 - *Open images.py*
 
@@ -23,13 +23,12 @@
 - *Run images.py*
 
 - Experiments:
-    - See what happens if you comment out the background blit and figure out why
-    - Open the image files in the images subdirectory, see what makes them different
-    - Try some different transforms on image using docs
-    - Try set_alpha on the image surface
+    - Open the image files in the images subdirectory, see what's inside
+    - Replace black background with image loaded from background.png, transform it to fit screen, much like how it's sized at the moment
     - Load ship1.png onto a different surface and make the pink transparent, the pink is (255,0,150), try the -1 argument too
-        - This won't work immediately, experiment and ask if you're stuck, hint: transforming returns a new surface
-    - Load ship2.png onto yet another surface
+        - This won't work immediately, try commenting out the transform and see what happens, ask yourself why, hint: transforming returns a new surface
+    - Try set_alpha on both ship surfaces, what happens?
+    - Try some different transforms on image using docs
     - Animate the surfaces, but use random to choose the speed, see commented random.randint call
     - Use transform as the image moves, e.g. spinning, spinning and scaling
 

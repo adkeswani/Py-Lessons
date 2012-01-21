@@ -7,16 +7,17 @@
     - Slide keys under Brad's door, give cards to Beth to return
     - *Keep Open http://www.pygame.org/docs/ref/display.html*
 
+- Introduce ourselves
+
 - Questions:
     - Who has coded before?
     - Who has done Python before?
     - Move around based on this
 
-    - Assuming you can code, willing to play around
-    - Very quick explanations, lots of experimenting, but do ask us and each other questions!
+    - Assuming you're all willing to play around with the code
+    - Very quick explanations, lots of experimenting
+    - Feel free to ask questions, but play around with it first
     - Will get you to show off stuff afterwards
-
-- Introduce ourselves
 
 - Going to set everything up, make sure you remember how to do this as we will be using it often
     - Cables under the desks
@@ -25,6 +26,7 @@
         - Creating a new file
     - Opening a terminal - iTerm
     - Navigating around the filesystem on terminal, show cd, ls, cd .., tab completion, less plan in correct directory
+        - Spend some time on this, make sure everyone has it
     - Opening Safari, loading the docs page, look here for more info
 
 - *Open rainbow.py*
@@ -38,13 +40,14 @@
         - Depth, leave default
 
 - Surfaces
+    - set_mode creates surface
     - Canvas
-    - display == special surface, get_surface
+    - display == special, shown on screen, get_surface
     - pygame.Surface, size
     - convert(), faster format, always call
     - fill, RGB?
     - blit, copy onto, destination, source, position
-    - (0,0), top left, positive
+        - (0,0), top left, positive
     - flip, updates screen
 
 - Frame rate
@@ -64,7 +67,9 @@
 
 - Experiments:
     - Change position and colour of blue
-    - Animate blue by altering blitting position, get it to bounce if you can
+    - Animate blue by altering blitting position each loop, get it to bounce if you can
+        - Will fail badly, explain blitting
+        - blit background
     - Change frame rate
     - Create 4 * 8 grid of blues blitted to screen with spacing between them
     - Use the commented code at the bottom to generate 32 different coloured surfaces and blit

@@ -1,0 +1,8 @@
+- Sounds and fonts:
+    - loader, load_sound, load_font
+    - Read docs
+
+- Experiments:
+    - Finish the game
+    - Find some sounds, add them in
+    - Find a way of scoring, display the score on screen
