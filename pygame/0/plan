@@ -62,11 +62,13 @@
     - Copy-paste for exit
 
 - Run it
-    - python <filename.py>
+    - Everyone, python <filename.py>
     - Also run finished rainbow, will do this
+    - Everyone, check the plan
 
 - Experiments:
     - Change position and colour of blue
+    - Create a red surface and green surface, position them around, use screen.get_width() and height() to position the top-left at the centre etc.
     - Animate blue by altering blitting position each loop, get it to bounce if you can
         - Will fail badly, explain blitting
         - blit background
