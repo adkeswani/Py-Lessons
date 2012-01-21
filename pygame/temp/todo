@@ -1,5 +1,5 @@
 Todo:
-    - Loading images
+    - Loading images - DONE!!!!
         - Alpha and Convert_alpha()
         - Colorkey
         - Drawing them to screen
@@ -27,6 +27,8 @@ Todo:
             - Add momentum
             - Give ship animation
 
+    - Sprite groups
+
     - Collisions
         - All different types
         - What's actually happening in background
@@ -49,3 +51,8 @@ Todo:
             - And different mouse inputs
         - Let them do a lot of the planning
         - A few hints
+
+- Notes:
+    - Not sure how to approach this
+    - There are important concepts, e.g. sprites
+    - Should I rely on experimentation then?:

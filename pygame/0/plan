@@ -1,5 +1,3 @@
-Time: 50 mins
-
 - Prior setup:
     - Set displays to mirrored
     - NEVER use FULLSCREEN in Pygame
@@ -7,97 +5,70 @@ Time: 50 mins
     - Tell BradH when to order pizza
     - Take cups up with lunch
     - Slide keys under Brad's door, give cards to Beth to return
+    - *Keep Open http://www.pygame.org/docs/ref/display.html*
 
-- Introduction: - 2 min
-    - Introductions, volunteers and myself
-    - Aim: To teach you about Pygame, a set of modules built for writing games
-    - These include modules for sounds, sprites, frame rate, handling input, setting up the display == everything you need for a 2D game
-    - Can also be combined with other libraries like OpenGL for 3D, but we'll be covering just the 2D side today.
-    - Each section: Will go through the topic, ask a few questions, then coding exercises at the end
-    - Ask questions: Others might be wondering the same thing and it could help everyone
+- Questions:
+    - Who has coded before?
+    - Who has done Python before?
+    - Move around based on this
 
-- Setup: - 7 min
-    - Everyone, be careful with cables under the desks
-    - Log in, ensure you use the correct numbered account, 00 - 09
-    - Download files
+    - Assuming you can code, willing to play around
+    - Very quick explanations, lots of experimenting, but do ask us and each other questions!
+    - Will get you to show off stuff afterwards
+
+- Introduce ourselves
+
+- Going to set everything up, make sure you remember how to do this as we will be using it often
+    - Cables under the desks
     - Opening up editor, *ask if people know vim*, otherwise xCode
         - Set up indenting, *Go to Xcode menu, Preferences, Indentation, make sure tab width is 4 inserting spaces (unchecked)*
-        - Creating a new file, need to specify location and filename, usually in same folder as current lesson
-    - Opening a terminal - iTerm, I'll be using vim to edit/demonstrate
-    - Set up zoom on my screen
-    - Navigating around the filesystem on terminal, explain directories and plan file
+        - Creating a new file
+    - Opening a terminal - iTerm
+    - Navigating around the filesystem on terminal, show cd, ls, cd .., tab completion, less plan in correct directory
+    - Opening Safari, loading the docs page, look here for more info
 
-- Initializing Pygame - 8 mins
-    - *Open initPygame.py*
-    - First thing is to import pygame module
-    - We also do an import from pygame.locals. This contains constants used by pygame.
-    - For example, each key on the keyboard has an integer associated with it, locals has a constant for each key so you can refer to it by the key's name
+- *Open rainbow.py*
 
-    - Then we initialize Pygame's modules using pygame.init()
+- Initializing Pygame
+    - import pygame, pygame.locals
+    - pygame.init()
+    - pygame.display.set_mode()
+        - Size of space you can draw in, (0,0)
+        - Flags, resizable/fullscreen/hardware
+        - Depth, leave default
 
-    - Next, we need to set up a window or the entire screen to display the game
-    - Do this using pygame's display submodule
-    - *Open http://www.pygame.org/docs/ref/display.html*
-    - pygame.org has documentation for all its modules, so under display submodule, *find set_mode*
-    - pygame.display.set_mode sets up your display, must be called before you can draw anything
-    - takes a resolution, which is a tuple containing width and height, using 0 for either will default to the current screen's width and height
-    - Resolution defines how many pixels you have to draw on, so 50 * 50 will mean you have 50 by 50 pixels in which you can position things
-    - Also takes flags to choose what kind of window you want:
-        - Fullscreen makes game fullscreen, it doesn't always stretch the drawing area to fit, it does its best. So 800 * 600 on a 1024 * 768 current resolution will stretch, but 50 * 50 won't
-        - NoFrame and Resizable give you draggable windows, where noFrame obviously isn't resizable. From what I've seen, Pygame won't stretch the game if you change the window size
-        - HwSurface would create a hardware accelerated display, but we won't use it. Why? Won't work on all systems so you lose compatibility, it only works fullscreen, and if driver is not suited to it might actually end up being slower than the software rendering that is otherwise used. On Windows, it's supposed to be OK and faster, but we will ignore it for today.
-        - OpenGL is if you're going to use OpenGL, which we aren't, and DoubleBuf is for hwsurface and opengl, which we aren't using either
-    - Depth controls colour depth, number of bits used to represent colours. Usually can ignore it, Pygame automatically chooses the fastest for the current system
-    - Return value is a Surface, which I will describe shortly
+- Surfaces
+    - Canvas
+    - display == special surface, get_surface
+    - pygame.Surface, size
+    - convert(), faster format, always call
+    - fill, RGB?
+    - blit, copy onto, destination, source, position
+    - (0,0), top left, positive
+    - flip, updates screen
 
-    - Lastly we have a while loop to keep game running and some event code that I will also get to shortly
-    - *Run it, blank screen*
+- Frame rate
+    - Clock
+    - tick, fps
+    - while loop, closes
 
-- *Ask, any questions so far*
+- Events
+    - Keeps queue
+    - event.get(), empties, must every frame
+    - Can guess, other types (see docs), not how we handle keys
+    - Copy-paste for exit
 
-- Surfaces and drawing a background - 7 mins
-    - set_mode returns a Surface object
-    - A Surface is a canvas, a piece of paper, something to draw on
-    - Can fill it with a colour, load images onto it, copy its contents onto another surface, and set and read colours of pixels
-    - *Open surfaces.py*
-    - Class is Surface, so constructor is pygame.Surface, required argument is tuple with width and height of surface
-    - We then call convert() on this:
-        - Converts the Surface so it best matches current display settings, such as colour depth
-        - Otherwise every time Surface is drawn onto the display, would need to convert along the way, slow
-    - And we have a surface
-    - To fill a surface, fill method with RGB color as argument, *ask if everyone knows rgb*, numbers range from 0 to 255
-    - To display this surface, must draw it to the screen
-    - Surface returned by set_mode is special, anything we draw to it will be drawn to screen
-    - To get this surface, can call pygame.display.get_surface as shown
-    - To copy from one surface to another is called blitting
-    - Method is called from the destination surface, takes the source surface and a tuple containing x and y position of where to copy it to
-    - This brings up Pygame's coordinate system, (0,0) is top-left corner of a surface, positive is to the right and down
-    - x,y tuple says where to put top-left corner of the source surface, so (0,0) puts it in the top-left corner of destination
-    - Finally, to update screen to reflect what was just copied onto display surface, we call flip
-    - *Run it, blue square*
-    - So process was, create surface, draw something on it, blit it to screen, flip the screen
+- Run it
+    - python <filename.py>
+    - Also run finished rainbow, will do this
 
-- Clock and frame rate - 5 mins
-    - So that we can do a somewhat interesting exercise, will introduce frame rate now
-    - Frame rate is how many frames are shown per second, for games usually 30 to 60 frames per second
-    - Pygame has a Clock class for handling frame rate
-    - Without a frame rate, game would execute as fast as possible, and different for different computers
-    - *Open rainbow.py*
-    - Clock is in the time submodule of pygame, so constructor is just pygame.time.Clock()
-    - This class can create a delay so that frame rate never exceeds some number of frames per second
-    - To cause that delay, using clock.tick(N), where N is frames per second
-    - This just adds a delay of 1 second divided by N
-    - This isn't very sophisticated, as after that we do all of the work, so frame rate will end up lower
-    - However, if we divide 1000 milliseconds by 30 frames, that's > 300 milliseconds per frame
-    - This is quite long compared to the processing that will be needed per frame, so change in framerate isn't huge
+- Experiments:
+    - Change position and colour of blue
+    - Animate blue by altering blitting position, get it to bounce if you can
+    - Change frame rate
+    - Create 4 * 8 grid of blues blitted to screen with spacing between them
+    - Use the commented code at the bottom to generate 32 different coloured surfaces and blit
+    - Animate this by shifting the colours forward one each time and wrapping around
+    - Ask questions if you're stuck!
 
-    - In this file, we also blit and flip background in each frame
-    - *Ask what this would achieve, and where we should be drawing stuff to screen*
-
-- Exercise 0a: - 20 mins with expl. and soln.
-    - Leads us to first exercise
-    - First, change to a resizable, 800 * 400 resolution window
-    - Then use a loop to create a list of 32 surfaces and get their colours using the formulae at bottom of rainbow
-    - Make them slightly smaller than 100 * 100 each, maybe 80 * 80
-    - Then in each iteration of the while loop, blit all 32 on in 4 rows of 8 so they're equally spaced
-    - In the next iteration, find a way to shift all of them along by 1
+- Show off what you've done

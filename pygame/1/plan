@@ -1,36 +1,36 @@
-- Loading images
-    - Pygame lets you load images onto surfaces and supports a couple of types of transparency
-    - *Open loader.py*
-    - Loader contains a method for loading images that you can copy and reuse in almost any project
-    - Takes 2 arguments, the first of which is filename, second I'll explain shortly
-    - It then gets the full path to the image, assumes that they are in an images subdirectory using a usual os path join method
-    - To load the image, we just use pygame.image.load with the full path to the image
-    - It's inside a try-catch in case the image doesn't exist
-    - pygame.image.load returns a surface, so we could just return and use this, but we would like to use transparency
+- *Open loader.py*
 
-    - The first type of transparency supported is called per-pixel alpha
-    - Here, each pixel has a 4th value besides RGB, called the alpha 
-    - This is how transparent that pixel is, ranges from 0 to 255, where 255 is opaque, 0 is invisible
-    - When you design the image you can make things transparent/semi-transparent and that info gets saved into this alpha channel
-    - Not all formats support it, but I know png files do support it and jpegs don't
-    - Then we call convert_alpha() on it. This is like convert() which was to convert to the fastest possible pixel format, but it retains the alpha channel while convert() doesn't
-    - *Demo image!*
+- Loading images:
+    - image.load, filename, images dir, construct, returns Surface
+    - Make parts transparent, 3 ways:
+        - Per-pixel alpha, each pixel RGB + A, 0 to 255, 
+            - convert_alpha(), like convert(), keeps per-pixel alpha
+        - Colorkey transparency, pick colour, make it fully transparent, argument/-1
+        - Surface alpha, set_alpha(N), not done in loader
+    - There is speed difference, read more if you need
+    - Can copy-paste this code
 
-    - The second type of transparency is called colorkey transparency
-    - Here we choose 1 color on the image we want to make fully transparent
-    - Is this faster than per-pixel?
-    - The second argument of load_image takes this color
-    - Then at the bottom of load_image, we use set_colorkey to set that as the transparent colour
-    - We also pass a flag RLEACCEL, which accelerates for software surfaces
-    - Alternatively, we can pass -1 as the colorkey and it uses the color from the top-left pixel of the image
-    - *Demo image*
+- *Open images.py*
 
+- Transforming surfaces:
+    - load_image returns Surface
+    - transform.smoothscale, returns scaled
+    - Others www.pygame.org/docs/ref/transform.html
 
+- Displaying image:
+    - Just blit the surface
 
+- *Run images.py*
 
-    - Colorkey
-    - Drawing them to screen
-    - Exercise/demos:
-        - Get background on
-        - A colorkey example?
-        - Exercise??? 
+- Experiments:
+    - See what happens if you comment out the background blit and figure out why
+    - Open the image files in the images subdirectory, see what makes them different
+    - Try some different transforms on image using docs
+    - Try set_alpha on the image surface
+    - Load ship1.png onto a different surface and make the pink transparent, the pink is (255,0,150), try the -1 argument too
+        - This won't work immediately, experiment and ask if you're stuck, hint: transforming returns a new surface
+    - Load ship2.png onto yet another surface
+    - Animate the surfaces, but use random to choose the speed, see commented random.randint call
+    - Use transform as the image moves, e.g. spinning, spinning and scaling
+
+- Show off what you've done

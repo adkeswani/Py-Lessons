@@ -1,12 +1,12 @@
 #Initialising pygame
 import pygame
 from pygame.locals import *
-import math
+import loader
+import ship
 
 pygame.init()
-pygame.display.set_mode((0, 0))
+pygame.display.set_mode((0,0))
 
-#Surfaces
 screen = pygame.display.get_surface()
 
 background = pygame.Surface((screen.get_width(), screen.get_height())).convert()
@@ -14,30 +14,23 @@ background.fill((0,0,0))
 screen.blit(background, (0,0))
 pygame.display.flip()
 
-blue = pygame.Surface((100, 100))
-blue.fill((0,0,170))
-
-#Frame rate
 clock = pygame.time.Clock()
+
+player = ship.Ship((screen.get_width() / 2, screen.get_height() / 2))
 
 exited = False
 while not exited:
     clock.tick(30)
 
-    screen.blit(blue, (0,0))
+    screen.blit(background, (0,0))
+
+    screen.blit(player.image, player.rect.center)
     pygame.display.flip()
 
-    #Events
+    player.update()
+
     for event in pygame.event.get():
         if event.type == QUIT:
             exited = True
         elif event.type == KEYDOWN and event.key == K_ESCAPE:
             exited = True
-
-#frequency = 0.3
-#l = []
-#for i in range(0,32)
-    #red = math.sin(frequency * i + 0) * 127 + 128;
-    #green = math.sin(frequency * i + 2 * math.pi / 3) * 127 + 128;
-    #blue = math.sin(frequency * i + 4 * math.pi / 3) * 127 + 128;
-    #l.append((red, green, blue))

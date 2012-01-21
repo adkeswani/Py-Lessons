@@ -1,0 +1,11 @@
+- *Open ship.py*
+
+- Input:
+    - key.get_pressed(), list bools all keys, constants from docs, here
+    - mouse.get_pos(), tan inv, *draw diagram*
+
+- Experiments:
+    - Set up the keys so that left arrow and right arrow rotate, up arrow and down arrow move forwards and backwards
+    - Get rid of that, set up so that rotating mouse rotates ship, and clicking left and right buttons moves forwards and backwards
+        - Will need docs to see how to check mouse buttons
+    - Add momentum

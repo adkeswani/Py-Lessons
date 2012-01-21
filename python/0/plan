@@ -1,12 +1,12 @@
 Time: 50 mins
 
 - Prior setup:
-    - Set displays to mirrored
-    - NEVER use FULLSCREEN in Pygame
-    - Put laptop with lesson open next to monitor, readable size.
-    - Tell BradH when to order pizza
+    - Set displays to mirrored - done
+    - NEVER use FULLSCREEN in Pygame -  done
+    - Put laptop with lesson open next to monitor, readable size. - done
+    - Tell BradH when to order pizza - done
     - Take cups up with lunch
-    - Keep docs.python.org/library/stdtypes.html open
+    - Keep docs.python.org/library/stdtypes.html open - done
 
 - Introduction: - 3 min
     - Introductions, volunteers and myself
@@ -17,7 +17,6 @@ Time: 50 mins
 
 - Setup: - 7 min
     - Everyone, be careful with cables under the desks
-    - Log in, ensure you use the correct numbered account, 00 - 09
     - Download files
     - Opening up editor, *ask if people know vim*, otherwise xCode
         - Set up indenting, *Go to Xcode menu, Preferences, Indentation, make sure tab width is 4 inserting spaces (unchecked)*

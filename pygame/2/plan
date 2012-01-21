@@ -1,0 +1,27 @@
+- *Open ship.py*
+
+- Sprites:
+    - foreground objects, move
+    - create == subclass Sprite class
+    - Sprite = basically surfaces with useful stuff
+    - constructor, call Sprite constructor
+    - copy-paste, don't understand
+    - Sprites have image
+    - Sprites have rect:
+        - rectangle around image, *draw*
+        - positioning and other
+        - See docs for more positioning
+    - ignore update, experiments
+
+- Creating sprites:
+    - Just call constructor
+
+- Displaying sprites:
+    - blit uses image and rect instead
+    - useless? more useful soon
+
+- Experiment:
+    - Animate using the ship's rect inside the update method, try using the different rect positions on the rect (see Rect docs)
+    - Create another Sprite class called Star, like Ship, but use star.png image, and pass in x, y, xVel and yVel in and get it to move around again using the update method
+    - Try just getting the ship to rotate repeatedly
+        - It won't work properly, will talk about self.image.get_rect() and storing images for rotation
